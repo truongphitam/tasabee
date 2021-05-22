@@ -1,0 +1,16 @@
+[09-Nov-2020 23:40:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function categories() in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/achievements/partials/add/info.blade.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/achievements/partials/add/info.blade.php on line 30
+[12-Nov-2020 07:52:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function categories() in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/achievements/partials/add/info.blade.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/achievements/partials/add/info.blade.php on line 30
+[23-Nov-2020 17:55:04 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function categories() in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/achievements/partials/add/info.blade.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/achievements/partials/add/info.blade.php on line 30
+[26-Nov-2020 03:23:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function categories() in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/achievements/partials/add/info.blade.php:30
+Stack trace:
+#0 {main}
+  thrown in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/achievements/partials/add/info.blade.php on line 30

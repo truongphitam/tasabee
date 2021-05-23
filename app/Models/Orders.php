@@ -42,4 +42,14 @@ class Orders extends BaseModel
         'confirm_status',
         'confirm_admins_id'
     ];
+
+    public function detail()
+    {
+        return $this->hasMany(OrdersDetail::class, 'orders_id', 'id');
+    }
+
+    public function attached()
+    {
+        return $this->hasMany(OrdersAttached::class, 'orders_id', 'id');
+    }
 }

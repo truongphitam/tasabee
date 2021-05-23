@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\ProductsCate;
 use App\Models\Gallery;
 use App\Models\Orders;
+use App\Models\OrdersAttached;
 use App\Models\OrdersDetail;
 use App\Models\ProductsToCate;
 use App\User;
@@ -99,29 +100,6 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('file_contract')) {
-            $file = $request->file_contract;
-
-            //Lấy Tên files
-            echo 'Tên Files: ' . $file->getClientOriginalName();
-            echo '<br/>';
-
-            //Lấy Đuôi File
-            echo 'Đuôi file: ' . $file->getClientOriginalExtension();
-            echo '<br/>';
-
-            //Lấy đường dẫn tạm thời của file
-            echo 'Đường dẫn tạm: ' . $file->getRealPath();
-            echo '<br/>';
-
-            //Lấy kích cỡ của file đơn vị tính theo bytes
-            echo 'Kích cỡ file: ' . $file->getSize();
-            echo '<br/>';
-
-            //Lấy kiểu file
-            echo 'Kiểu files: ' . $file->getMimeType();
-        }
-        dd($request->all());
         $id = $request->id ? $request->id : ''; 
         $param = $request->except(['id', '_token', 'invoice_date', 'etd', 'eta']);
         $param += [
@@ -131,23 +109,93 @@ class OrdersController extends Controller
             'eta' => convertToYMDHIS($request->eta),
             'sub_total' => $request->sub_total
         ];
-        dd($param);
         if($id){
             // Update 
+            DB::table('orders_details')->where('orders_id', $id)->delete();
+            if ($request->hasFile('_file_contract')) {
+                $file = $request->_file_contract;
+                $file_contract = $file->getClientOriginalName();
+                $this->uploadFile('', $file, '');
+                $param += ['file_contract' => $file_contract];
+            }
             Session::flash('success', trans('message.admin.update'));
         }else{
+            $file_contract = '';
+            $file = '';
+            if ($request->hasFile('_file_contract')) {
+                $file = $request->_file_contract;
+                $file_contract = $file->getClientOriginalName();
+                $this->uploadFile('', $file, '');
+            }
             // Create new
             $param += [
-                'auto_code' => generate_code_auto('orders')
+                'auto_code' => generate_code_auto('orders'),
+                'file_contract' => $file_contract
             ];
-            $orders = $this->_repository->create($param);
-            $id = $orders->id;
+            $id = $this->_repository->create($param);
+            if($file){
+                
+            }
             Session::flash('success', trans('message.admin.create'));
         } 
+        // Save orders detail 
+        if($request->products && !empty($request->products)){
+            $quantity = $request->quantity;
+            $price = $request->price;
+            $item_unit = $request->item_unit;
+            $packing_method = $request->packing_method;
+            foreach($request->products as $key => $product){
+                $orders_detail = new OrdersDetail();
+                $orders_detail->orders_id = $id;
+                $orders_detail->price = $price[$key];
+                $orders_detail->products_id = $product;
+                $orders_detail->quantity = $quantity[$key];
+                $orders_detail->item_unit = $item_unit[$key];
+                $orders_detail->packing_method = $packing_method[$key];
+                $orders_detail->sub_total = $quantity[$key] * $price[$key];
+                $orders_detail->save();
+            }
+        }
+
+        // attached file for orders
+        if ($request->hasFile('_attached_file')) {
+            DB::table('orders_attacheds')->where('orders_id', $id)->delete();
+            $files = $request->_attached_file;
+            if($files && !empty($files)){
+                foreach($files as $file){
+                    $path = public_path().'/attached/file/';
+                    $file_name = $file->getClientOriginalName();
+                    if(file_exists($path.$file_name)){
+                        unlink($path.$file_name);
+                    }
+                    //
+                    $attached = new OrdersAttached();
+                    $attached->orders_id = $id;
+                    $attached->path = $path.$file_name;
+                    $attached->name = $file_name;
+                    $attached->mime_type = $file->getSize() ? $file->getSize() : '';
+                    $attached->size = $file->getSize() ? $file->getSize() : '';
+                    $attached->save();
+                }
+            }
+        }
 
         return redirect()->route('orders.show', $id);
     }
 
+    private function uploadFile($orders_id = '', $file, $type = ''){
+        $path = public_path().'/attached/contract/';
+        if($type == 'attached'){
+            $path = public_path().'/attached/file/';
+        }
+        // Check file and delete if exits 
+        $file_name = $file->getClientOriginalName();
+        if(file_exists($path.$file_name)){
+            unlink($path.$file_name);
+        }
+        //
+        $file->move($path, $file_name);
+    }
     /**
      * Display the specified resource.
      *
@@ -157,7 +205,8 @@ class OrdersController extends Controller
     public function show($id)
     {
         //
-        $post = $this->_repository->find($id);
+        $post = Orders::with('detail', 'attached')->find($id);
+        //dd($post);
         $products = Products::orderBy('id')->get();
         $customer = User::orderBy('id', 'desc')->get();
         $staff = Admins::where('role', 'staff')->orderBy('id', 'desc')->get();

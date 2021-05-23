@@ -173,7 +173,7 @@
                 <div class="row form-inline form-group clearfix">
                     <div class="col-md-12 text-right">
                         <label for="currency_unit">Đơn vị tiền tệ (USD/EUR/.....):</label>
-                        <input type="text" class="form-control" id="currency_unit" style="width: 20%" onchange="change_currency_unit(this)">
+                        <input value="{{ $post && $post->currency_unit ? $post->currency_unit : '' }}" type="text" class="form-control" id="currency_unit" style="width: 20%" onchange="change_currency_unit(this)">
                     </div>
                 </div>
                 <div class="form-group clearfix">
@@ -190,7 +190,29 @@
                             </tr>
                         </thead>
                         <tbody id="body_list_products">
-                            
+                            @if ($post && !$post->detail->isEmpty())
+                                @foreach ($post->detail as $detail)
+                                    <tr id="item_body_list_{{ $detail->products_id }}">
+                                        <td>#{{ $detail->products_id }}</td>
+                                        <td>{{ $detail->products ? $detail->products->title : ''}}</td>
+                                        <td>{{ $detail->price }}</td>
+                                        <td>
+                                            <input id="quantity_{{ $detail->products_id }}" name="quantity[]" onchange="change_quantity(this)" value="{{ $detail->quantity }}" type="number" class="form-control" data-id="{{ $detail->products_id }}">
+                                            <input id="products_{{ $detail->products_id }}" name="products[]" value="{{ $detail->products_id }}" type="hidden" class="form-control">
+                                            <input id="price_{{ $detail->products_id }}" name="price[]" value="{{ $detail->price }}" type="hidden" class="form-control">
+                                        </td>
+                                        <td>
+                                            <input id="item_unit_{{ $detail->products_id }}" name="item_unit[]" value="{{ $detail->item_unit }}" type="text" class="form-control">
+                                        </td>
+                                        <td>
+                                            <input id="packing_method_{{ $detail->products_id }}" name="packing_method[]" value="{{ $detail->packing_method }}" type="text" class="form-control">
+                                        </td>
+                                        <td>
+                                            <strong id="price_temp_{{ $detail->products_id }}">{{ $detail->sub_total }}</strong>
+                                        </td>
+                                    </tr> 
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -203,11 +225,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="file_contract">Hợp đồng</label>
-                        <input type="file" id="file_contract" name="file_contract" accept="application/pdf, application/PDX">
+                        <input type="file" id="_file_contract" name="_file_contract" accept="application/pdf, application/PDX">
                     </div>
                     <div class="col-md-6">
                         <label for="">File đính kèm</label>
-                        <input type="file" id="attached_file" name="attached_file" accept="application/pdf, application/PDX" multiple>
+                        <input type="file" id="_attached_file" name="_attached_file[]" accept="application/pdf, application/PDX" multiple>
                     </div>
                 </div>
                 </div>

@@ -1,5 +1,5 @@
 @extends('web.master')
-@section('content') 
+@section('content')
 
 // Code here 
 

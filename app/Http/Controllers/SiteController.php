@@ -50,58 +50,31 @@ class SiteController extends Controller
     
 
     public function about(){
-        $page = $this->pageRepository->find(6);
-        $purpose = $this->postRepository->paginate_with_post_type(type_purpose(), '', 3);
-        return view('web.page.about', compact('page', 'purpose'));
+        return view('web.page.about');
     }
 
-    public function donate(){
-        $page = $this->pageRepository->find(7);
-        return view('web.page.donate', compact('page'));
+    public function products(){
+        return view('web.page.products');
     }
 
-    public function post(){
-        $post_type = type_posts();
-        $page_id = '';
-        switch(Route::currentRouteName()){
-            case 'news';
-                $page_id = 1;
-                $post_type = type_posts();
-                $link = route('news');
-                break;
-            case 'achievements';
-                $page_id = 2;
-                $post_type = type_achievements();
-                $link = route('achievements');
-                break;
-            case 'event';
-                $page_id = 3;
-                $post_type = type_event();
-                $link = route('event');
-                break;
-            
-        }
-        $page = $this->pageRepository->find($page_id);
-        $data = $this->postRepository->paginate_with_post_type($post_type, '', 9);
-        $sponsor = $this->sponsorRepository->getPublish();
-        $stick = $this->postRepository->get_stick($post_type);
-
-        return view('web.page.news', compact('data', 'page', 'link', 'sponsor', 'stick'));
+    public function detailProducts(){
+        return view('web.page.detailProducts');
     }
 
-    public function detailPost($slug){
-        $page = $this->postRepository->findSlug($slug);
-        return view('web.page.detailNews', compact('page'));
-    } 
-
-    public function categoryEvent($slugCate){
-        $category = Categories::where('slug', $slugCate)->first();
-        $data = $this->postRepository->paginate_with_post_type('event', $category->id, 9);
-        $link = route('event');
-        $page = $this->pageRepository->find(3);
-        $stick = $this->postRepository->get_stick('event', $category->id);
-        $sponsor = $this->sponsorRepository->getPublish();
-
-        return view('web.page.news', compact('data', 'page', 'link', 'stick', 'sponsor'));
+    public function blog(){
+        return view('web.page.blog');
     }
+
+    public function detailBlog(){
+        return view('web.page.detailBlog');
+    }
+
+    public function event(){
+        return view('web.page.event');
+    }
+
+    public function contact(){
+        return view('web.page.contact');
+    }
+
 }

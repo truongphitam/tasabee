@@ -14,16 +14,12 @@
 Route::prefix(LaravelLocalization::setLocale())->group(function () {
     Route::get('/', 'SiteController@index')->name('index');
     Route::get('gioi-thieu', 'SiteController@about')->name('about');
-    Route::get('donation-info', 'SiteController@donate')->name('donate');
-    
-    Route::get('tin-tuc', 'SiteController@post')->name('news');
-    Route::get('tin-tuc/{hash}', 'SiteController@detailPost')->name('detailNews');
-    
-    Route::get('thanh-tich', 'SiteController@post')->name('achievements');
-    Route::get('thanh-tich/{hash}', 'SiteController@detailPost')->name('detailAchievements');
+    Route::get('san-pham', 'SiteController@products')->name('products');
+    Route::get('san-pham/{slug}', 'SiteController@detailProducts')->name('detailProducts');
 
-    Route::get('su-kien', 'SiteController@post')->name('event');
-    Route::get('su-kien/{hash}', 'SiteController@detailPost')->name('detailEvents');
-
-    Route::get('danh-muc-su-kien/{hash}', 'SiteController@categoryEvent')->name('categoryEvent');
+    Route::get('blog', 'SiteController@blog')->name('blog');
+    Route::get('blog/{slug}', 'SiteController@detailBlog')->name('detailBlog');
+    
+    Route::get('event', 'SiteController@event')->name('event');
+    Route::get('lien-he', 'SiteController@contact')->name('contact');
 });

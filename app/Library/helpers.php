@@ -6,6 +6,8 @@
  * Time: 10:25 PM
  */
 
+use App\Models\Admins;
+use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Http\Request;
 function link_sponsor(){
@@ -44,6 +46,43 @@ function link_sponsor(){
     return $link;
 }
 
+if (!function_exists('generate_code_auto')) {
+    function generate_code_auto($type)
+    {
+        $code = '1';
+        $sign = '';
+        switch ($type) {
+            case 'orders':
+                $sign = 'HD';
+                $last = Orders::select('id')->orderBy('id', 'desc')->first();
+                break; 
+        };
+        if ($last && $last->id) {
+            $code = $last->id + 1;
+        }
+
+        return render_code($code, $sign);
+    }
+}
+
+if (!function_exists('render_code')) {
+    function render_code($code, $type)
+    {
+        $str = 7;
+        $lengh = strlen($code);
+        if ($lengh >= $str) {
+            return $type . '0' . $code;
+        }
+
+        $flag = '';
+        $max = (int)$str - (int)$lengh;
+        for ($i = 0; $i < $max; $i++) {
+            $flag .= '0';
+        }
+        return $type . $flag . $code;
+    }
+}
+
 if (!function_exists('show_incoterms')) {
     function show_incoterms($active = '')
     {
@@ -75,6 +114,25 @@ if (!function_exists('show_method')) {
                 $selected = "";
             }
             echo "<option value='$item' " . $selected . ">";
+            echo $item;
+            echo "</option>";
+
+        }
+    }
+}
+
+if (!function_exists('status_orders')) {
+    function status_orders($active = '')
+    {
+        $data = ['Đơn hàng mới', 'Đang xử lý', 'Đang giao hàng', 'Đã giao hàng', 'Hoàn thành'];
+        echo "<option value=''>Chọn Phương thức</option>";
+        foreach ($data as $key => $item) {
+            if ($active == $key) {
+                $selected = "selected";
+            } else {
+                $selected = "";
+            }
+            echo "<option value='$key' " . $selected . ">";
             echo $item;
             echo "</option>";
 
@@ -158,6 +216,21 @@ if (!function_exists('format_data_by_locale')) {
                 return (object)$res;
             }
         }
+    }
+}
+
+if (!function_exists('convertToYMDHIS')) {
+    function convertToYMDHIS($date)
+    {
+        $date = str_replace('/', '-', $date);
+        return date('Y-m-d H:i:s', strtotime($date));
+    }
+}
+
+if (!function_exists('convertToDMYHIS')) {
+    function convertToDMYHIS($date)
+    {
+        return date('d/m/Y H:i:s', strtotime($date));
     }
 }
 

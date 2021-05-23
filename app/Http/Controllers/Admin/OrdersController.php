@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admins;
 use App\Models\Attributes;
 use App\Repository\ProductsRepository;
 use App\Models\Products;
@@ -12,15 +13,17 @@ use Illuminate\Support\Facades\Session;
 use App\Models\ProductsCate;
 use App\Models\Gallery;
 use App\Models\Orders;
+use App\Models\OrdersDetail;
 use App\Models\ProductsToCate;
+use App\User;
 use DB;
-
+use App\Repository\OrdersRepository;
 class OrdersController extends Controller
 {
     //
     protected $_repository;
 
-    public function __construct(ProductsRepository $repository)
+    public function __construct(OrdersRepository $repository)
     {
         $this->_repository = $repository;
     }
@@ -81,8 +84,11 @@ class OrdersController extends Controller
     {
         //
         $post = new Orders();
+        $post->auto_code = generate_code_auto('orders');
         $products = Products::orderBy('id')->get();
-        return view('admin.page.orders.add', compact('post', 'products'));
+        $customer = User::orderBy('id', 'desc')->get();
+        $staff = Admins::where('role', 'staff')->orderBy('id', 'desc')->get();
+        return view('admin.page.orders.add', compact('post', 'products', 'customer', 'staff'));
     }
 
     /**
@@ -93,43 +99,53 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request->hasFile('file_contract')) {
+            $file = $request->file_contract;
+
+            //Lấy Tên files
+            echo 'Tên Files: ' . $file->getClientOriginalName();
+            echo '<br/>';
+
+            //Lấy Đuôi File
+            echo 'Đuôi file: ' . $file->getClientOriginalExtension();
+            echo '<br/>';
+
+            //Lấy đường dẫn tạm thời của file
+            echo 'Đường dẫn tạm: ' . $file->getRealPath();
+            echo '<br/>';
+
+            //Lấy kích cỡ của file đơn vị tính theo bytes
+            echo 'Kích cỡ file: ' . $file->getSize();
+            echo '<br/>';
+
+            //Lấy kiểu file
+            echo 'Kiểu files: ' . $file->getMimeType();
+        }
         dd($request->all());
-        $pro_id = $request->id ? $request->id : ''; 
-        $slug = isset($request->slug) && !empty($request->slug) ? $request->slug : $request->title[App::getLocale()];
-        $slug = $this->_repository->generateSlug($slug, 0);
-        $param = $request->except(['_token', 'slug', 'id']);
-        $param += ['slug' => $slug];
-        //dd($param);
-        if($pro_id){
+        $id = $request->id ? $request->id : ''; 
+        $param = $request->except(['id', '_token', 'invoice_date', 'etd', 'eta']);
+        $param += [
+            'invoice_date' => convertToYMD($request->invoice_date),
+            'debt_due_date' => convertToYMD($request->_debt_due_date),
+            'etd' => convertToYMDHIS($request->etd),
+            'eta' => convertToYMDHIS($request->eta),
+            'sub_total' => $request->sub_total
+        ];
+        dd($param);
+        if($id){
+            // Update 
             Session::flash('success', trans('message.admin.update'));
-            $update = $this->_repository->update($pro_id, $param);
         }else{
+            // Create new
+            $param += [
+                'auto_code' => generate_code_auto('orders')
+            ];
+            $orders = $this->_repository->create($param);
+            $id = $orders->id;
             Session::flash('success', trans('message.admin.create'));
-            $pro_id = $this->_repository->create($param);
-        }
-        if ($pro_id) {
-            if (isset($request->products_to_cate)) {
-                DB::table('products_to_cate')->where('products_id', $pro_id)->delete();
-                foreach ($request->products_to_cate as $item) {
-                    $pro_to_cate = new ProductsToCate();
-                    $pro_to_cate->cate_id = $item;
-                    $pro_to_cate->products_id = $pro_id;
-                    $pro_to_cate->save();
-                }
-            }
-            if (isset($request->gallery)) {
-                DB::table('gallerys')->where('product_id', $pro_id)->delete();
-                foreach ($request->gallery as $itemGallery) {
-                    if (!empty($itemGallery)) {
-                        $gallery = new gallery();
-                        $gallery->image = $itemGallery;
-                        $gallery->product_id = $pro_id;
-                        $gallery->save();
-                    }
-                }
-            }
-        }
-        return redirect()->route('products.show', $pro_id);
+        } 
+
+        return redirect()->route('orders.show', $id);
     }
 
     /**
@@ -141,17 +157,17 @@ class OrdersController extends Controller
     public function show($id)
     {
         //
-        $categories = [];
-        $gallery = [];
-        $post = Products::with('gallery', 'categories')->find($id);
-        if($post->categories && !$post->categories->isEmpty()){
-            foreach($post->categories as $category){
-                array_push($categories, $category->cate_id);
-            }
-        } 
-        //dd($categories);        
+        $post = $this->_repository->find($id);
+        $products = Products::orderBy('id')->get();
+        $customer = User::orderBy('id', 'desc')->get();
+        $staff = Admins::where('role', 'staff')->orderBy('id', 'desc')->get();
         $_title = $post->title;
-        return view('admin.page.orders.add', compact('post', '_title', 'categories', 'gallery'));
+        //
+        $post->invoice_date = convertToDMY($post->invoice_date);
+        $post->debt_due_date = convertToDMY($post->debt_due_date);
+        $post->etd = convertToDMYHIS($post->etd);
+        $post->eta = convertToDMYHIS($post->eta);
+        return view('admin.page.orders.add', compact('_title', 'post', 'products', 'customer', 'staff'));      
     }
 
     /**

@@ -271,8 +271,8 @@ if ($("#invoice_date").length) {
     });
 }
 
-if ($("#debt_term_date").length) {
-    $('#debt_term_date').daterangepicker({
+if ($("#debt_term_date_bk").length) {
+    $('#debt_term_date_bk').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true,
         minYear: moment().add(-10, 'year'),
@@ -365,5 +365,38 @@ function formatVND(n) {
         return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "." + c : c;
     });
 
-    return currency + ' VNĐ';
+    return currency;
 };
+
+function change_method(element){
+    $('#_type_method').addClass('hidden');
+    $('#_type_lc').addClass('hidden');
+    switch($(element).val()){
+        case 'TT':
+            $('#_type_method').removeClass('hidden');
+            break;
+        case 'LC':
+            $('#_type_lc').removeClass('hidden');
+            break;
+    }
+}
+
+function change_invoice_date(el){
+    var date = $(el).val();
+    var days = $("#debt_term_date").val();
+    var new_date = moment(date, "DD/MM/YYYY").add(days, 'days').format('DD/MM/YYYY');
+    $("#debt_due_date").val(new_date);
+    $("#_debt_due_date").val(new_date);
+}
+
+function change_currency_unit(el){
+    $("#type_currency_unit").html('('+$(el).val()+')');
+}
+
+function change_debt_term_date(element){
+    var days = $(element).val();
+    var date = $("#invoice_date").val();
+    var new_date = moment(date, "DD/MM/YYYY").add(days, 'days').format('DD/MM/YYYY');
+    $("#debt_due_date").val(new_date);
+    $("#_debt_due_date").val(new_date);
+}

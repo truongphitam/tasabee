@@ -15,13 +15,17 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->default(0);
+            $table->string('auto_code');
             $table->integer('customer_id')->nullable();
             $table->integer('staff_id')->nullable();
+
             $table->string('invoice_number')->nullable();
             $table->string('packing_list')->nullable();
             $table->string('bill_number')->nullable();
+
             $table->date('invoice_date');
-            $table->date('debt_term_date');
+            $table->integer('debt_term_date');
             $table->date('debt_due_date');
 
 
@@ -34,19 +38,26 @@ class CreateOrdersTable extends Migration
             $table->string('train_number')->nullable();
             $table->string('number_of_containers')->nullable();
             $table->string('place_of_delivery')->nullable();
+
             $table->string('insurrance')->nullable();
             $table->string('incoterms')->nullable();
             $table->string('method')->nullable();
+
+            $table->string('type_method')->nullable();
             $table->string('lc_number')->nullable();
-            
+            $table->integer('status_orders')->default(0);
+
             $table->text('note')->nullable();
             $table->string('file_contract')->nullable();
 
             $table->integer('sub_total')->nullable();
             $table->integer('payment')->nullable();
             $table->integer('discount')->nullable();
-            $table->integer('deposit')->nullable();
+            $table->integer('vat')->nullable();
+            $table->integer('deposit')->default(0);
 
+            $table->integer('confirm_status')->default('0')->comment('0 là chưa / 1 là confirm rồi');
+            $table->integer('confirm_admins_id')->default(0);
             $table->timestamps();
         });
     }

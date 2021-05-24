@@ -13,6 +13,7 @@ public/hot
 public/public
 public_html/public/public
 public_html/.composer.lock
+
 public/uploads/*
 public/attached/*
 # Laravel 5 & Lumen specific with changed public path

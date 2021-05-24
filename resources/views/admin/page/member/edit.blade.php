@@ -14,11 +14,15 @@
                                required value="{!! $data->email !!}" disabled/>
                     </div>
                     <div class="form-group">
+                        <label>{!! trans('admin.field.name') !!}</label>
+                        <input type="text" name="name" class="form-control" value="{!! $data->name !!}" required/>
+                    </div>
+                    <div class="hidden form-group">
                         <label>{!! trans('admin.field.first_name') !!}</label>
                         <input type="text" name="first_name" class="form-control"
                                value="{!! $data->first_name !!}"/>
                     </div>
-                    <div class="form-group">
+                    <div class="hidden form-group">
                         <label>{!! trans('admin.field.last_name') !!}</label>
                         <input type="text" name="last_name" class="form-control"
                                value="{!! $data->last_name !!}"/>

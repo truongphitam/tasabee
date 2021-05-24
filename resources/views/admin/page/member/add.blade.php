@@ -13,12 +13,16 @@
                                 required/>
                     </div>
                     <div class="form-group">
-                        <label>{!! trans('admin.field.first_name') !!}</label>
-                        <input type="text" name="first_name" class="form-control" required/>
+                        <label>{!! trans('admin.field.name') !!}</label>
+                        <input type="text" name="name" class="form-control" required/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group hidden">
+                        <label>{!! trans('admin.field.first_name') !!}</label>
+                        <input type="text" name="first_name" class="form-control" />
+                    </div>
+                    <div class="form-group hidden">
                         <label>{!! trans('admin.field.last_name') !!}</label>
-                        <input type="text" name="last_name" class="form-control" required/>
+                        <input type="text" name="last_name" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label>{!! trans('admin.field.website') !!}</label>

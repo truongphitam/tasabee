@@ -18,11 +18,13 @@
                     <table class="table table-bordered" id="dataTable">
                         <thead>
                         <tr>
-                            <th class="no-sort" style="width: 50px">Image</th>
-                            <th>@lang('admin.field.email')</th>
-                            <th class="no-sort">@lang('admin.field.role')</th>
-                            <th>@lang('admin.field.date')</th>
-                            <th class="no-sort text-center"></th>
+                            <th class="no-sort" style="width: 50px">Image</th> 
+                            <th class="no-sort">Tên</th>
+                            <th class="no-sort">Email</th>
+                            <th class="no-sort">Số điện thoại</th>
+                            <th class="no-sort">Địa chỉ</th>
+                            <th class="no-sort">Ngày tham gia</th>
+                            <th class="no-sort"></th>
                         </tr>
                         </thead>
                         <tbody>

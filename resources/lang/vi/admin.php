@@ -51,7 +51,9 @@ return array(
             'address' => 'Địa chỉ',
             'attributes' => 'Thuộc tính',
             'change_pass' => 'Mật khẩu mới nhập vào nếu muốn thay đổi mật khẩu',
-            'price' => 'Giá bán (VNĐ)'
+            'price' => 'Giá bán (VNĐ)',
+            'name' => 'Tên',
+            'country' => 'Quốc gia'
         ),
     'button' =>
         array(

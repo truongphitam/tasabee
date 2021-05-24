@@ -32,18 +32,18 @@ class OrdersController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $total = Products::count('id');
-            $query = Products::select('id', 'image', 'title', 'slug', 'user_id', 'created_at', 'is_published');
+            $total = Orders::count('id');
+            $query = Orders::select('*');
             # Category filter
 //            if ($request->has('category')) {
 //                $query = $query->where('cate_id', (int)$request->category);
 //                $filtered = $query->count();
 //            }
             # Search title
-            if ('' !== $search = $request->search['value']) {
-                $query = $query->where('title', 'like', '%' . $search . '%');
-                $filtered = $query->count();
-            }
+            // if ('' !== $search = $request->search['value']) {
+            //     $query = $query->where('title', 'like', '%' . $search . '%');
+            //     $filtered = $query->count();
+            // }
             # Pagination
             $posts = $query->orderBy('id', 'desc');
             $posts = $query->skip($request->start)->take($request->length);
@@ -52,16 +52,19 @@ class OrdersController extends Controller
             $rows = [];
             foreach ($posts as $post) {
                 $rows[] = [
-                    $post->id,
-                    "<img src='$post->image' class='img-responsive'/>",
-                    $post->title,
-                    $post->slug,
-                    ProductsToCate::getNameMultiCate($post->id),
-                    $post->expert,
-                    $post->created_at,
-                    "<a href='" . route('products.clone',
-                        $post->id) . "' class='btn btn-warning btn-xs'><i class='fa fa-fw fa-eye'></i></a>&nbsp;<a href='" . route('products.show',
-                        $post->id) . "' class='btn btn-success btn-xs'><i class='fa fa-fw fa-edit'></i></a>&nbsp;<a onclick='return confirmDelete();return false;' href='" . route('products.destroy',
+                    $post->auto_code,
+                    $post->customer ? $post->customer->name : '',
+                    $post->staff ? $post->staff->name : '',
+                    $post->invoice_number,
+                    $post->packing_list,
+                    $post->bill_number,
+                    convertToDMY($post->invoice_date),
+                    $post->debt_term_date,
+                    convertToDMY($post->debt_due_date),
+                    show_title_status_orders($post->status_orders),
+                    "<a href='" . route('orders.clone',
+                        $post->id) . "' class='btn btn-warning btn-xs'><i class='fa fa-fw fa-eye'></i></a>&nbsp;<a href='" . route('orders.show',
+                        $post->id) . "' class='btn btn-success btn-xs'><i class='fa fa-fw fa-edit'></i></a>&nbsp;<a onclick='return confirmDelete();return false;' href='" . route('orders.destroy',
                         $post->id) . "' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-trash'></i></a>"
                 ];
             }
@@ -72,7 +75,7 @@ class OrdersController extends Controller
                 'recordsFiltered' => isset($filtered) ? $filtered : $total,
             ]);
         }
-        $_title = trans('admin.title.list') . ' ' . trans('admin.object.categories');
+        $_title = trans('admin.title.list') . ' ' . trans('admin.object.orders');
         return view('admin.page.orders.index', compact('_title'));
     }
 

@@ -10,24 +10,25 @@
 
                 </div>
                 <div class="col-md-8 text-right">
-                    @if($post_type != type_purpose())
-                        <a href="{!! route('post.create', ['post_type' => $post_type]) !!}" class="btn btn-info">
-                            <i class="fa fa-fw fa-plus"></i>
-                        </a>
-                    @endif
+                    <a href="{!! route('orders.create') !!}" class="btn btn-info">
+                        <i class="fa fa-fw fa-plus"></i>
+                    </a>
                 </div>
                 <div class="col-md-12" style="margin-top: 20px">
                     <table class="table table-bordered" id="dataTable">
                         <thead>
                         <tr>
-                            <th class="no-sort" style="width: 50px">Image</th>
-                            <th>@lang('admin.field.title')</th>
-                            <th>@lang('admin.field.author')</th>
-                            {{-- <th class="no-sort">@lang('admin.field.categories')</th>
-                            <th>Giữ</th> --}}
-                            <th>Mô tả ngắn</th>
-                            <th>@lang('admin.field.date')</th>
-                            <th class="no-sort text-center"></th>
+                            <th class="no-sort">ID</th>
+                            <th class="no-sort">Khách hàng</th>
+                            <th class="no-sort">Nhân viên</th>
+                            <th class="no-sort">Số hoá đơn</th>
+                            <th class="no-sort">Số Packing list</th>
+                            <th class="no-sort">Số Bill</th>
+                            <th class="no-sort">Ngày lập hóa đơn</th>
+                            <th class="no-sort">Thời hạn công nợ</th>
+                            <th class="no-sort">Hạn công nợ</th>
+                            <th class="no-sort">Trạng thái đơn hàng</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,7 +39,6 @@
         </div>
     </div>
 @endsection
-<input type="hidden" id="post_type" value="{!! $post_type !!}"/>
 @section('js')
     <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
@@ -47,7 +47,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    url: '{{ action('Admin\PostController@index') }}',
+                    url: '{{ action('Admin\OrdersController@index') }}',
                     data: function (d) {
                         d.category = $('.category-filter').val();
                         d.post_type = $('#post_type').val();

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Orders extends BaseModel
@@ -51,5 +52,13 @@ class Orders extends BaseModel
     public function attached()
     {
         return $this->hasMany(OrdersAttached::class, 'orders_id', 'id');
+    }
+
+    public function customer(){
+        return $this->hasOne(User::class, 'id', 'staff_id');
+    }
+
+    public function staff(){
+        return $this->hasOne(Admins::class, 'id', 'customer_id');
     }
 }

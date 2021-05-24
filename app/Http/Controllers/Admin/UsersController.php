@@ -43,8 +43,10 @@ class UsersController extends Controller
             foreach ($posts as $post) {
                 $rows[] = [
                     "<img src='$post->image' class='img-responsive'/>",
+                    $post->name,
                     $post->email,
                     $post->phone,
+                    $post->address,
                     $post->created_at->format('d/m/Y'),
                     "<a href='" . route('users.show', $post->id) . "' class='btn btn-success btn-xs'><i class='fa fa-fw fa-edit'></i></a>&nbsp;<a onclick='return confirmDelete();return false;' href='" . route('users.destroy', $post->id) . "' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-trash'></i></a>"
                 ];

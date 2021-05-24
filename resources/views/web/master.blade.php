@@ -60,6 +60,11 @@
 											Vie
 										</a>
 									</li>
+									<li class="list-inline-item">
+										<a href="#">
+											Đăng nhập
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -82,27 +87,32 @@
 									<div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"> <a href="#" class="site-menu-toggle js-menu-toggle"> <span class="fa fa-bars fa-2x"></span> </a></div>
 									<ul class="site-menu main-menu js-clone-nav d-none d-sm-block d-md-block d-flex justify-content-around">
 										<li>
-											<a href="index.html" class="nav-link active">
+											<a href="{{ route('index') }}" class="nav-link {{ areActiveRoutes(['index']) }}">
 												Home
 											</a>
 										</li>
 										<li>
-											<a href="product.html" class="nav-link">
+											<a href="{{ route('about') }}" class="nav-link {{ areActiveRoutes(['about']) }}">
+												Giới thiệu
+											</a>
+										</li>
+										<li>
+											<a href="{{ route('products') }}" class="nav-link {{ areActiveRoutes(['products', 'detailProducts']) }}">
 												Products
 											</a>
 										</li>
 										<li>
-											<a href="blog.html" class="nav-link">
+											<a href="{{ route('blog') }}" class="nav-link {{ areActiveRoutes(['blog', 'detailBlog']) }}">
 												Blog
 											</a>
 										</li>
 										<li>
-											<a href="event.html" class="nav-link">
+											<a href="{{ route('event') }}" class="nav-link {{ areActiveRoutes(['event']) }}">
 												Event
 											</a>
 										</li>
 										<li>
-											<a href="contact.html" class="nav-link">
+											<a href="{{ route('contact') }}" class="nav-link {{ areActiveRoutes(['contact']) }}">
 												Contact
 											</a>
 										</li>

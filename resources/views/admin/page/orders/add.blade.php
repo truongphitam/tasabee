@@ -259,7 +259,10 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <button class="btn btn-info">Xác nhận đơn hàng</button>
+                    <input type="hidden" id="status_orders_old" value="{{ $post->status_orders ? $post->status_orders : '' }}">
+                    @if ($post && $post->id)
+                        <button class="btn btn-info" id="btn_confirm_status" onclick="">Xác nhận đơn hàng</button>
+                    @endif
                     <button class="btn btn-warning">Lưu hoá đơn</button>
                 </div>
             </div>
@@ -270,6 +273,10 @@
 @endsection
 @section('js')
 <script>
+    $(document).ready(function(){
+        var id = $("#id").val();
+        console.log('');
+    });
     $('#select_products').on('select2:select', function (e) {
         var data = e.params.data;
         var id = data.id;

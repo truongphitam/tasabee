@@ -121,10 +121,28 @@ if (!function_exists('show_method')) {
     }
 }
 
+
+if (!function_exists('show_title_status_orders')) {
+    function show_title_status_orders($status_orders = 0)
+    {
+        $data = get_status_orders();
+        $res = $data && $data[$status_orders] ? $data[$status_orders] : '';
+
+        return $res;
+    }
+}
+
+if (!function_exists('get_status_orders')) {
+    function get_status_orders($status = 0)
+    {
+        return ['Đơn hàng mới', 'Đang xử lý', 'Đang giao hàng', 'Đã giao hàng', 'Hoàn thành'];
+    }
+}
+
 if (!function_exists('status_orders')) {
     function status_orders($active = '')
     {
-        $data = ['Đơn hàng mới', 'Đang xử lý', 'Đang giao hàng', 'Đã giao hàng', 'Hoàn thành'];
+        $data = get_status_orders();
         echo "<option value=''>Chọn Phương thức</option>";
         foreach ($data as $key => $item) {
             if ($active == $key) {

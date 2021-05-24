@@ -1,0 +1,16 @@
+[09-Nov-2020 23:41:24 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function showAchievements() in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/products/partials/edit/info.blade.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/products/partials/edit/info.blade.php on line 23
+[12-Nov-2020 07:53:28 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function showAchievements() in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/products/partials/edit/info.blade.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/products/partials/edit/info.blade.php on line 23
+[23-Nov-2020 17:55:30 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function showAchievements() in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/products/partials/edit/info.blade.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/products/partials/edit/info.blade.php on line 23
+[26-Nov-2020 03:24:19 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function showAchievements() in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/products/partials/edit/info.blade.php:23
+Stack trace:
+#0 {main}
+  thrown in /home/cp775137/public_html/mottainai.brain-asia.com/resources/views/admin/page/products/partials/edit/info.blade.php on line 23

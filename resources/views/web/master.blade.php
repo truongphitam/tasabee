@@ -5,10 +5,10 @@
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
 	<title>Tasabee</title>
-	<link rel="icon" href="images/icon-bee.png" />
-	<link rel="icon" href="images/icon-bee.png" />
-	<link rel="apple-touch-icon" href="images/icon-bee.png" />
-	<meta name="msapplication-TileImage" content="images/icon-bee.png" />
+	<link rel="icon" href="/assets/web/images/icon-bee.png" />
+	<link rel="icon" href="/assets/web/images/icon-bee.png" />
+	<link rel="apple-touch-icon" href="/assets/web/images/icon-bee.png" />
+	<meta name="msapplication-TileImage" content="/assets/web/images/icon-bee.png" />
 
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -88,7 +88,7 @@
 									<ul class="site-menu main-menu js-clone-nav d-none d-sm-block d-md-block d-flex justify-content-around">
 										<li>
 											<a href="{{ route('index') }}" class="nav-link {{ areActiveRoutes(['index']) }}">
-												Home
+												Trang chủ
 											</a>
 										</li>
 										<li>
@@ -98,22 +98,22 @@
 										</li>
 										<li>
 											<a href="{{ route('products') }}" class="nav-link {{ areActiveRoutes(['products', 'detailProducts']) }}">
-												Products
+												Sản phẩm
 											</a>
 										</li>
 										<li>
 											<a href="{{ route('blog') }}" class="nav-link {{ areActiveRoutes(['blog', 'detailBlog']) }}">
-												Blog
+												Tin tức
 											</a>
 										</li>
 										<li>
 											<a href="{{ route('event') }}" class="nav-link {{ areActiveRoutes(['event']) }}">
-												Event
+												Sự kiện
 											</a>
 										</li>
 										<li>
 											<a href="{{ route('contact') }}" class="nav-link {{ areActiveRoutes(['contact']) }}">
-												Contact
+												Liên hệ
 											</a>
 										</li>
 									</ul>

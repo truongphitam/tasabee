@@ -107,6 +107,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admins'], function () {
         Route::post('edit', 'OrdersController@update')->name('orders.update');
         Route::get('delete/{id}', 'OrdersController@destroy')->name('orders.destroy');
         Route::get('clone/{id}', 'OrdersController@clone')->name('orders.clone');
+        Route::post('confirm-status-orders', 'OrdersController@confirmStatusOrders')->name('orders.confirmStatusOrders');
     });
     //achievements
     Route::group(['prefix' => 'achievements'], function () {

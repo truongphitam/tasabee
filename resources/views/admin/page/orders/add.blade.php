@@ -173,7 +173,7 @@
                 <div class="row form-inline form-group clearfix">
                     <div class="col-md-12 text-right">
                         <label for="currency_unit">Đơn vị tiền tệ (USD/EUR/.....):</label>
-                        <input value="{{ $post && $post->currency_unit ? $post->currency_unit : '' }}" type="text" class="form-control" id="currency_unit" style="width: 20%" onchange="change_currency_unit(this)">
+                        <input name="currency_unit" value="{{ $post && $post->currency_unit ? $post->currency_unit : '' }}" type="text" class="form-control" id="currency_unit" style="width: 20%" onchange="change_currency_unit(this)">
                     </div>
                 </div>
                 <div class="form-group clearfix">
@@ -226,10 +226,18 @@
                     <div class="col-md-6">
                         <label for="file_contract">Hợp đồng</label>
                         <input type="file" id="_file_contract" name="_file_contract" accept="application/pdf, application/PDX">
+                        @if ($post->file_contract)
+                            <p><a target="blank" title="{{ $post->file_contract }}" href="/attached/contract/{{ $post->file_contract }}"><b>{{ $post->file_contract }}</b> </a></p>
+                        @endif
                     </div>
                     <div class="col-md-6">
                         <label for="">File đính kèm</label>
                         <input type="file" id="_attached_file" name="_attached_file[]" accept="application/pdf, application/PDX" multiple>
+                        @if ($post && !$post->attached->isEmpty())
+                            @foreach ($post->attached as $attached)
+                            <p><a target="blank" title="{{ $attached->name }}" href="/attached/file/{{ $attached->name }}"><b>{{ $attached->name }}</b> </a></p>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 </div>
@@ -259,14 +267,15 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <input type="hidden" id="status_orders_old" value="{{ $post->status_orders ? $post->status_orders : '' }}">
                     @if ($post && $post->id)
-                        <button class="btn btn-info" id="btn_confirm_status" onclick="">Xác nhận đơn hàng</button>
+                        <button type="button" class="btn btn-info" id="btn_confirm_status" onclick="confirm_payment()">Xác nhận đơn hàng</button>
                     @endif
-                    <button class="btn btn-warning">Lưu hoá đơn</button>
+                    <button type="submit" class="btn btn-warning">Lưu hoá đơn</button>
                 </div>
             </div>
         </div>
+        <input type="hidden" id="products_id" value="{{ $products_id }}">
+        <input type="hidden" id="status_orders_old" value="{{ $post->status_orders ? $post->status_orders : 0 }}">
         {!! Form::close() !!}
     </div>
 </div>
@@ -275,12 +284,62 @@
 <script>
     $(document).ready(function(){
         var id = $("#id").val();
-        console.log('');
+        if(id){
+            // edit stock
+            var currency_unit = $("#currency_unit").val();
+            if(currency_unit){
+                $("#type_currency_unit").html('(' + currency_unit + ')');
+            }
+            var _method = $("#method").val();
+            if(_method == 'TT'){
+                $("#_type_method").removeClass('hidden');
+            }
+            if(_method == 'LC'){
+                $("#_type_lc").removeClass('hidden');
+            }
+            var _products_id = JSON.parse($("#products_id").val());
+            $('#select_products').val(_products_id).trigger("change");
+        }
     });
+
+    function confirm_payment(){
+        var status_orders_old = $("#status_orders_old").val();
+        var status_orders = $("#status_orders").val();
+        var formData = new FormData();
+        formData.append("status_orders", status_orders);
+        formData.append("orders_id", $("#id").val());
+        if(status_orders != status_orders_old){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: baseURL + "/admin/orders/confirm-status-orders",
+                type: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    alert('Xác nhận trạng thái đơn hàng thành công !');
+                    return false;
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Đã có lỗi xảy ra. Vui lòng thử lại sau !');
+                    return false;
+                }
+            });
+        }else{
+            alert('Trạng thái đơn hàng phải khác trạng thái cũ !');
+        }
+
+        return false;
+    };
     $('#select_products').on('select2:select', function (e) {
         var data = e.params.data;
         var id = data.id;
-        console.log('sss');
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

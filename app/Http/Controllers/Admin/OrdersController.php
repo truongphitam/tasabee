@@ -87,12 +87,13 @@ class OrdersController extends Controller
     public function create()
     {
         //
+        $products_id = '';
         $post = new Orders();
         $post->auto_code = generate_code_auto('orders');
         $products = Products::orderBy('id')->get();
         $customer = User::orderBy('id', 'desc')->get();
         $staff = Admins::where('role', 'staff')->orderBy('id', 'desc')->get();
-        return view('admin.page.orders.add', compact('post', 'products', 'customer', 'staff'));
+        return view('admin.page.orders.add', compact('post', 'products', 'customer', 'staff', 'products_id'));
     }
 
     /**
@@ -114,6 +115,7 @@ class OrdersController extends Controller
         ];
         if($id){
             // Update 
+            //dd($param);
             DB::table('orders_details')->where('orders_id', $id)->delete();
             if ($request->hasFile('_file_contract')) {
                 $file = $request->_file_contract;
@@ -121,6 +123,7 @@ class OrdersController extends Controller
                 $this->uploadFile('', $file, '');
                 $param += ['file_contract' => $file_contract];
             }
+            $update = $this->_repository->update($id, $param);
             Session::flash('success', trans('message.admin.update'));
         }else{
             $file_contract = '';
@@ -179,6 +182,8 @@ class OrdersController extends Controller
                     $attached->mime_type = $file->getSize() ? $file->getSize() : '';
                     $attached->size = $file->getSize() ? $file->getSize() : '';
                     $attached->save();
+                    //
+                    $file->move($path, $file_name);
                 }
             }
         }
@@ -208,8 +213,14 @@ class OrdersController extends Controller
     public function show($id)
     {
         //
+        $products_id = [];
         $post = Orders::with('detail', 'attached')->find($id);
-        //dd($post);
+        if($post && $post->detail && !$post->detail->isEmpty()){
+            foreach($post->detail as $detail){
+                array_push($products_id, $detail->products_id);
+            }
+        }   
+        $products_id = json_encode($products_id);
         $products = Products::orderBy('id')->get();
         $customer = User::orderBy('id', 'desc')->get();
         $staff = Admins::where('role', 'staff')->orderBy('id', 'desc')->get();
@@ -219,7 +230,7 @@ class OrdersController extends Controller
         $post->debt_due_date = convertToDMY($post->debt_due_date);
         $post->etd = convertToDMYHIS($post->etd);
         $post->eta = convertToDMYHIS($post->eta);
-        return view('admin.page.orders.add', compact('_title', 'post', 'products', 'customer', 'staff'));      
+        return view('admin.page.orders.add', compact('_title', 'post', 'products', 'customer', 'staff', 'products_id'));      
     }
 
     /**
@@ -282,8 +293,8 @@ class OrdersController extends Controller
         $flag = $this->_repository->destroy($id);
         if ($flag == true) {
             Session::flash('success', trans('message.admin.delete'));
-            DB::table('products_to_cate')->where('products_id', $id)->delete();
-            DB::table('gallerys')->where('product_id', $id)->delete();
+            DB::table('orders_attacheds')->where('orders_id', $id)->delete();
+            DB::table('orders_details')->where('orders_id', $id)->delete();
         } else {
             Session::flash('danger', trans('message.admin.delete'));
         }
@@ -314,5 +325,13 @@ class OrdersController extends Controller
         }
         Session::flash('success', trans('message.admin.clone'));
         return redirect()->route('products.index');
+    }
+
+    public function confirmStatusOrders(Request $request){
+        $orders = Orders::find($request->orders_id);
+        $orders->status_orders = $request->status_orders;
+        $orders->save();
+
+        return response()->json(true);
     }
 }

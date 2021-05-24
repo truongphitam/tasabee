@@ -40,6 +40,7 @@ class Orders extends BaseModel
         'discount',
         'vat',
         'deposit',
+        'currency_unit',
         'confirm_status',
         'confirm_admins_id'
     ];

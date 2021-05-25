@@ -36,7 +36,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title text-center">Đăng ký</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<button type="button" class="close" data-dismiss="modal" data-toggle="modal" href="#login-modal">&times;</button>
 			</div>
 
 			<div class="modal-body">
@@ -73,7 +73,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title text-center">Quên mật khẩu</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<button type="button" class="close" data-dismiss="modal" data-dismiss="modal" data-toggle="modal" href="#login-modal">&times;</button>
 			</div>
 
 			<div class="modal-body">

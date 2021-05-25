@@ -1,110 +1,76 @@
 @extends('web.master')
 @section('content')
 
-// Code here 
-
-<!--Footer-->
-<section id="footer-contact" class="clearfix padding-25">
+<section class="bg-top clearfix">
+    <img src="/assets/web/images/bg-blog.jpg">
     <div class="container">
-        <p class="text-center">
-            <img src="/assets/web/images/icon-bee.png" width="45">
-        </p>
-        <h2 class="home-title text-uppercase text-center c_ff7200">
+        <div class="top-cat-name">
             <b>
-                <span class="c_222">Liên Hệ Với</span> Chúng Tôi
+                BLOG
             </b>
-        </h2>
+            <ul class="list-inline text-center">
+                <li class="list-inline-item">
+                    <a href="">
+                        Home
+                    </a>
+                </li>
+                /
+                <li>
+                    <a href="">
+                        Blog
+                    </a>
+                </li>
+                /
+                <li>
+                    <a>
+                        Blog
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="container-fluid">
+</section>
+
+<section class="blog-single padding-50">
+    <img src="/assets/web/images/blog-bee-left.png" class="hidden-xs blog-bee-left">
+    <img src="/assets/web/images/blog-bee-right.png" class="hidden-xs blog-bee-right">
+
+    <div class="container">
+        <p>
+            <img src="/assets/web/images/bg-blog.jpg" class="img-responsive">
+        </p>
         <div class="row">
-            <div class="col-12 col-md-4 no-padding">
-                <p class="footer-contact-img">
-                    <img src="/assets/web/images/b-pr.jpg">
+            <div class="col-12 col-md-10 offset-md-1">
+                <h1>
+                    <strong>
+                        Neque Porro Quisquam
+                    </strong>
+                </h1>
+                <p class="c_363636">
+                    <i class="fa fa-calendar"></i> 11/11/1111
                 </p>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="footer-contact-left">
-                            <div class="contact-left-item">
-                                <span>
-                                    Showrom 1:
-                                </span>
-                                <br/>
-                                Đường 1/5, Tp.Bảo Lộc, Lâm Đồng
-                                <br/>
-                                <b>Hotline:</b> 0981.477.642
-                            </div>
-                            <div class="contact-left-item">
-                                <span>
-                                    Showrom 2:
-                                </span>
-                                <br/>
-                                30B Trần Bình Trọng, Tp. Nha Trang
-                                <br/>
-                                <b>Hotline:</b> 0905.391.333
-                            </div>
-                            <div class="contact-left-item">
-                                <span>
-                                    Showrom 3:
-                                </span>
-                                <br/>
-                                153G Lũy Bán Bích, Tân Thới Hòa,
-                                Tân Phú, Tp.HCM
-                                <br/>
-                                <b>Hotline:</b> 0917.778.96
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="footer-contact-right">
-                            <p class="text-justify">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-                            </p>
-                            <p>
-                                <b>
-                                    CÔNG TY TNHH XUẤT NHẬP KHẨU TASABEE
-                                </b>
-                            </p>
-                            <ul class="list-unstyled contact-address">
-                                <li>
-                                    <span>A</span>	Thôn 13, Xã DamBri, Bảo Lộc, Lâm Đồng
-                                </li>
-                                <li>
-                                    <span>T</span>	0917778968
-                                </li>
-                                <li>
-                                    <span>E</span>	info@tasabe.com
-                                </li>
-                            </ul>
-                            <ul class="list-inline center-xs contact-links">
-                                <li class="list-inline-item">
-                                    <a href="#!">
-                                        f
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!">
-                                        t
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!">
-                                        g
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="text-justify">
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo duis aute irure.
+                    <Br/>
+                    Nemo enim ipsam voluptatem quia voluptas sit magni dolores porro quisquam est, qui dolorem ipsum aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora.
                 </div>
+
+
+
+                <!---->
+                <div class="post-action">
+
+                </div>
+                <!---->
             </div>
         </div>
     </div>
 </section>
+
 @endsection
 @section('css')
 
 @endsection
 @section('js')
-    
+
 @endsection

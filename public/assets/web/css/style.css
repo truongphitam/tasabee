@@ -1447,12 +1447,15 @@ img {
     .nav-header-right ul li:first-child {
         border: 0;
     }
-    #nav-header .row .col-6:first-child {
+    #nav-header .row .col-4:first-child {
         border-right: 1px solid #ffb400;
     }
     #nav-header ul {
         margin: 0;
         display: flex;
+    }
+    #nav-header .nav-header-right ul {
+        justify-content: flex-end;
     }
     #home-slider .slick-next,
     #home-slider .slick-prev,

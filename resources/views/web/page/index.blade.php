@@ -1,4 +1,7 @@
 @extends('web.master')
+@section('meta_title',$settings->meta_title)
+@section('meta_description',$settings->meta_description)
+@section('image',$settings->image)
 @section('content')
 <section id="home-banner" class="clearfix">
     <div id="home-slider">

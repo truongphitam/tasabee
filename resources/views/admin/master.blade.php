@@ -9,6 +9,10 @@
         @endif
     </title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="/assets/web/images/icon-bee.png" />
+	<link rel="icon" href="/assets/web/images/icon-bee.png" />
+	<link rel="apple-touch-icon" href="/assets/web/images/icon-bee.png" />
+	<meta name="msapplication-TileImage" content="/assets/web/images/icon-bee.png" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->

@@ -1,6 +1,9 @@
 @extends('web.master')
+@section('meta_title', $data->meta_title ? $data->meta_title : $settings->meta_title)
+@section('meta_description', $data->meta_description ? $data->meta_description : $settings->meta_description)
+@section('meta_keywords', $data->meta_keywords ? $data->meta_keywords : $settings->meta_keywords)
+@section('image', $data->image ? $data->image : $settings->image)
 @section('content')
-
 <section id="product-banner" class="clearfix">
 	<img src="/assets/web/images/product-banner.jpg">
 	<div class="container">

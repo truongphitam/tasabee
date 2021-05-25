@@ -4,12 +4,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-	<title>Tasabee</title>
-	<link rel="icon" href="/assets/web/images/icon-bee.png" />
+	<title>@yield('meta_title')</title>
 	<link rel="icon" href="/assets/web/images/icon-bee.png" />
 	<link rel="apple-touch-icon" href="/assets/web/images/icon-bee.png" />
 	<meta name="msapplication-TileImage" content="/assets/web/images/icon-bee.png" />
-
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="author" content="Tasabee">
+    <meta name="description" content="@yield('meta_description')">
+    <meta name="keywords" content="@yield('meta_keywords')">
+    <link rel="canonical" href="{!! url()->current() !!}">
+    <meta property="og:title" content="@yield('meta_title')">
+    <meta property="og:description" content="@yield('meta_description')">
+    <meta property="og:image" content="{{ url('/')}}@yield('image')"/>
+    <meta property="og:url" content="{!! url()->current() !!}">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" type="text/css" />

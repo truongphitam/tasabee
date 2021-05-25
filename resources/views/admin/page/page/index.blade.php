@@ -18,6 +18,7 @@
                     <table class="table table-bordered" id="dataTable">
                         <thead>
                         <tr>
+                            <th>ID</th>
                             <th class="no-sort" style="width: 50px">Image</th>
                             <th>@lang('admin.field.title')</th>
                             <th class="no-sort">@lang('admin.field.slug')</th>

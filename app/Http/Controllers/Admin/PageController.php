@@ -48,6 +48,7 @@ class PageController extends Controller
             $rows = [];
             foreach ($posts as $post) {
                 $rows[] = [
+                    $post->id,
                     "<img src='$post->image' class='img-responsive'/>",
                     $post->title,
                     $post->slug,

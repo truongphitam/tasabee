@@ -133,39 +133,26 @@
 							<b>Best sellers</b>
 						</p>
 						<ul class="list-unstyled">
-							<li class="product-seller">
-								<a href="#!">
-									<img src="/assets/web/images/product.jpg">
-									<div class="product-seller-text">
-										<p class="product-seller-name">
-											<strong>
-												Mật ong TASEBE 500G
-											</strong>
-										</p>
-										<hr/>
-										<p class="product-seller-price">
-											<strong class="c_d1480b">390.000</strong> vnđ
-										</p>
-									</div>
-								</a>
-							</li>
-
-							<li class="product-seller">
-								<a href="#!">
-									<img src="/assets/web/images/product.jpg">
-									<div class="product-seller-text">
-										<p class="product-seller-name">
-											<strong>
-												Mật ong TASEBE 500G
-											</strong>
-										</p>
-										<hr/>
-										<p class="product-seller-price">
-											<strong class="c_d1480b">390.000</strong> vnđ
-										</p>
-									</div>
-								</a>
-							</li>
+							@if ($best_sellers)
+								@foreach($best_sellers as $sellers)
+									<li class="product-seller">
+										<a href="#!" title="{!! $sellers->title !!}">
+											<img src="{{ $sellers->image }}" alt="{!! $sellers->title !!}">
+											<div class="product-seller-text">
+												<p class="product-seller-name">
+													<strong>
+														{!! $sellers->title !!}
+													</strong>
+												</p>
+												<hr/>
+												<a class="product-seller-price" href="{!! route('detailProducts', $sellers->slug) !!}">
+													<strong class="c_d1480b">Chi Tiết</strong>
+												</a>
+											</div>
+										</a>
+									</li>
+								@endforeach
+							@endif
 						</ul>
 					</div>
 
@@ -177,98 +164,33 @@
 				<div class="row">
 					<div class="col-12 col-md-10 offset-md-1">
 						<div class="product-list-right">
+							@if ($data)
 							<div class="row">
-								<div class="col-md-4">
-									<div class="product-item">
-
-										<span class="product-sale">
-											sale
-										</span>
-
-										<a href="product-detail.html">
-											<p class="product-img">
-												<img src="/assets/web/images/product.jpg">
-											</p>
-											<p class="product-name">
-												Mật ong
-												TASABE 500G
-											</p>
-											<hr>
-											<p class="product-price">
-												<span>390.000</span> vnđ
-											</p>
-										</a>
-									</div>
-								</div>
-
-								<div class="col-md-4">
-									<div class="product-item">
-
-										<span class="product-sale">
-											sale
-										</span>
-
-										<a href="product-detail.html">
-											<p class="product-img">
-												<img src="/assets/web/images/product.jpg">
-											</p>
-											<p class="product-name">
-												Mật ong
-												TASABE 500G
-											</p>
-											<hr>
-											<p class="product-price">
-												<span>390.000</span> vnđ
-											</p>
-										</a>
-									</div>
-								</div>
-
-								<div class="col-md-4">
-									<div class="product-item">
-
-										<span class="product-sale">
-											sale
-										</span>
-
-										<a href="product-detail.html">
-											<p class="product-img">
-												<img src="/assets/web/images/product.jpg">
-											</p>
-											<p class="product-name">
-												Mật ong
-												TASABE 500G
-											</p>
-											<hr>
-											<p class="product-price">
-												<span>390.000</span> vnđ
-											</p>
-										</a>
-									</div>
-								</div>
-
-								<div class="clearfix"></div>
-
-								<div class="col-md-4">
-									<div class="product-item">
-
-										<a href="product-detail.html">
-											<p class="product-img">
-												<img src="/assets/web/images/product.jpg">
-											</p>
-											<p class="product-name">
-												Mật ong
-												TASABE 500G
-											</p>
-											<hr>
-											<p class="product-price">
-												<span>390.000</span> vnđ
-											</p>
-										</a>
-									</div>
-								</div>
-
+								@foreach ($data as $item)
+									<div class="col-md-4">
+										<div class="product-item">
+											@if($item->type == 2)
+												<span class="product-sale">
+													sale
+												</span>
+											@endif
+											<a href="{!! route('detailProducts', $item->slug) !!}" title="{!! $item->title !!}">
+												<p class="product-img">
+													<img src="{!! $item->image !!}" alt="{!! $item->title !!}">
+												</p>
+												<p class="product-name">
+													{!! $item->title !!}
+												</p>
+												<hr>
+												<p class="product-price">
+													<span>Chi tiết</span>
+												</p>
+											</a>
+										</div>
+									</div> 
+								@endforeach
 							</div>
+							@endif
 							<div class="text-center">
 								<a href="#!" class="btn btn-style-1">
 									<i>Xem thêm</i>

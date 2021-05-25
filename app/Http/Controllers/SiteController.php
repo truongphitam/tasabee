@@ -12,6 +12,7 @@ use App\Repository\AchievementsRepository;
 use App\Repository\PageRepository;
 use App\Models\Gallery;
 use App\Models\Message;
+use App\Models\Products;
 use Illuminate\Support\Facades\Route;
 use App\Repository\StatedRepository;
 use App\Repository\SponsorRepository;
@@ -54,11 +55,15 @@ class SiteController extends Controller
     }
 
     public function products(){
-        return view('web.page.products');
+        $data = Products::orderBy('id', 'desc')->paginate(9);
+        $best_sellers = Products::orderBy('sold', 'desc')->take(5)->get();
+        return view('web.page.products', compact('data', 'best_sellers'));
     }
 
-    public function detailProducts(){
-        return view('web.page.detailProducts');
+    public function detailProducts($slug){
+        $data = Products::with('gallery')->where('slug', $slug)->first();
+        $related = Products::orderBy('id', 'desc')->get();
+        return view('web.page.detailProducts', compact('data', 'related'));
     }
 
     public function blog(){

@@ -22,8 +22,8 @@
 				</li>
 				/
 				<li>
-					<a href="">
-						Mật Ong Tasabee
+					<a href="{{ route('detailProducts', $data->slug) }}" title="{!! $data->title !!}">
+						{{ $data->title }}
 					</a>
 				</li>
 			</ul>
@@ -41,50 +41,40 @@
 						<div class="row">
 							<div class="col-3 no-padding-right">
 								<div class="product-vertical-slider">
-									<div>
-										<div class="product-vertical-slide">
-											<img src="/assets/web/images/product.jpg" class="img-responsive">
-										</div>
-									</div>
-									<div>
-										<div class="product-vertical-slide">
-											<img src="/assets/web/images/product.jpg" class="img-responsive">
-										</div>
-									</div>
-									<div>
-										<div class="product-vertical-slide">
-											<img src="/assets/web/images/product.jpg" class="img-responsive">
-										</div>
-									</div>
-									<div>
-										<div class="product-vertical-slide">
-											<img src="/assets/web/images/product.jpg" class="img-responsive">
-										</div>
-									</div>
+									@if ($data->gallery && !$data->gallery->isEmpty())
+										@foreach ($data->gallery as $gallery)
+											<div>
+												<div class="product-vertical-slide">
+													<img src="{!! $gallery->image !!}" class="img-responsive" alt="{!! $data->title !!}">
+												</div>
+											</div>
+										@endforeach
+									@else
+										<div>
+											<div class="product-vertical-slide">
+												<img src="{!! $data->image !!}" class="img-responsive" alt="{!! $data->title !!}">
+											</div>
+										</div>	
+									@endif
 								</div>
 							</div>
 							<div class="col-9">
 								<div class="product-main-slider">
-									<div>
-										<div class="product-main-slide">
-											<img src="/assets/web/images/product.jpg" class="img-responsive">
-										</div>
-									</div>
-									<div>
-										<div class="product-main-slide">
-											<img src="/assets/web/images/product.jpg" class="img-responsive">
-										</div>
-									</div>
-									<div>
-										<div class="product-main-slide">
-											<img src="/assets/web/images/product.jpg" class="img-responsive">
-										</div>
-									</div>
-									<div>
-										<div class="product-main-slide">
-											<img src="/assets/web/images/product.jpg" class="img-responsive">
-										</div>
-									</div>
+									@if ($data->gallery && !$data->gallery->isEmpty())
+										@foreach ($data->gallery as $gallery)
+											<div>
+												<div class="product-vertical-slide">
+													<img src="{!! $gallery->image !!}" class="img-responsive" alt="{!! $data->title !!}">
+												</div>
+											</div>
+										@endforeach
+									@else
+										<div>
+											<div class="product-vertical-slide">
+												<img src="{!! $data->image !!}" class="img-responsive" alt="{!! $data->title !!}">
+											</div>
+										</div>	
+									@endif
 								</div>
 							</div>
 						</div>
@@ -94,16 +84,16 @@
 					<div class="product-detail-right">
 						<h1 class="product-detail-title text-uppercase">
 							<strong>
-								Mật ong TASABE
+								{!! $data->title !!}
 							</strong>
 						</h1>
 
-						<p class="product-detail-price">
+						<p class="hidden product-detail-price">
 							<strong class="c_d1480b">390.000</strong> vnđ
 						</p>
 
 						<div class="product-detail-excerpt">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. 
+							{!! $data->expert !!}
 						</div>
 
 						<hr class="product-detail-hr" />
@@ -187,18 +177,7 @@
 			<div class="tab-content" id="tab-content-product">
 				<div class="tab-pane fade show active" id="tab-1">
 					<div class="text-justify">
-						<p>
-							MẬT ONG TASABE
-						</p>
-						<p>
-							390.000 vnđ
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-						</p>
-						<p class="text-center">
-							<img src="/assets/web/images/product.jpg">
-						</p>
+						{!! $data->description !!}
 					</div>
 				</div>
 				<div class="tab-pane fade " id="tab-2">
@@ -260,93 +239,28 @@
 		<div class="row">
 			<div class="col-12 col-md-10 offset-md-1">
 				<div class="padding-25">
+					@if($related)
 					<div class="home-silder-product">
-						<div>
-							<div class="slide-product">
-								<a href="#!">
-									<p class="slide-product-img">
-										<img src="/assets/web/images/product.jpg">
-									</p>
-									<p class="slide-product-name">
-										Mật ong
-										TASABE 500G
-									</p>
-									<hr/>
-									<p class="slide-product-price">
-										<span>390.000</span> vnđ
-									</p>
-								</a>
-							</div>
-						</div>
-						<div>
-							<div class="slide-product">
-								<a href="#!">
-									<p class="slide-product-img">
-										<img src="/assets/web/images/product.jpg">
-									</p>
-									<p class="slide-product-name">
-										Mật ong
-										TASABE 500G
-									</p>
-									<hr/>
-									<p class="slide-product-price">
-										<span>390.000</span> vnđ
-									</p>
-								</a>
-							</div>
-						</div>
-						<div>
-							<div class="slide-product">
-								<a href="#!">
-									<p class="slide-product-img">
-										<img src="/assets/web/images/product.jpg">
-									</p>
-									<p class="slide-product-name">
-										Mật ong
-										TASABE 500G
-									</p>
-									<hr/>
-									<p class="slide-product-price">
-										<span>390.000</span> vnđ
-									</p>
-								</a>
-							</div>
-						</div>
-						<div>
-							<div class="slide-product">
-								<a href="#!">
-									<p class="slide-product-img">
-										<img src="/assets/web/images/product.jpg">
-									</p>
-									<p class="slide-product-name">
-										Mật ong
-										TASABE 500G
-									</p>
-									<hr/>
-									<p class="slide-product-price">
-										<span>390.000</span> vnđ
-									</p>
-								</a>
-							</div>
-						</div>
-						<div>
-							<div class="slide-product">
-								<a href="#!">
-									<p class="slide-product-img">
-										<img src="/assets/web/images/product.jpg">
-									</p>
-									<p class="slide-product-name">
-										Mật ong
-										TASABE 500G
-									</p>
-									<hr/>
-									<p class="slide-product-price">
-										<span>390.000</span> vnđ
-									</p>
-								</a>
-							</div>
-						</div>
+						@foreach ($related as $item)
+							<div>
+								<div class="slide-product">
+									<a href="{!! route('detailProducts', $item->slug )!!}" title="{!! $item->title !!}">
+										<p class="slide-product-img">
+											<img src="{!! $item->image !!}" alt="{!! $item->title !!}">
+										</p>
+										<p class="slide-product-name">
+											{!! $item->title !!}
+										</p>
+										<hr/>
+										<p class="slide-product-price">
+											<span>Chi tiết</span>
+										</p>
+									</a>
+								</div>
+							</div> 
+						@endforeach
 					</div>
+					@endif
 				</div>
 			</div>
 		</div>

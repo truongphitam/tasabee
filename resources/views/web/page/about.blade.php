@@ -38,274 +38,46 @@
 	</div>
 </section>
 
-<section id="product-list" class="clearfix padding-50">
-	<img src="/assets/web/images/product-bee.png" class="hidden-xs pr-bee-left">
-	<img src="/assets/web/images/product-bee-right.png" class="hidden-xs pr-bee-right">
+<section id="about" class="clearfix padding-50">
+	<img src="/assets/web/images/product-bee-right.png" class="hidden-xs pr-bee-left">
+	<img src="/assets/web/images/icon-bee.png" class="hidden-xs pr-bee-right" style="max-width: 50px">
 	<div class="container">
-		<div class="row">
-			<div class="col-12 col-md-3">
-				<div class="product-list-left">
-
-					<div class="product-left-item">
-						<p class="product-cat-title">
-							<b>Category</b>
-						</p>
-						<ul class="list-unstyled product-cat-menu">
-							<li class="active">
-								<a href="#!">
-									honey bee
-								</a>
-
-								<span class="collapsed" data-toggle="collapse" data-target="#ul_1">
-									<i class="fa fa-chevron-down"></i>
-								</span>
-								<ul id="ul_1" class="list-unstyled collapse show">
-									<li class="active">
-										<a href="#!">
-											SP 1
-										</a>
-									</li>
-									<li>
-										<a href="#!">
-											SP 2
-										</a>
-									</li>
-									<li>
-										<a href="#!">
-											SP 3
-										</a>
-									</li>
-								</ul>
-
-							</li>
-							<li>
-								<a href="#!">
-									bee polen
-								</a>
-
-								<span class="collapsed" data-toggle="collapse" data-target="#ul_2">
-									<i class="fa fa-chevron-down"></i>
-								</span>
-								<ul id="ul_2" class="list-unstyled collapse">
-									<li>
-										<a href="#!">
-											SP 1
-										</a>
-									</li>
-									<li>
-										<a href="#!">
-											SP 2
-										</a>
-									</li>
-									<li>
-										<a href="#!">
-											SP 3
-										</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-
-
-					<div class="product-left-item">
-						<p class="product-cat-title">
-							<b>Weight</b>
-						</p>
-						<div class="product-filter-option">
-							<div class="form-check">
-								<label class="form-check-label" role="button">
-									<input type="radio" class="form-check-input" name="weight">
-									<span></span>
-									Option 1
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label" role="button">
-									<input type="radio" class="form-check-input" name="weight">
-									<span></span>
-									Option 2
-								</label>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="product-left-item">
-						<p class="product-cat-title">
-							<b>Price</b>
-						</p>
-						<div class="product-filter-option">
-							<div class="form-check">
-								<label class="form-check-label" role="button">
-									<input type="radio" class="form-check-input" name="price">
-									<span></span>
-									Option 1
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label" role="button">
-									<input type="radio" class="form-check-input" name="price">
-									<span></span>
-									Option 2
-								</label>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="product-left-item">
-						<p class="product-cat-title">
-							<b>Best sellers</b>
-						</p>
-						<ul class="list-unstyled">
-							<li class="product-seller">
-								<a href="#!">
-									<img src="/assets/web/images/product.jpg">
-									<div class="product-seller-text">
-										<p class="product-seller-name">
-											<strong>
-												Mật ong TASEBE 500G
-											</strong>
-										</p>
-										<hr/>
-										<p class="product-seller-price">
-											<strong class="c_d1480b">390.000</strong> vnđ
-										</p>
-									</div>
-								</a>
-							</li>
-
-							<li class="product-seller">
-								<a href="#!">
-									<img src="/assets/web/images/product.jpg">
-									<div class="product-seller-text">
-										<p class="product-seller-name">
-											<strong>
-												Mật ong TASEBE 500G
-											</strong>
-										</p>
-										<hr/>
-										<p class="product-seller-price">
-											<strong class="c_d1480b">390.000</strong> vnđ
-										</p>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</div>
-
-
-
+		<div class="about-section-1">
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<hr/>
+					<p>
+						CÂU CHUYỆN CỦA CHÚNG TÔI
+					</p>
+					<h2>
+						<b>
+							Với 25 năm kinh nghiệm trong ngành ong ở Việt Nam.
+						</b>
+					</h2>
 				</div>
-			</div>
-			<div class="col-12 col-md-9">
-				<div class="row">
-					<div class="col-12 col-md-10 offset-md-1">
-						<div class="product-list-right">
-							<div class="row">
-								<div class="col-md-4">
-									<div class="product-item">
-
-										<span class="product-sale">
-											sale
-										</span>
-
-										<a href="product-detail.html">
-											<p class="product-img">
-												<img src="/assets/web/images/product.jpg">
-											</p>
-											<p class="product-name">
-												Mật ong
-												TASABE 500G
-											</p>
-											<hr>
-											<p class="product-price">
-												<span>390.000</span> vnđ
-											</p>
-										</a>
-									</div>
-								</div>
-
-								<div class="col-md-4">
-									<div class="product-item">
-
-										<span class="product-sale">
-											sale
-										</span>
-
-										<a href="product-detail.html">
-											<p class="product-img">
-												<img src="/assets/web/images/product.jpg">
-											</p>
-											<p class="product-name">
-												Mật ong
-												TASABE 500G
-											</p>
-											<hr>
-											<p class="product-price">
-												<span>390.000</span> vnđ
-											</p>
-										</a>
-									</div>
-								</div>
-
-								<div class="col-md-4">
-									<div class="product-item">
-
-										<span class="product-sale">
-											sale
-										</span>
-
-										<a href="product-detail.html">
-											<p class="product-img">
-												<img src="/assets/web/images/product.jpg">
-											</p>
-											<p class="product-name">
-												Mật ong
-												TASABE 500G
-											</p>
-											<hr>
-											<p class="product-price">
-												<span>390.000</span> vnđ
-											</p>
-										</a>
-									</div>
-								</div>
-
-								<div class="clearfix"></div>
-
-								<div class="col-md-4">
-									<div class="product-item">
-
-										<a href="product-detail.html">
-											<p class="product-img">
-												<img src="/assets/web/images/product.jpg">
-											</p>
-											<p class="product-name">
-												Mật ong
-												TASABE 500G
-											</p>
-											<hr>
-											<p class="product-price">
-												<span>390.000</span> vnđ
-											</p>
-										</a>
-									</div>
-								</div>
-
-							</div>
-							<div class="text-center">
-								<a href="#!" class="btn btn-style-1">
-									<i>Xem thêm</i>
-								</a>
-							</div>
-						</div>
-
+				<div class="col-12 col-md-6">
+					<div class="text-justify">
+						<p>
+							Tasa bee thành lập với mong muốn đưa các sản phẩm ong nguyên chất ra nước ngoài bằng con đường trực diện hơn. 
+						</p>
+						<p>
+							Ưu tiên của chúng tôi là cung cấp những sản phẩm ong chất lượng cao, đồng thời giúp khách hàng biết và tận dụng nguồn lợi ích không ngờ mà mật ong và các sản phẩm ong mang đến cho sức khỏe con người.
+						</p>
+						<p>
+							Hơn thế nữa, Tasabee còn hướng tới việc thúc đẩy phát triển ngành nông nghiệp bền vững nhằm góp phần xây dựng thương hiệu cho ngành nuôi ong Việt Nam nói chung. 
+						</p>
+						<p>
+							Bởi vì Tasabee tin rằng đó sẽ là con đường dẫn tới cuộc sống khỏe mạnh cho người tiêu dùng cũng như đóng góp những giá trị và lợi ích tích cực cho cộng đồng.
+						</p>
 					</div>
 				</div>
 			</div>
 		</div>
+
+
+
+
+
 	</div>
 </section>
 

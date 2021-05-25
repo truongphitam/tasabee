@@ -39,7 +39,7 @@
 			<nav id="nav-header" class="clearfix">
 				<div class="container">
 					<div class="row">
-						<div class="col-6 col-md-9">
+						<div class="col-4 col-md-9">
 							<div class="nav-header-left">
 								<ul class="list-inline">
 									<li class="list-inline-item">
@@ -54,9 +54,9 @@
 								</ul>
 							</div>
 						</div>
-						<div class="col-6 col-md-3">
-							<div class="nav-header-right text-right-md">
-								<ul class="list-inline">
+						<div class="col-8 col-md-3">
+							<div class="nav-header-right">
+								<ul class="list-inline text-right">
 									<li class="list-inline-item active">
 										<a href="#">
 											Eng
@@ -68,7 +68,7 @@
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="#">
+										<a href="#login-modal" data-toggle="modal">
 											Đăng nhập
 										</a>
 									</li>

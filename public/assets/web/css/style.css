@@ -1640,3 +1640,12 @@ img {
         margin-top: 15px;
     }
 }
+
+.hidden{
+    display: none;
+}
+
+.error{
+    color: red;
+    font-style: italic;
+}

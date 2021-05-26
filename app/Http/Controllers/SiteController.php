@@ -18,6 +18,9 @@ use App\Repository\StatedRepository;
 use App\Repository\SponsorRepository;
 
 use App\Models\Slider;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class SiteController extends Controller
 {
     //
@@ -82,4 +85,43 @@ class SiteController extends Controller
         return view('web.page.contact');
     }
 
+    public function postLogin(Request $request){
+        $error_user_name = '';
+        $error_password = '';
+        $success = true;
+
+        $username = $request->username ? $request->username : ''; 
+        $password = $request->password ? $request->password : '';
+
+        $user = User::where('email', $username)->first();
+        if(empty($user)){
+            $error_user_name = 'Tên đăng nhập không tồn tại';
+            return response([
+                'message' => $error_user_name,
+                'success' => false,
+                'error_user_name' => $error_user_name,
+                'error_password' => $error_password
+                ]);
+        }
+        $credentials = [
+            'email' => $username,
+            'password' => $password
+        ];
+        if (Auth::attempt($credentials)) {      
+            return response([
+                'message' => 'Đăng nhập thành công !',
+                'success' => true,
+                'error_user_name' => $error_user_name,
+                'error_password' => $error_password
+                ]);
+        }else{
+            $error_password = 'Mật khẩu không chính xác. ';
+            return response([
+                'message' => $error_password,
+                'success' => false,
+                'error_user_name' => $error_user_name,
+                'error_password' => $error_password
+                ]);
+        }
+    }
 }

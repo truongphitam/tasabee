@@ -22,4 +22,14 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
     
     Route::get('event', 'SiteController@event')->name('event');
     Route::get('lien-he', 'SiteController@contact')->name('contact');
+
+    Route::post('post-login', 'SiteController@postLogin')->name('post-login');
+    Route::group(['prefix' => 'thanh-vien' , 'middleware' => 'auth'], function () {
+        Route::get('{id}', 'UsersController@getInfo')->name('users-fe.index');
+        Route::get('{id}/history', 'UsersController@history')->name('users-fe.history');
+        Route::get('{id}/history/{ordersID}', 'UsersController@detailOrders')->name('users-fe.detailOrders');
+        Route::get('{id}/check-orders', 'UsersController@checkOrders')->name('users-fe.checkOrders');
+    });
+
+    Route::get('logout', 'UsersController@logout')->name('users-fe.logout');
 });

@@ -105,32 +105,32 @@
 									<ul class="site-menu main-menu js-clone-nav d-none d-sm-block d-md-block d-flex justify-content-around">
 										<li>
 											<a href="{{ route('index') }}" class="nav-link {{ areActiveRoutes(['index']) }}">
-												Trang chủ
+												{!! trans('web.menu.home') !!}
 											</a>
 										</li>
 										<li>
 											<a href="{{ route('about') }}" class="nav-link {{ areActiveRoutes(['about']) }}">
-												Giới thiệu
+												{!! trans('web.menu.about') !!}
 											</a>
 										</li>
 										<li>
 											<a href="{{ route('products') }}" class="nav-link {{ areActiveRoutes(['products', 'detailProducts']) }}">
-												Sản phẩm
+												{!! trans('web.menu.products') !!}
 											</a>
 										</li>
 										<li>
 											<a href="{{ route('blog') }}" class="nav-link {{ areActiveRoutes(['blog', 'detailBlog']) }}">
-												Tin tức
+												{!! trans('web.menu.news') !!}
 											</a>
 										</li>
 										<li>
 											<a href="{{ route('event') }}" class="nav-link {{ areActiveRoutes(['event']) }}">
-												Sự kiện
+												{!! trans('web.menu.event') !!}
 											</a>
 										</li>
 										<li>
 											<a href="{{ route('contact') }}" class="nav-link {{ areActiveRoutes(['contact']) }}">
-												Liên hệ
+												{!! trans('web.menu.contact') !!}
 											</a>
 										</li>
 									</ul>

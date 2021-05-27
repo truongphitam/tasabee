@@ -18,9 +18,6 @@ class UsersController extends Controller
     }
 
     public function getInfo($userID){
-        if($userID == 'logout'){
-            $this->logout();
-        }
         $user = Auth::user();
 
         return view('web.page.users.index', compact('user'));

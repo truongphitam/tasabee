@@ -56,100 +56,35 @@
         </p>
 
         <div class="row">
-            <div class="col-12 col-md-10 offset-md-1">
-                <div class="padding-25">
-                    <div class="home-silder-product">
-                        <div>
-                            <div class="slide-product">
-                                <a href="#!">
-                                    <p class="slide-product-img">
-                                        <img src="/assets/web/images/product.jpg">
-                                    </p>
-                                    <p class="slide-product-name">
-                                        Mật ong
-                                        TASABE 500G
-                                    </p>
-                                    <hr/>
-                                    <p class="slide-product-price">
-                                        <span>390.000</span> vnđ
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="slide-product">
-                                <a href="#!">
-                                    <p class="slide-product-img">
-                                        <img src="/assets/web/images/product.jpg">
-                                    </p>
-                                    <p class="slide-product-name">
-                                        Mật ong
-                                        TASABE 500G
-                                    </p>
-                                    <hr/>
-                                    <p class="slide-product-price">
-                                        <span>390.000</span> vnđ
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="slide-product">
-                                <a href="#!">
-                                    <p class="slide-product-img">
-                                        <img src="/assets/web/images/product.jpg">
-                                    </p>
-                                    <p class="slide-product-name">
-                                        Mật ong
-                                        TASABE 500G
-                                    </p>
-                                    <hr/>
-                                    <p class="slide-product-price">
-                                        <span>390.000</span> vnđ
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="slide-product">
-                                <a href="#!">
-                                    <p class="slide-product-img">
-                                        <img src="/assets/web/images/product.jpg">
-                                    </p>
-                                    <p class="slide-product-name">
-                                        Mật ong
-                                        TASABE 500G
-                                    </p>
-                                    <hr/>
-                                    <p class="slide-product-price">
-                                        <span>390.000</span> vnđ
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="slide-product">
-                                <a href="#!">
-                                    <p class="slide-product-img">
-                                        <img src="/assets/web/images/product.jpg">
-                                    </p>
-                                    <p class="slide-product-name">
-                                        Mật ong
-                                        TASABE 500G
-                                    </p>
-                                    <hr/>
-                                    <p class="slide-product-price">
-                                        <span>390.000</span> vnđ
-                                    </p>
-                                </a>
-                            </div>
+            @if($products_highlight)
+                <div class="col-12 col-md-10 offset-md-1">
+                    <div class="padding-25">
+                        <div class="home-silder-product">
+                            @foreach($products_highlight as $product)
+                                <div>
+                                    <div class="slide-product">
+                                        <a href="{{ route('detailProducts', $product->slug )}}" title="{{ $product->title }}">
+                                            <p class="slide-product-img">
+                                                <img src="{{ $product->image }}" title="{{ $product->title }}">
+                                            </p>
+                                            <p class="slide-product-name">
+                                                {{ $product->title }}
+                                            </p>
+                                            <hr/>
+                                            <p class="slide-product-price">
+                                                <span>Chi tiết</span>
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
         <p class="text-center">
-            <a href="#!" class="btn btn-style-1 font-italic">
+            <a href="{{ route('products')}}" class="btn btn-style-1 font-italic">
                 Xem Thêm
             </a>
         </p>
@@ -168,9 +103,7 @@
                 </b>
             </h2>
             <p class="text-center justify-xs">
-                Với 25 năm kinh nghiệm trong ngành ong ở Việt Nam,
-                <br/>
-                Tasabee thành lập với mong muốn đưa các sản phẩm ong nguyên chất ra nước ngoài bằng con đường trực diện hơn.
+                {!! trans('web.index.about_sologan') !!}
             </p>
             <p class="text-center d-none d-md-block d-lg-block">
                 <img src="/assets/web/images/icon-bee.png">
@@ -182,12 +115,11 @@
                             <img src="/assets/web/images/home-about-1.png">
                             <p class="text-uppercase">
                                 <b>
-                                    tầm nhìn
+                                    {!! trans('web.index.vision') !!}
                                 </b>
                             </p>
                             <p class="c_777777">
-                                Lorem ipsum dolor sit amet, consectetuer 
-                                adipiscing elit, sed diam nonummy nibh.
+                                {!! trans('web.index.vision_text') !!}
                             </p>
                         </div>
                     </div>
@@ -196,12 +128,11 @@
                             <img src="/assets/web/images/home-about-2.png">
                             <p class="text-uppercase">
                                 <b>
-                                    sứ mệnh
+                                    {!! trans('web.index.mission') !!}
                                 </b>
                             </p>
                             <p class="c_777777">
-                                Lorem ipsum dolor sit amet, consectetuer 
-                                adipiscing elit, sed diam nonummy nibh.
+                                {!! trans('web.index.mission_text') !!}
                             </p>
                         </div>
                     </div>
@@ -210,12 +141,11 @@
                             <img src="/assets/web/images/home-about-3.png">
                             <p class="text-uppercase">
                                 <b>
-                                    giá trị cốt lỗi
+                                    {!! trans('web.index.core_value') !!}
                                 </b>
                             </p>
                             <p class="c_777777">
-                                Lorem ipsum dolor sit amet, consectetuer 
-                                adipiscing elit, sed diam nonummy nibh.
+                                {!! trans('web.index.core_value_text') !!}
                             </p>
                         </div>
                     </div>
@@ -224,12 +154,11 @@
                             <img src="/assets/web/images/home-about-4.png">
                             <p class="text-uppercase">
                                 <b>
-                                    cam kết
+                                    {!! trans('web.index.commitment') !!}
                                 </b>
                             </p>
                             <p class="c_777777">
-                                Lorem ipsum dolor sit amet, consectetuer 
-                                adipiscing elit, sed diam nonummy nibh.
+                                {!! trans('web.index.commitment_text') !!}
                             </p>
                         </div>
                     </div>

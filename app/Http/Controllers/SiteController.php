@@ -51,7 +51,8 @@ class SiteController extends Controller
     public function index()
     {
         $sliders = Slider::where('is_published', 'on')->orderBy('id', 'desc')->get();
-        return view('web.page.index', compact('sliders'));
+        $products_highlight = Products::where('type', 1)->orderBy('id', 'desc')->take(6)->get();
+        return view('web.page.index', compact('sliders', 'products_highlight'));
     }
     
 

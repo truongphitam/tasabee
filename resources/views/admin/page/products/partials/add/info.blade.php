@@ -18,10 +18,18 @@
     </div>
     <div class="col-md-3">
         <div class="form-group">
+            <label>Sản phẩm</label>
+            <select class="form-control" name="type">
+                <option value="0">Sản phẩm</option>
+                <option value="1" @if($post->type == 1) selected @endif>Nổi bật</option>
+                <option value="2" @if($post->type == 2) selected @endif>Sale</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label>{!! trans('admin.field.price') !!}</label>
             {{ Form::number('price', $post->id ? $post->price : 0, ['class'=>'form-control','id' => 'price', 'placeholder' => '']) }}
         </div>
-        <div class="form-group">
+        <div class="hidden form-group">
             <label>{!! trans('admin.field.status') !!}</label>
             <select class="form-control" name="is_published">
                 <option value="on">{!! trans('admin.field.publish') !!}</option>

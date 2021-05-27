@@ -10,17 +10,22 @@
 				<form>
 					<div class="form-group">
 						<input type="text" id="username" name="username" class="form-control" placeholder="Tên đăng nhập">
+						<label id="error_user_name" class="error hidden" for="" class="error">Tên đăng nhập không tồn tại!</label>
 					</div>
 					<div class="form-group">
 						<input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu">
+						<label id="error_password" class="error hidden" for="" class="error">Mật khẩu không đúng</label>
 					</div>
-					<div class="form-group d-flex justify-content-center">
+					<div class="hidden form-group d-flex justify-content-center">
 						<a class="c_222" data-dismiss="modal" data-toggle="modal" href="#password-modal">Quên mật khẩu</a>
 						<span>&nbsp; - &nbsp;</span>
 						<a class="c_222" data-dismiss="modal" data-toggle="modal" href="#register-modal">Đăng ký</a>
 					</div>
+					<div class="checkbox">
+						<label><input type="checkbox"> Remember me</label>
+					</div>
 					<div class="form-group text-center">
-						<button type="button" class="btn btn-style-1">
+						<button type="button" class="btn btn-style-1" onclick="login()">
 							Đăng nhập
 						</button>
 					</div>

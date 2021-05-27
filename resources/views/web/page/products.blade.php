@@ -190,16 +190,38 @@
 									</div> 
 								@endforeach
 							</div>
-							@endif
-							<div class="text-center">
-								<a href="#!" class="btn btn-style-1">
-									<i>Xem thêm</i>
-								</a>
-							</div>
+							@endif 
 						</div>
 
 					</div>
 				</div>
+				@if($data->items() && !empty($data->items()))
+					<nav class="text-center pagination-new">
+						<ul class="pagination justify-content-center">
+							@if ($data->currentPage() > 1)
+								<li class="page-item">
+									<a class="page-link" href="{!! url()->current() !!}?page={!! $data->currentPage() - 1 !!}" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+									</a>
+								</li>
+							@endif
+							@for( $i=1;$i <= $data->lastPage(); $i++)
+								<li class="page-item {{ $i == $data->currentPage() ? 'active' : '' }}">
+									<a class="page-link" href="{!! url()->current() !!}?page={!! $i !!}">{!! $i !!}</a>
+								</li> 
+							@endfor
+							@if ($data->currentPage() < $data->lastPage())
+								<li class="page-item">
+									<a class="page-link" href="{!! url()->current() !!}?page={!! $data->currentPage() + 1 !!}" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">Next</span>
+									</a>
+								</li>
+							@endif
+						</ul>
+					</nav>
+				@endif
 			</div>
 		</div>
 	</div>

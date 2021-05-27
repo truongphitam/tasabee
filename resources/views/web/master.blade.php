@@ -28,6 +28,10 @@
 	<link href="/assets/web/css/fonts/Nunito-Regular/fonts.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/web/css/fonts/Nunito-Bold/fonts.css" rel="stylesheet" type="text/css" />
 	<link href="/assets/web/css/style.css" rel="stylesheet" type="text/css" />
+	<script>
+        var baseURL = '{{url('/')}}';
+    </script>
+	@yield('css')
 </head>
 <body>
 	
@@ -68,9 +72,15 @@
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="#login-modal" data-toggle="modal">
-											Đăng nhập
-										</a>
+										@if(Auth::check())
+											<a href="{{ route('users-fe.index', Auth::user()->id) }}" title="{{ Auth::user()->name }}">
+												{{ Auth::user()->name }}
+											</a>
+										@else
+											<a href="#login-modal" data-toggle="modal">
+												Đăng nhập
+											</a>
+										@endif
 									</li>
 								</ul>
 							</div>
@@ -248,7 +258,7 @@
 	</footer>
 
 	@include('web.inc.popup')
-
+	
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -256,5 +266,6 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.sticky/1.0.4/jquery.sticky.min.js"></script>
 	<script type="text/javascript" src="/assets/web/js/main.js"></script>
+	@yield('js')
 </body>
 </html>

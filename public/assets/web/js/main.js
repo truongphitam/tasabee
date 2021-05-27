@@ -138,3 +138,44 @@ $(function() {
 		autoplaySpeed: 2000,
 	});
 });
+
+
+function login(){
+	$("#error_user_name").addClass('hidden');
+	$("#error_password").addClass('hidden');
+	//
+	var username = $("#username").val();
+	var password = $("#password").val();
+	var _token = $('meta[name="csrf-token"]').attr('content');
+    var formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': _token
+        }
+    });
+    $.ajax({
+        url: baseURL + "/post-login",
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (data) {
+			alert(data.message);
+			if(data.success){
+				window.location.href = baseURL;
+			}else{
+				if(data.error_user_name){
+					$("#error_user_name").removeClass('hidden');
+				}
+				if(data.error_password){
+					$("#error_password").removeClass('hidden');
+				}
+			}
+        },
+        error: function (xhr, textStatus, errorThrown) {
+        }
+    });
+}

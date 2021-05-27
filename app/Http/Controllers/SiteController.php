@@ -12,12 +12,17 @@ use App\Repository\AchievementsRepository;
 use App\Repository\PageRepository;
 use App\Models\Gallery;
 use App\Models\Message;
+use App\Models\Post;
 use App\Models\Products;
+use App\Models\ProductsCate;
 use Illuminate\Support\Facades\Route;
 use App\Repository\StatedRepository;
 use App\Repository\SponsorRepository;
 
 use App\Models\Slider;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class SiteController extends Controller
 {
     //
@@ -57,6 +62,12 @@ class SiteController extends Controller
     public function products(){
         $data = Products::orderBy('id', 'desc')->paginate(9);
         $best_sellers = Products::orderBy('sold', 'desc')->take(5)->get();
+        $cate_products = ProductsCate::where('parent_id', 0)->orderBy('id', 'desc')->get();
+        // if($cate_products){
+        //     foreach($cate_products as $cate){
+        //         $products = Products::where()->orderBy('id', 'desc')->take()->get(); 
+        //     }
+        // }
         return view('web.page.products', compact('data', 'best_sellers'));
     }
 
@@ -67,19 +78,62 @@ class SiteController extends Controller
     }
 
     public function blog(){
-        return view('web.page.blog');
+        $posts = Post::where('post_type', 'posts')->orderBy('id', 'desc')->paginate(9);
+        //dd($posts);
+        return view('web.page.blog', compact('posts'));
     }
 
-    public function detailBlog(){
-        return view('web.page.detailBlog');
+    public function detailBlog($slug){
+        $data = Post::where('slug', $slug)->first();
+        return view('web.page.detailBlog', compact('data'));
     }
 
     public function event(){
-        return view('web.page.event');
+        $posts = Post::where('post_type', 'event')->orderBy('id', 'desc')->paginate(9);
+        return view('web.page.event', compact('posts'));
     }
 
     public function contact(){
         return view('web.page.contact');
     }
 
+    public function postLogin(Request $request){
+        $error_user_name = '';
+        $error_password = '';
+        $success = true;
+
+        $username = $request->username ? $request->username : ''; 
+        $password = $request->password ? $request->password : '';
+
+        $user = User::where('email', $username)->first();
+        if(empty($user)){
+            $error_user_name = 'Tên đăng nhập không tồn tại';
+            return response([
+                'message' => $error_user_name,
+                'success' => false,
+                'error_user_name' => $error_user_name,
+                'error_password' => $error_password
+                ]);
+        }
+        $credentials = [
+            'email' => $username,
+            'password' => $password
+        ];
+        if (Auth::attempt($credentials)) {      
+            return response([
+                'message' => 'Đăng nhập thành công !',
+                'success' => true,
+                'error_user_name' => $error_user_name,
+                'error_password' => $error_password
+                ]);
+        }else{
+            $error_password = 'Mật khẩu không chính xác. ';
+            return response([
+                'message' => $error_password,
+                'success' => false,
+                'error_user_name' => $error_user_name,
+                'error_password' => $error_password
+                ]);
+        }
+    }
 }

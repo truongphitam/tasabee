@@ -1548,6 +1548,38 @@ img {
     font-size: 16px;
 }
 
+.bg-contact {
+    position: relative;
+    background: #fff0e5;
+}
+
+
+.show-room {
+    margin: 15px 0;
+}
+.showroom-name {
+    color: #d1480b;
+    font-size: 20px;
+}
+
+.frm-contact .form-control {
+    background: transparent;
+}
+
+
+.contact-bee-right {
+        position: absolute;
+    right: 0;
+    bottom: -200px;
+    width: 150px;
+}
+.contact-bee-left {
+       position: absolute;
+    bottom: 15%;
+    left: 5%;
+    width: 80px;
+}
+
 
 
 

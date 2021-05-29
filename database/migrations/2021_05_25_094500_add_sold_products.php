@@ -15,8 +15,10 @@ class AddSoldProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            if (!Schema::hasColumn('products', 'sold')) {
+            if (!Schema::hasColumn('products', 'type')) {
                 $table->integer('type')->default(0)->after('image')->comment('1 nổi bật / 2 sale');
+            }
+            if (!Schema::hasColumn('products', 'sold')) {
                 $table->integer('sold')->default(0)->after('image');
             }
         });

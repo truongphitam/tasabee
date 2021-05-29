@@ -165,7 +165,7 @@
                 </div>
             </div>
             <p class="text-center">
-                <a href="#!" class="btn btn-style-1 font-italic">
+                <a href="{{ route('about') }}" class="btn btn-style-1 font-italic">
                     Xem Thêm
                 </a>
             </p>
@@ -187,63 +187,29 @@
             </b>
         </h2>
         <div class="row">
-            <div class="col-12 col-md-4">
-                <div class="home-work-item text-center">
-                    <a href="#!">
-                        <p class="home-work-img">
-                            <img src="/assets/web/images/news.png">
-                        </p>
-                        <h3>
-                            <b>
-                                Neque Porro Quisquam
-                            </b>
-                        </h3>
-                        <p>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </small>
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="home-work-item text-center">
-                    <a href="#!">
-                        <p class="home-work-img">
-                            <img src="/assets/web/images/news.png">
-                        </p>
-                        <h3>
-                            <b>
-                                Neque Porro Quisquam
-                            </b>
-                        </h3>
-                        <p>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </small>
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-12 col-md-4">
-                <div class="home-work-item text-center">
-                    <a href="#!">
-                        <p class="home-work-img">
-                            <img src="/assets/web/images/news.png">
-                        </p>
-                        <h3>
-                            <b>
-                                Neque Porro Quisquam
-                            </b>
-                        </h3>
-                        <p>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            </small>
-                        </p>
-                    </a>
-                </div>
-            </div>
+            @if($posts)
+            @foreach($posts as $post)
+                <div class="col-12 col-md-4">
+                    <div class="home-work-item text-center">
+                        <a href="{{ route('detailBlog', $post->slug) }}" title="{{ $post->title }}">
+                            <p class="home-work-img">
+                                <img src="{{ $post->image }}" alt="{{ $post->title }}">
+                            </p>
+                            <h3>
+                                <b>
+                                    {{ $post->title }}
+                                </b>
+                            </h3>
+                            <p>
+                                <small>
+                                    {!! $post->expert !!}
+                                </small>
+                            </p>
+                        </a>
+                    </div>
+                </div> 
+            @endforeach
+            @endif
         </div>
     </div>
 </section>
@@ -337,107 +303,6 @@
                                     Xem thêm
                                 </b>
                             </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-<!--Footer-->
-<section id="footer-contact" class="clearfix padding-25">
-    <div class="container">
-        <p class="text-center">
-            <img src="/assets/web/images/icon-bee.png" width="45">
-        </p>
-        <h2 class="home-title text-uppercase text-center c_ff7200">
-            <b>
-                <span class="c_222">Liên Hệ Với</span> Chúng Tôi
-            </b>
-        </h2>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-md-4 no-padding">
-                <p class="footer-contact-img">
-                    <img src="/assets/web/images/b-pr.jpg">
-                </p>
-            </div>
-            <div class="col-12 col-md-6">
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="footer-contact-left">
-                            <div class="contact-left-item">
-                                <span>
-                                    Showrom 1:
-                                </span>
-                                <br/>
-                                Đường 1/5, Tp.Bảo Lộc, Lâm Đồng
-                                <br/>
-                                <b>Hotline:</b> 0981.477.642
-                            </div>
-                            <div class="contact-left-item">
-                                <span>
-                                    Showrom 2:
-                                </span>
-                                <br/>
-                                30B Trần Bình Trọng, Tp. Nha Trang
-                                <br/>
-                                <b>Hotline:</b> 0905.391.333
-                            </div>
-                            <div class="contact-left-item">
-                                <span>
-                                    Showrom 3:
-                                </span>
-                                <br/>
-                                153G Lũy Bán Bích, Tân Thới Hòa,
-                                Tân Phú, Tp.HCM
-                                <br/>
-                                <b>Hotline:</b> 0917.778.96
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="footer-contact-right">
-                            <p class="text-justify">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-                            </p>
-                            <p>
-                                <b>
-                                    CÔNG TY TNHH XUẤT NHẬP KHẨU TASABEE
-                                </b>
-                            </p>
-                            <ul class="list-unstyled contact-address">
-                                <li>
-                                    <span>A</span>	Thôn 13, Xã DamBri, Bảo Lộc, Lâm Đồng
-                                </li>
-                                <li>
-                                    <span>T</span>	0917778968
-                                </li>
-                                <li>
-                                    <span>E</span>	info@tasabe.com
-                                </li>
-                            </ul>
-                            <ul class="list-inline center-xs contact-links">
-                                <li class="list-inline-item">
-                                    <a href="#!">
-                                        f
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!">
-                                        t
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#!">
-                                        g
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>

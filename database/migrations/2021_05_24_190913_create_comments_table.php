@@ -15,9 +15,9 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type')->default('post');
-            $table->integer('users_id')->default(0);
-            $table->integer('post_id')->default(0);
+            $table->string('type')->default('post')->comment('posts / products');
+            $table->integer('users_id')->default(0)->nullable();
+            $table->integer('post_id')->default(0)->comment('Có thể là post_id hoặc là products id');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->text('content')->nullable();

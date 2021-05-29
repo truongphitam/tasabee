@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
 use App\Models\Categories;
+use App\Models\Comment;
 use App\Repository\SliderRepository;
 use App\Repository\PostRepository;
 use App\Repository\ProductsRepository;
@@ -21,6 +22,7 @@ use App\Repository\SponsorRepository;
 
 use App\Models\Slider;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
@@ -52,7 +54,8 @@ class SiteController extends Controller
     {
         $sliders = Slider::where('is_published', 'on')->orderBy('id', 'desc')->get();
         $products_highlight = Products::where('type', 1)->orderBy('id', 'desc')->take(6)->get();
-        return view('web.page.index', compact('sliders', 'products_highlight'));
+        $posts = Post::orderBy('id', 'desc')->take(3)->get();
+        return view('web.page.index', compact('sliders', 'products_highlight', 'posts'));
     }
     
 
@@ -86,6 +89,8 @@ class SiteController extends Controller
 
     public function detailBlog($slug){
         $data = Post::where('slug', $slug)->first();
+        $comment = Comment::where('type', 'post')->where('post_id', $data->id)->orderBy('id', 'desc')->get();
+        $data->comment = $comment ? $comment : [];
         return view('web.page.detailBlog', compact('data'));
     }
 
@@ -135,6 +140,28 @@ class SiteController extends Controller
                 'error_user_name' => $error_user_name,
                 'error_password' => $error_password
                 ]);
+        }
+    }
+
+    //
+    public function postComment(Request $request){
+        $param = $request->all();
+        $param += [
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ];
+        $comment = Comment::insert($param);
+        if($comment){
+            $returnHTML = view('web.render.comment')->with('comment', $param)->render();
+            $results = [
+                'success' => true,
+                '_html' => $returnHTML,
+                'message' => 'Bình luận thành công !'
+            ];
+            $response = response()->json($results);
+            $response->header('Content-Type', 'application/json');
+            $response->header('charset', 'utf-8');
+            return $response;
         }
     }
 }

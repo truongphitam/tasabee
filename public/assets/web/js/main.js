@@ -179,3 +179,54 @@ function login(){
         }
     });
 }
+
+function comment(){
+	var name = $("#comment_name").val();
+	var email = $("#comment_email").val();
+	var content = $("#comment_content").val();
+	if(!name.trim()){
+		alert('Vui lòng nhập Họ Tên!');
+		$("#comment_name").focus();
+		return false;
+	}
+	if(!content.trim()){
+		alert('Vui lòng nhập nội dung!');
+		$("#comment_content").focus();
+		return false;
+	}
+	if(!email.trim()){
+		alert('Vui lòng nhập Email!');
+		$("#comment_email").focus();
+		return false;
+	}
+    var formData = new FormData();
+    formData.append("type", $("#comment_type").val());
+	formData.append("users_id", $("#comment_users_id").val());
+	formData.append("post_id", $("#comment_post_id").val());
+    formData.append("name", name);
+	formData.append("email", email);
+	formData.append("content", content);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: baseURL + "/comment",
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (data) {
+			alert(data.message);
+			if(data.success){
+				$(data._html).insertBefore("#list_comment");
+			}else{
+				return true;
+			}
+        },
+        error: function (xhr, textStatus, errorThrown) {
+        }
+    });
+}

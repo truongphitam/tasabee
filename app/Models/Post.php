@@ -30,4 +30,8 @@ class Post extends BaseModel
     {
         return $this->belongsTo(Admins::class, 'user_id', 'id');
     }
+
+    public function comment(){
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
 }

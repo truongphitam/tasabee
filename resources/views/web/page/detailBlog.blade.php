@@ -61,16 +61,20 @@
                         <div class="col-8 col-md-9">
                             <div class="row align-items-center justify-content-right">
                                 <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <i class="fa fa-chevron-left"></i> older post
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            new post <i class="fa fa-chevron-right"></i>
-                                        </a>
-                                    </li>
+                                    @if($prev)
+                                        <li class="list-inline-item">
+                                            <a href="{{ route('detailBlog', $prev->slug) }}" title="{{ $prev->title }}">
+                                                <i class="fa fa-chevron-left"></i> older post
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if($next)
+                                        <li class="list-inline-item">
+                                            <a href="{{ route('detailBlog', $next->slug) }}" title="{{ $next->title }}">
+                                                new post <i class="fa fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>

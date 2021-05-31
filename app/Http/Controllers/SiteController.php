@@ -13,6 +13,7 @@ use App\Repository\AchievementsRepository;
 use App\Repository\PageRepository;
 use App\Models\Gallery;
 use App\Models\Message;
+use App\Models\Page;
 use App\Models\Post;
 use App\Models\Products;
 use App\Models\ProductsCate;
@@ -60,10 +61,13 @@ class SiteController extends Controller
     
 
     public function about(){
-        return view('web.page.about');
+        $sliders = Slider::where('is_published', 'on')->orderBy('id', 'desc')->get();
+        $page = Page::find(2);
+        return view('web.page.about', compact('sliders', 'page'));
     }
 
     public function products(){
+        $page = Page::find(3);
         $data = Products::orderBy('id', 'desc')->paginate(9);
         $best_sellers = Products::orderBy('sold', 'desc')->take(5)->get();
         $cate_products = ProductsCate::where('parent_id', 0)->orderBy('id', 'desc')->get();
@@ -72,7 +76,7 @@ class SiteController extends Controller
         //         $products = Products::where()->orderBy('id', 'desc')->take()->get(); 
         //     }
         // }
-        return view('web.page.products', compact('data', 'best_sellers'));
+        return view('web.page.products', compact('data', 'best_sellers', 'page'));
     }
 
     public function detailProducts($slug){
@@ -81,26 +85,41 @@ class SiteController extends Controller
         return view('web.page.detailProducts', compact('data', 'related'));
     }
 
-    public function blog(){
-        $posts = Post::where('post_type', 'posts')->orderBy('id', 'desc')->paginate(9);
+    public function blog(Request $request){
+        $keyword = $request->keyword && !empty($request->keyword) ? $request->keyword : '';
+        $page = Page::find(4);
+        $posts = Post::where('post_type', 'posts');
+        if($keyword){
+            $posts = $posts->where('title', 'like', '%' . $keyword . '%');
+        }
+        $posts = $posts->orderBy('id', 'desc')->paginate(9);
         //dd($posts);
-        return view('web.page.blog', compact('posts'));
+        return view('web.page.blog', compact('posts', 'page', 'keyword'));
     }
 
     public function detailBlog($slug){
         $data = Post::where('slug', $slug)->first();
         $comment = Comment::where('type', 'post')->where('post_id', $data->id)->orderBy('id', 'desc')->get();
         $data->comment = $comment ? $comment : [];
-        return view('web.page.detailBlog', compact('data'));
+        $next = Post::where('post_type', $data->post_type)->where('id', '>', $data->id)->orderBy('id', 'asc')->first();
+        $prev = Post::where('post_type', $data->post_type)->where('id', '<', $data->id)->orderBy('id', 'desc')->first();
+        return view('web.page.detailBlog', compact('data', 'next', 'prev'));
     }
 
-    public function event(){
-        $posts = Post::where('post_type', 'event')->orderBy('id', 'desc')->paginate(9);
-        return view('web.page.event', compact('posts'));
+    public function event(Request $request){
+        $keyword = $request->keyword && !empty($request->keyword) ? $request->keyword : '';
+        $page = Page::find(5);
+        $posts = Post::where('post_type', 'event');
+        if($keyword){
+            $posts = $posts->where('title', 'like', '%' . $keyword . '%');
+        }
+        $posts = $posts->orderBy('id', 'desc')->paginate(9);
+        return view('web.page.event', compact('posts', 'page', 'keyword'));
     }
 
     public function contact(){
-        return view('web.page.contact');
+        $page = Page::find(4);
+        return view('web.page.contact', compact('page'));
     }
 
     public function postLogin(Request $request){

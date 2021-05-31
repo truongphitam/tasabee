@@ -47,6 +47,10 @@
                         <p class="help">{!! trans('admin.field.change_pass') !!}</p>
                     </div>
                     <div class="form-group">
+                        <label>Hoa hồng</label>
+                        <input type="number" value="{{ $data->commission }}" class="form-control" name="commission">
+                    </div>
+                    <div class="form-group">
                         <label>{!! trans('admin.field.role') !!}</label>
                         <select class="form-control" name="role"> 
                             <option value="staff">{!! trans('admin.field.staff') !!}</option>

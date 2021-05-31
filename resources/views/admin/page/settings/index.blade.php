@@ -32,9 +32,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        @include('partials.lang_input', ['type' => 'textarea', 'model' => 'data','class' => 'form-control', 'attr' => 'expert', 'title' => trans('admin.field.expert')])
+                        @include('partials.lang_input', ['type' => 'text', 'model' => 'data', 'attr' => 'address', 'title' => trans('admin.field.address')])
                     </div>
                     <div class="form-group">
+                        @include('partials.lang_input', ['type' => 'textarea', 'model' => 'data','class' => 'form-control', 'attr' => 'expert', 'title' => trans('admin.field.expert')])
+                    </div>
+                    <div class="hidden form-group">
                         @include('partials.lang_input', ['type' => 'textarea', 'model' => 'data','class' => 'form-control ckeditor', 'attr' => 'description', 'title' => trans('admin.field.description')])
                     </div>
                     @include('partials.seo')

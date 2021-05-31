@@ -22,13 +22,15 @@ class SettingsController extends Controller
             $data->save();
         }
         $_title = trans('admin.title.list') . ' ' . trans('admin.object.settings');
-        return view('admin.page.settings.index', compact('data', '_title'));
+        $post = $data;
+        return view('admin.page.settings.index', compact('data', '_title', 'post'));
     }
 
     public function update(Request $request)
     {
         $id = $request->id;
         $param = $request->except(['_token', 'id']);
+        //dd($param);
         $update = Settings::find($id)->update($param);
         Session::flash('success', trans('message.success.update'));
         return back();

@@ -50,6 +50,10 @@
                             style="color: red">{!! trans('message.password.not-confirm') !!}</p>
                     </div>
                     <div class="form-group">
+                        <label>Hoa hồng</label>
+                        <input type="number" value="0" class="form-control" name="commission">
+                    </div>
+                    <div class="form-group">
                         <label>{!! trans('admin.field.role') !!}</label>
                         <select class="form-control" name="role">
                             <option value="staff">{!! trans('admin.field.staff') !!}</option>

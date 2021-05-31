@@ -244,6 +244,10 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
+                    <label for="">Hoa hồng nhân viên(%)</label>
+                    <input type="text" name="commission" id="commission" class="form-control" value="{{ $post->id ? $post->commission : 0 }}">
+                </div>
+                <div class="form-group">
                     <label>Tạm tính <span id="type_currency_unit"></span></label>
                     {{ Form::hidden('sub_total', $post && $post->id  ? $post->sub_total : 0, ['class'=>'form-control','id' => 'sub_total', 'placeholder' => '']) }}
                     {{ Form::text('_sub_total', $post && $post->id  ? $post->sub_total : 0, ['class'=>'form-control','id' => '_sub_total', 'placeholder' => '', 'disabled' => 'disabled']) }}

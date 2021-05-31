@@ -1,4 +1,7 @@
 @extends('web.master')
+@section('meta_title', $page && $page->meta_title ? $page->meta_title : $settings->meta_title)
+@section('meta_description', $page && $page->meta_description ? $page->meta_description : $settings->meta_description)
+@section('image', $page && $page->image ? $page->image : $settings->image)
 @section('content') 
 
 <section class="bg-top clearfix">
@@ -6,7 +9,7 @@
 	<div class="container">
 		<div class="top-cat-name">
 			<b>
-				BLOG
+				{{ trans('web.menu.news') }}
 			</b>
 		</div>
 	</div>
@@ -19,7 +22,7 @@
 	<div class="container">
 		<div class="blog-search-frm">
 			<form method="get">
-				<input type="text" class="form-control" placeholder="Tìm kiếm">
+				<input type="text" class="form-control" placeholder="{{ trans('web.field.search') }}" name="keyword" required value="{{ $keyword }}">
 				<button>
 					<img src="/assets/web/images/icon-search.png">
 				</button>

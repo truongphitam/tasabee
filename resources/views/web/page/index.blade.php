@@ -3,41 +3,7 @@
 @section('meta_description',$settings->meta_description)
 @section('image',$settings->image)
 @section('content')
-<section id="home-banner" class="clearfix">
-    <div id="home-slider">
-        @if($sliders)
-        @foreach ($sliders as $slider)
-            <div>
-                <div class="home-banner-item">
-                    <img src="{{ $slider->image }}" class="img-responsive" alt="{{ $slider->title }}">
-                    <div class="home-banner-box">
-                        <div class="container">
-                            <p>
-                                <b>{{ $slider->title }}</b>
-                            </p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <img src="/assets/web/images/icon-calendar.png" height="20"> {{ $slider->event_date }}
-                                </li>
-                                <li class="list-inline-item">
-                                    <img src="/assets/web/images/icon-location.png" height="20"> {{ $slider->address }}
-                                </li>
-                            </ul>
-                            @if($slider->link)
-                                <p class="center-xs">
-                                    <a href="{{ $slider->link }}" class="btn btn-style-1 font-italic" title="{{ $slider->title }}">
-                                        Chi Tiết
-                                    </a>
-                                </p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div> 
-        @endforeach
-        @endif
-    </div>
-</section>
+@include('web.inc.sliders')
 
 <section id="home-product" class="clearfix">
     <div class="container">
@@ -46,13 +12,11 @@
         </p>
         <h2 class="home-title text-uppercase text-center">
             <b>
-                Sản Phẩm <span class="c_ff7200">Nổi Bật</span>
+                {{ trans('web.menu.products') }} <span class="c_ff7200">{{ trans('web.field.highlight') }}</span>
             </b>
         </h2>
         <p class="text-center">
-            quis nostrud quam est, qui dolorem ipsum 
-            <br/>
-            quis nostrud quam est, qui dolorem ipsum quia dolor sit amet, consecquaerat 
+            {!! trans('web.field.expert_products') !!}
         </p>
 
         <div class="row">
@@ -72,7 +36,7 @@
                                             </p>
                                             <hr/>
                                             <p class="slide-product-price">
-                                                <span>Chi tiết</span>
+                                                <span>{{ trans('web.field.detail') }}</span>
                                             </p>
                                         </a>
                                     </div>
@@ -85,7 +49,7 @@
         </div>
         <p class="text-center">
             <a href="{{ route('products')}}" class="btn btn-style-1 font-italic">
-                Xem Thêm
+                {{ trans('web.field.readmore') }}
             </a>
         </p>
     </div>
@@ -99,7 +63,7 @@
             </p>
             <h2 class="home-title text-uppercase text-center">
                 <b>
-                    Về <span class="c_ff7200">Chúng Tôi</span>
+                    {{ trans('web.field.ve') }} <span class="c_ff7200">{{ trans('web.field.us') }}</span>
                 </b>
             </h2>
             <p class="text-center justify-xs">
@@ -166,7 +130,7 @@
             </div>
             <p class="text-center">
                 <a href="{{ route('about') }}" class="btn btn-style-1 font-italic">
-                    Xem Thêm
+                    {{ trans('web.field.readmore') }}
                 </a>
             </p>
         </div>
@@ -181,9 +145,9 @@
     <div class="container">
         <h2 class="home-title text-uppercase text-center c_ff7200">
             <b>
-                <small class="c_222">Hoạt Động</small>
+                <small class="c_222">{{ trans('web.field.hd') }}</small>
                 <br/>
-                Nuôi Ong
+                {{ trans('web.field.nuoi_ong') }}
             </b>
         </h2>
         <div class="row">
@@ -225,28 +189,28 @@
                     <div class="home-why-left">
                         <h2>
                             <b>
-                                <span class="c_222">Vì Sao Chọn</span>
+                                <span class="c_222">{{ trans('web.field.why') }}</span>
                                 <br/>
                                 TASA BEE
                             </b>
                         </h2>
                         <p class="text-justify">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                            {!! trans('web.field.slogan_why') !!}
                         </p>
                         <ul class="list-unstyled">
                             <li>
-                                Quisque volutpat mattis eros
+                                {!! trans('web.field.why_1') !!}
                             </li>
                             <li>
-                                Nullam malesuada erat ut turpis		
+                                {!! trans('web.field.why_2') !!}
                             </li>
                             <li>
-                                Suspendisse urna nibh									
+                                {!! trans('web.field.why_3') !!}					
                             </li>
                         </ul>
                         <p class="center-xs">
                             <a href="#!" class="btn btn-style-2 font-italic">
-                                Xem Thêm
+                                {{ trans('web.field.readmore') }}
                             </a>
                         </p>
                     </div>
@@ -266,11 +230,11 @@
                         <img src="/assets/web/images/why-icon-1.png">
                         <div>
                             <p>
-                                “Nullam dapibus blandit orci, viverra gravida dui lobortis eget. Maecenas fringilla urna eu nisl scelerisque.”
+                                {!! trans('web.field.why_post_1') !!}
                             </p>
-                            <a href="#!" class="c_ff7200">
+                            <a href="{!! trans('web.field.link_post_1') !!}" class="c_ff7200">
                                 <b>
-                                    Xem thêm
+                                    {{ trans('web.field.detail') }}
                                 </b>
                             </a>
                         </div>
@@ -281,11 +245,11 @@
                         <img src="/assets/web/images/why-icon-2.png">
                         <div>
                             <p>
-                                “Nullam dapibus blandit orci, viverra gravida dui lobortis eget. Maecenas fringilla urna eu nisl scelerisque.”
+                                {!! trans('web.field.why_post_2') !!}
                             </p>
-                            <a href="#!" class="c_ff7200">
+                            <a href="{!! trans('web.field.link_post_2') !!}" class="c_ff7200">
                                 <b>
-                                    Xem thêm
+                                    {{ trans('web.field.detail') }}
                                 </b>
                             </a>
                         </div>
@@ -296,11 +260,11 @@
                         <img src="/assets/web/images/why-icon-3.png">
                         <div>
                             <p>
-                                “Nullam dapibus blandit orci, viverra gravida dui lobortis eget. Maecenas fringilla urna eu nisl scelerisque.”
+                                {!! trans('web.field.why_post_3') !!}
                             </p>
-                            <a href="#!" class="c_ff7200">
+                            <a href="{!! trans('web.field.link_post_3') !!}" class="c_ff7200">
                                 <b>
-                                    Xem thêm
+                                    {{ trans('web.field.detail') }}
                                 </b>
                             </a>
                         </div>

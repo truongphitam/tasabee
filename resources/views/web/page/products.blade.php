@@ -1,4 +1,7 @@
 @extends('web.master')
+@section('meta_title', $page && $page->meta_title ? $page->meta_title : $settings->meta_title)
+@section('meta_description', $page && $page->meta_description ? $page->meta_description : $settings->meta_description)
+@section('image', $page && $page->image ? $page->image : $settings->image)
 @section('content')
 
 <section id="product-banner" class="clearfix">
@@ -6,12 +9,11 @@
 	<div class="container">
 		<div class="product-cat-name">
 			<b>
-				sản phẩm
+				{{ trans('web.menu.products') }}
 			</b>
 		</div>
 	</div>
 </section>
-
 <section id="product-list" class="clearfix padding-50">
 	<img src="/assets/web/images/product-bee.png" class="hidden-xs pr-bee-left">
 	<img src="/assets/web/images/product-bee-right.png" class="hidden-xs pr-bee-right">
@@ -226,8 +228,6 @@
 		</div>
 	</div>
 </section>
-
-
 @endsection
 @section('css')
 

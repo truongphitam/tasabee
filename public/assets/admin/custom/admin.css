@@ -82,3 +82,7 @@ p.help {
     max-width: unset !important;
     object-fit: cover;
 }
+
+.d-flex {
+    display: flex;
+}

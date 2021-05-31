@@ -47,13 +47,13 @@
 							<div class="nav-header-left">
 								<ul class="list-inline">
 									<li class="list-inline-item">
-										0917778968
+										{{ $settings->phone }}
 									</li>
 									<li class="list-inline-item hidden-xs">
-										info@tasabe.com
+										{{ $settings->email }}
 									</li>
 									<li class="list-inline-item hidden-xs">
-										Thôn 13, Xã DamBri, Bảo Lộc, Lâm Đồng
+										{{ $settings->address }}
 									</li>
 								</ul>
 							</div>
@@ -174,65 +174,64 @@
 										Showrom 1:
 									</span>
 									<br/>
-									Đường 1/5, Tp.Bảo Lộc, Lâm Đồng
+									{!! trans('web.index.showrom_1_title') !!}
 									<br/>
-									<b>Hotline:</b> 0981.477.642
+									<b>Hotline:</b> {!! trans('web.index.showrom_1_phone') !!}
 								</div>
 								<div class="contact-left-item">
 									<span>
 										Showrom 2:
 									</span>
 									<br/>
-									30B Trần Bình Trọng, Tp. Nha Trang
+									{!! trans('web.index.showrom_2_title') !!}
 									<br/>
-									<b>Hotline:</b> 0905.391.333
+									<b>Hotline:</b> {!! trans('web.index.showrom_2_phone') !!}
 								</div>
 								<div class="contact-left-item">
 									<span>
 										Showrom 3:
 									</span>
 									<br/>
-									153G Lũy Bán Bích, Tân Thới Hòa,
-									Tân Phú, Tp.HCM
+									{!! trans('web.index.showrom_3_title') !!}
 									<br/>
-									<b>Hotline:</b> 0917.778.96
+									<b>Hotline:</b> {!! trans('web.index.showrom_3_phone') !!}
 								</div>
 							</div>
 						</div>
 						<div class="col-12 col-md-6">
 							<div class="footer-contact-right">
 								<p class="text-justify">
-									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+									{!! $settings->expert!!}
 								</p>
 								<p>
 									<b>
-										CÔNG TY TNHH XUẤT NHẬP KHẨU TASABEE
+										{!! $settings->title!!}
 									</b>
 								</p>
 								<ul class="list-unstyled contact-address">
 									<li>
-										<span>A</span>	Thôn 13, Xã DamBri, Bảo Lộc, Lâm Đồng
+										<span>A</span>	{!! $settings->address!!}
 									</li>
 									<li>
-										<span>T</span>	0917778968
+										<span>T</span>	{!! $settings->phone!!}
 									</li>
 									<li>
-										<span>E</span>	info@tasabe.com
+										<span>E</span>	{!! $settings->email!!}
 									</li>
 								</ul>
 								<ul class="list-inline center-xs contact-links">
 									<li class="list-inline-item">
-										<a href="#!">
+										<a href="{{ $settings->facebook }}" title="{{ $settings->title}}">
 											f
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="#!">
+										<a href="{{ $settings->twitter }}" title="{{ $settings->title}}">
 											t
 										</a>
 									</li>
 									<li class="list-inline-item">
-										<a href="#!">
+										<a href="{{ $settings->plus }}" title="{{ $settings->title}}">
 											g
 										</a>
 									</li>

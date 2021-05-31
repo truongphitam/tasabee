@@ -115,7 +115,9 @@
 <script src="/assets/admin/dist/js/demo.js"></script>
 <script src="/assets/plugins/ckfinder/ckfinder.js"></script>
 <script src="/assets/plugins/ckeditor/ckeditor.js"></script>
+<script src="/assets/admin/custom/highcharts.js"></script>
 <script src="/assets/admin/custom/admin.js"></script>
+<script src="/assets/admin/custom/report.js"></script>
 <script type="text/javascript">
     window.current_locale = '{{ $current_locale }}';
     window._token = '{{ csrf_token() }}';

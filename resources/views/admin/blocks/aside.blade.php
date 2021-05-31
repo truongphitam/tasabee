@@ -103,16 +103,6 @@
                             trans('admin.field.add') !!}</a></li>
                 </ul>
             </li> 
-
-            <li class="{!! areActiveRoutes(['stated.index','stated.create','stated.show']) !!}">
-                <a href="{!! route('stated.index') !!}">
-                    <i class="fa fa-folder"></i> <span>Phát biểu</span>
-                </a> 
-            </li>
-
-
-
-
             <li class="treeview {!! areActiveRoutes(['page.index','page.create','page.show'],'active') !!}">
                 <a href="#">
                     <i class="fa fa-folder"></i> <span>{!! trans('admin.object.page') !!}</span>
@@ -171,7 +161,7 @@
 
 
             <li class="header">LABELS</li>
-            <li class=""><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+            <li class=""><a href="{{ route('login.logout') }}"><i class="fa fa-circle-o text-red"></i> <span>Thoát</span></a></li>
             <li class=""><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
             <li class=""><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
         </ul>

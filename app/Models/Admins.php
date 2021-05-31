@@ -10,7 +10,7 @@ class Admins extends Authenticatable
     use Notifiable;
     protected $guard = 'admins';
     protected $fillable = [
-        'name', 'email', 'first_name', 'last_name', 'website', 'phone', 'address', 'password', 'role', 'image'
+        'name', 'email', 'first_name', 'last_name', 'website', 'phone', 'address', 'password', 'role', 'image', 'commission'
     ];
     protected $hidden = [
         'password', 'remember_token',

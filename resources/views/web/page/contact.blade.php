@@ -1,4 +1,7 @@
 @extends('web.master')
+@section('meta_title', $page && $page->meta_title ? $page->meta_title : $settings->meta_title)
+@section('meta_description', $page && $page->meta_description ? $page->meta_description : $settings->meta_description)
+@section('image', $page && $page->image ? $page->image : $settings->image)
 @section('content') 
 
 <section class="bg-top clearfix">
@@ -6,7 +9,7 @@
 	<div class="container">
 		<div class="top-cat-name">
 			<b>
-				CONTACT
+				{{ trans('web.menu.contact') }}
 			</b>
 		</div>
 	</div>
@@ -28,9 +31,9 @@
 							</strong>
 						</p>
 						<p class="text-center">
-							Đường 1/5, Tp.Bảo Lộc, Lâm Đồng
+							{!! trans('web.index.showrom_1_title') !!}
 							<br/>
-							<strong>Hotline:</strong> 0981.477.642
+							<strong>Hotline:</strong> {!! trans('web.index.showrom_1_phone') !!}
 						</p>
 					</div>
 				</div>
@@ -44,9 +47,9 @@
 							</strong>
 						</p>
 						<p class="text-center">
-							30B Trần Bình Trọng, Tp. Nha Trang
+							{!! trans('web.index.showrom_2_title') !!}
 							<br/>
-							<strong>Hotline:</strong> 0905.391.333
+							<strong>Hotline:</strong> {!! trans('web.index.showrom_2_phone') !!}
 						</p>
 					</div>
 				</div>
@@ -60,9 +63,9 @@
 							</strong>
 						</p>
 						<p class="text-center">
-							153G Lũy Bán Bích, Tân Thới Hòa, Tân Phú, Tp.HCM
+							{!! trans('web.index.showrom_3_title') !!}
 							<br/>
-							<strong>Hotline:</strong> 0981.470917.778.96
+							<strong>Hotline:</strong> {!! trans('web.index.showrom_3_phone') !!}
 						</p>
 					</div>
 				</div>

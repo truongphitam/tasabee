@@ -400,3 +400,33 @@ function change_debt_term_date(element){
     $("#debt_due_date").val(new_date);
     $("#_debt_due_date").val(new_date);
 }
+
+if ($(".date-range-services").length) {
+    $('.date-range-services').daterangepicker({
+        showDropdowns: true,
+        startDate: $("#_date_start").val(),
+        endDate: $("#_date_end").val(),
+        ranges: {
+            'Hôm nay': [moment(), moment()],
+            'Hôm qua': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            '7 ngày qua': [moment().subtract(6, 'days'), moment()],
+            '30 ngày trước': [moment().subtract(29, 'days'), moment()],
+            'Tháng này': [moment().startOf('month'), moment().endOf('month')],
+            'Tháng trước': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        alwaysShowCalendars: true,
+        locale: {
+            format: 'DD/MM/YYYY'
+        },
+    }, function (start, end, label) {
+        //var years = moment().diff(start, 'years');
+    });
+};
+
+function showLoading(div) {
+    $("#" + div).addClass('hidden').removeClass('hidden');
+}
+
+function offLoading(div) {
+    $("#" + div).removeClass('hidden').addClass('hidden');
+}

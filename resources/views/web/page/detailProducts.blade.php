@@ -9,18 +9,18 @@
 	<div class="container">
 		<div class="product-cat-name">
 			<b>
-				sản phẩm
+				{{ trans('web.menu.products') }}
 			</b>
 			<ul class="list-inline text-center">
 				<li class="list-inline-item">
 					<a href="">
-						Home
+						{{ trans('web.menu.home') }}
 					</a>
 				</li>
 				/
 				<li>
 					<a href="">
-						Products
+						{{ trans('web.menu.products') }}
 					</a>
 				</li>
 				/
@@ -139,9 +139,9 @@
 						<div class="product-detail-btn">
 							<div class="row align-items-center">
 								<div class="col-6">
-									<a href="#product-modal" data-toglee="modal" class="btn btn-style-1 btn-100">
+									<a role="button" href="#product-modal" data-toglee="modal" class="btn btn-style-1 btn-100">
 										<i>
-											Liên hệ
+											{{ trans('web.menu.contact') }}
 										</i>
 									</a>
 								</div>

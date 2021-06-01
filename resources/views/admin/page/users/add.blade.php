@@ -7,15 +7,27 @@
             {!! Form::open(['route' => 'users.store', 'method' => 'POST', 'id' => 'form-post', 'class' => '', 'autocomplete' => 'off']) !!}
             <div class="row">
                 <div class="col-md-9">
-                    <div class="form-group">
-                        <label>Tên khách hàng</label>
-                        <input type="text" name="name" class="form-control" required/>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label>Tên công ty</label>
+                            <input type="text" name="name" class="form-control" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>{!! trans('admin.field.email') !!}</label>
+                            <input type="email" name="email" class="form-control" id="email" onkeyup='checkEmail();'
+                                    required/>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>{!! trans('admin.field.email') !!}</label>
-                        <input type="email" name="email" class="form-control" id="email" onkeyup='checkEmail();'
-                                required/>
-                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label>Người liên hệ</label>
+                            <input type="text" name="contact_name" id="contact_name" class="form-control" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Email người liên hệ</label>
+                            <input type="email" name="contact_email" class="form-control" id="contact_email" required/>
+                        </div>
+                    </div> 
                     <div class="hidden form-group">
                         <label>{!! trans('admin.field.first_name') !!}</label>
                         <input type="text" name="first_name" class="form-control"/>

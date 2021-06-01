@@ -108,6 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admins'], function () {
         Route::get('delete/{id}', 'OrdersController@destroy')->name('orders.destroy');
         Route::get('clone/{id}', 'OrdersController@clone')->name('orders.clone');
         Route::post('confirm-status-orders', 'OrdersController@confirmStatusOrders')->name('orders.confirmStatusOrders');
+        Route::get('export-excel', 'OrdersController@exportExeclForOrders')->name('orders.exportExeclForOrders');
     });
     //achievements
     Route::group(['prefix' => 'achievements'], function () {

@@ -17,7 +17,7 @@ use App\Models\OrdersAttached;
 use App\Models\OrdersDetail;
 use App\Models\ProductsToCate;
 use App\User;
-use DB;
+use DB, Excel;
 use App\Repository\OrdersRepository;
 class OrdersController extends Controller
 {
@@ -34,19 +34,29 @@ class OrdersController extends Controller
         if ($request->ajax()) {
             $total = Orders::count('id');
             $query = Orders::select('*');
-            # Category filter
-//            if ($request->has('category')) {
-//                $query = $query->where('cate_id', (int)$request->category);
-//                $filtered = $query->count();
-//            }
-            # Search title
-            // if ('' !== $search = $request->search['value']) {
-            //     $query = $query->where('title', 'like', '%' . $search . '%');
-            //     $filtered = $query->count();
-            // }
-            # Pagination
+            $dates = $request->date_range_by_days ? $request->date_range_by_days : '';
+            $customer_id = $request->customer_id ? $request->customer_id : '';
+            $staff_id = $request->staff_id ? $request->staff_id : '';
+            $invoice_number = $request->invoice_number ? $request->invoice_number : '';
+            $dates = explode('-', $dates);
+            $from = convertToYMD($dates[0]). ' 00:00:00';
+            $to = convertToYMD($dates[1]). ' 23:59:59';
+
+            # Filter
+            if ($invoice_number) {
+                $query = $query->where('invoice_number', 'like', '%' . $invoice_number . '%');
+                $filtered = $query->count();
+            }
+            if ($customer_id) {
+                $query = $query->where('customer_id', (int)$customer_id);
+                $filtered = $query->count();
+            }
+            if ($staff_id) {
+                $query = $query->where('staff_id', (int)$staff_id);
+                $filtered = $query->count();
+            } 
             $posts = $query->orderBy('id', 'desc');
-            $posts = $query->skip($request->start)->take($request->length);
+            $posts = $query->whereBetween('created_at',[$from, $to])->skip($request->start)->take($request->length);
             $posts = $query->get();
             # Output
             $rows = [];
@@ -63,7 +73,7 @@ class OrdersController extends Controller
                     convertToDMY($post->debt_due_date),
                     show_title_status_orders($post->status_orders),
                     "<a href='" . route('orders.clone',
-                        $post->id) . "' class='btn btn-warning btn-xs'><i class='fa fa-fw fa-eye'></i></a>&nbsp;<a href='" . route('orders.show',
+                        $post->id) . "' class='hidden btn btn-warning btn-xs'><i class='fa fa-fw fa-eye'></i></a>&nbsp;<a href='" . route('orders.show',
                         $post->id) . "' class='btn btn-success btn-xs'><i class='fa fa-fw fa-edit'></i></a>&nbsp;<a onclick='return confirmDelete();return false;' href='" . route('orders.destroy',
                         $post->id) . "' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-trash'></i></a>"
                 ];
@@ -76,7 +86,10 @@ class OrdersController extends Controller
             ]);
         }
         $_title = trans('admin.title.list') . ' ' . trans('admin.object.orders');
-        return view('admin.page.orders.index', compact('_title'));
+        $customer = User::orderBy('id', 'desc')->get();
+        $staff = Admins::where('role', 'staff')->orderBy('id', 'desc')->get();
+
+        return view('admin.page.orders.index', compact('_title', 'customer', 'staff'));
     }
 
     /**
@@ -333,5 +346,64 @@ class OrdersController extends Controller
         $orders->save();
 
         return response()->json(true);
+    }
+
+    public function exportExeclForOrders(Request $request){
+        $dates = $request->date_range_by_days ? $request->date_range_by_days : '';
+        $customer_id = $request->customer_id ? $request->customer_id : '';
+        $staff_id = $request->staff_id ? $request->staff_id : '';
+        $invoice_number = $request->invoice_number ? $request->invoice_number : '';
+        $dates = explode('-', $dates);
+        $from = convertToYMD($dates[0]). ' 00:00:00';
+        $to = convertToYMD($dates[1]). ' 23:59:59';
+        $posts = Orders::select('*');
+        # Filter
+        if ($invoice_number) {
+            $posts = $posts->where('invoice_number', 'like', '%' . $invoice_number . '%');
+        }
+        if ($customer_id) {
+            $posts = $posts->where('customer_id', (int)$customer_id);
+        }
+        if ($staff_id) {
+            $posts = $posts->where('staff_id', (int)$staff_id);
+        } 
+        $posts = $posts->orderBy('id', 'desc');
+        $posts = $posts->whereBetween('created_at',[$from, $to])->get();
+        $name = 'Orders_'.time();
+        $data = [];
+        $heading = [
+            'ID',
+            'Khách hàng	Nhân viên',
+            'Số hoá đơn',
+            'Số Packing list',			
+            'Số Bill',
+            'Ngày lập hóa đơn',
+            'Thời hạn công nợ',
+            'Hạn công nợ',
+            'Trạng thái đơn hàng'
+        ];
+        array_push($data, $heading);
+        if($posts){
+            foreach($posts as $post){
+                $data[] = [
+                    $post->auto_code,
+                    $post->customer ? $post->customer->name : '',
+                    $post->staff ? $post->staff->name : '',
+                    $post->invoice_number,
+                    $post->packing_list,
+                    $post->bill_number,
+                    convertToDMY($post->invoice_date),
+                    $post->debt_term_date,
+                    convertToDMY($post->debt_due_date),
+                    show_title_status_orders($post->status_orders),
+                ];
+                //array_push($data, $item);
+            }
+        }
+        return Excel::create($name, function ($excel) use ($data) {
+            $excel->sheet('Orders', function ($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+        })->download('xlsx');
     }
 }

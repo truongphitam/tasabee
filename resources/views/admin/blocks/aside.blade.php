@@ -18,9 +18,15 @@
                 </a>
             </li>
             
+            <li class="{!! areActiveRoutes(['page.index','page.create','page.show'],'active') !!}">
+                <a href="{{ route('page.index') }}">
+                    <i class="fa fa-newspaper-o"></i> <span>{!! trans('admin.object.page') !!}</span>
+                </a> 
+            </li> 
+
             <li class="{!! are_active_routes(['post.index','post.create','post.show','post.cate.index','post.cate.show'], type_posts()) !!}">
                 <a href="{!! route('post.index', ['post_type' => type_posts()]) !!}">
-                    <i class="fa fa-folder"></i> <span>Tin tức </span>
+                    <i class="fa fa-edit"></i> <span>Tin tức </span>
                     <span class="hidden pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -40,16 +46,16 @@
 
             <li class="{!! are_active_routes(['post.index','post.create','post.show','post.cate.index','post.cate.show'], type_event()) !!}">
                 <a href="{!! route('post.index', ['post_type' => type_event()]) !!}">
-                    <i class="fa fa-folder"></i> <span>Sự kiện</span>
+                    <i class="fa fa-calendar"></i> <span>Sự kiện</span>
                     <span class="hidden pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a> 
             </li>
-
+            <li class="header">SẢN PHẨM & BÁN</li>
             <li class="treeview {!! areActiveRoutes(['products.index','products.create','products.show','products.cate.index','products.cate.show', 'products.attributes.index', 'products.attributes.show'], 'active') !!}">
                 <a href="#">
-                    <i class="fa fa-folder"></i> <span>Sản phẩm</span>
+                    <i class="fa fa-table"></i> <span>Sản phẩm</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -58,7 +64,7 @@
                     <li class="{!! areActiveRoutes(['products.index','products.show'], 'active') !!}">
                         <a href="{!! route('products.index') !!}"><i class="fa fa-circle-o"></i> {!!
                             trans('admin.field.list') !!}</a></li>
-                    <li class="{!! areActiveRoutes(['products.create'], 'active') !!}"><a
+                    <li class="hidden {!! areActiveRoutes(['products.create'], 'active') !!}"><a
                             href="{!! route('products.create') !!}"><i class="fa fa-circle-o"></i> {!!
                             trans('admin.field.add') !!}</a></li>
                     <li class="{!! areActiveRoutes(['products.cate.index','products.cate.show'], 'active') !!}">
@@ -70,14 +76,14 @@
                 </ul>
             </li>
 
-            <li class="treeview {!! areActiveRoutes(['orders.index','orders.create','orders.show'], 'active') !!}">
-                <a href="#">
-                    <i class="fa fa-folder"></i> <span>Bán hàng</span>
-                    <span class="pull-right-container">
+            <li class="{!! areActiveRoutes(['orders.index','orders.create','orders.show'], 'active') !!}">
+                <a href="{{ route('orders.index')}}">
+                    <i class="fa fa-pie-chart"></i> <span>Bán hàng</span>
+                    <span class="hidden pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu">
+                <ul class="hidden treeview-menu">
                     <li class="{!! areActiveRoutes(['orders.index','orders.show'], 'active') !!}">
                         <a href="{!! route('orders.index') !!}"><i class="fa fa-circle-o"></i> {!!
                             trans('admin.field.list') !!}</a></li>
@@ -86,41 +92,26 @@
                             trans('admin.field.add') !!}</a></li>
                 </ul>
             </li>
-
-            <li class="treeview {!! areActiveRoutes(['users.index','users.create','users.show'], 'active') !!}">
-                <a href="#">
-                    <i class="fa fa-folder"></i> <span>Khách hàng</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+            <li class="header">KHÁCH HÀNG</li>
+            <li class="{!! areActiveRoutes(['users.index','users.create','users.show'], 'active') !!}">
+                <a href="{{ route('users.index') }}">
+                    <i class="fa fa-users"></i> <span>Khách hàng</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li class="{!! areActiveRoutes(['users.index','users.show'], 'active') !!}">
-                        <a href="{!! route('users.index') !!}"><i class="fa fa-circle-o"></i> {!!
-                            trans('admin.field.list') !!}</a></li>
-                    <li class="{!! areActiveRoutes(['users.create'], 'active') !!}"><a
-                            href="{!! route('users.create') !!}"><i class="fa fa-circle-o"></i> {!!
-                            trans('admin.field.add') !!}</a></li>
-                </ul>
             </li> 
-            <li class="treeview {!! areActiveRoutes(['page.index','page.create','page.show'],'active') !!}">
-                <a href="#">
-                    <i class="fa fa-folder"></i> <span>{!! trans('admin.object.page') !!}</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
+            <li class="{!! areActiveRoutes(['member.index','member.create','member.show'],'active') !!}">
+                <a href="{{ route('member.index') }}">
+                    <i class="fa fa-user-secret"></i> <span>{!! trans('admin.object.member') !!}</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li class="{!! areActiveRoutes(['page.index','page.show'],'active') !!}"><a
-                            href="{!! route('page.index') !!}"><i class="fa fa-circle-o"></i> {!!
-                            trans('admin.field.list') !!}</a></li>
-                    <li class="{!! isActiveRoute('page.create','active') !!}"><a href="{!! route('page.create') !!}"><i
-                                class="fa fa-circle-o"></i> {!! trans('admin.field.add') !!}</a></li>
-                </ul>
             </li> 
+            <li class="header">CÀI ĐẶT</li>
+            <li class="{!! areActiveRoutes(['slider.index','slider.add','slider.show'],'active') !!}">
+                <a href="{!! route('slider.index') !!}">
+                    <i class="fa fa-tasks"></i> <span>{!! trans('admin.object.slider') !!}</span>
+                </a>
+            </li>
             <li class="treeview {!! areActiveRoutes(['settings.overview','settings.translation','settings.custom'],'active') !!}">
                 <a href="#">
-                    <i class="fa fa-folder"></i> <span>{!! trans('admin.object.settings') !!}</span>
+                    <i class="fa fa-wrench"></i> <span>{!! trans('admin.object.settings') !!}</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -137,33 +128,10 @@
                             trans('admin.object.custom') !!}</a></li>
                 </ul>
             </li>
-            <li class="{!! areActiveRoutes(['slider.index','slider.add','slider.show'],'active') !!}">
-                <a href="{!! route('slider.index') !!}">
-                    <i class="fa fa-dashboard"></i> <span>{!! trans('admin.object.slider') !!}</span>
-                </a>
-            </li>
-            <li class="treeview {!! areActiveRoutes(['member.index','member.create','member.show'],'active') !!}">
-                <a href="#">
-                    <i class="fa fa-folder"></i> <span>{!! trans('admin.object.member') !!}</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{!! areActiveRoutes(['member.index','member.show'],'active') !!}"><a
-                            href="{!! route('member.index') !!}"><i class="fa fa-circle-o"></i> {!!
-                            trans('admin.field.list') !!}</a></li>
-                    <li class="{!! isActiveRoute('member.create','active') !!}"><a
-                            href="{!! route('member.create') !!}"><i class="fa fa-circle-o"></i> {!!
-                            trans('admin.field.add') !!}</a></li>
-                </ul>
-            </li> 
-
-
-            <li class="header">LABELS</li>
+            <li class="header">CONFIG</li>
             <li class=""><a href="{{ route('login.logout') }}"><i class="fa fa-circle-o text-red"></i> <span>Thoát</span></a></li>
-            <li class=""><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li class=""><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            <li class="hidden"><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+            <li class="hidden"><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
         </ul>
     </section>
 </aside>

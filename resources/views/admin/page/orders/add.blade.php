@@ -38,17 +38,21 @@
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="">Số hoá đơn</label>
                         {{ Form::text('invoice_number', $post && $post->id ? $post->invoice_number : '', ['class'=>'form-control','id' => 'invoice_number', 'placeholder' => '']) }}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="">Số Packing list</label>
                         {{ Form::text('packing_list', $post && $post->id ? $post->packing_list : '', ['class'=>'form-control','id' => 'packing_list', 'placeholder' => '']) }}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="">Số Bill</label>
                         {{ Form::text('bill_number', $post && $post->id ? $post->bill_number : '', ['class'=>'form-control','id' => 'bill_number', 'placeholder' => '']) }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="">Tờ khai hải quan</label>
+                        {{ Form::text('customs_declaration', $post && $post->id ? $post->customs_declaration : '', ['class'=>'form-control','id' => 'customs_declaration', 'placeholder' => '']) }}
                     </div>
                 </div>
                 <div class="row form-group">
@@ -149,6 +153,10 @@
                             {!! status_orders($post ? $post->status_orders : '') !!}
                         </select>
                     </div> 
+                    <div class="col-md-4">
+                        <label for="">Phương thức thanh toán</label>
+                        {{ Form::text('payment_method', $post && $post->id  ? $post->payment_method : '', ['class'=>'form-control pull-right', 'id' => 'payment_method', 'placeholder' => '']) }}
+                    </div> 
                     <div class="col-md-4 hidden" id="_type_lc">
                         <label for="">Số LC:</label>
                         {{ Form::text('lc_number', $post && $post->id  ? $post->lc_number : '', ['class'=>'form-control pull-right', 'id' => 'lc_number', 'placeholder' => '']) }}
@@ -173,7 +181,7 @@
                 <div class="row form-inline form-group clearfix">
                     <div class="col-md-12 text-right">
                         <label for="currency_unit">Đơn vị tiền tệ (USD/EUR/.....):</label>
-                        <input name="currency_unit" value="{{ $post && $post->currency_unit ? $post->currency_unit : '' }}" type="text" class="form-control" id="currency_unit" style="width: 20%" onchange="change_currency_unit(this)">
+                        <input name="currency_unit" value="{{ $post && $post->currency_unit ? $post->currency_unit : '' }}" type="text" class="form-control" id="currency_unit" style="width: 20%" onchange="change_currency_unit(this)" required>
                     </div>
                 </div>
                 <div class="form-group clearfix">
@@ -252,6 +260,17 @@
                     {{ Form::hidden('sub_total', $post && $post->id  ? $post->sub_total : 0, ['class'=>'form-control','id' => 'sub_total', 'placeholder' => '']) }}
                     {{ Form::text('_sub_total', $post && $post->id  ? $post->sub_total : 0, ['class'=>'form-control','id' => '_sub_total', 'placeholder' => '', 'disabled' => 'disabled']) }}
                 </div>  
+                <hr>
+                <div class="form-group">
+                    <label>Tỉ giá</label>
+                    <input required type="number" pattern="[0-9]+([\,|\.][0-9]+)?" step="0.01" class="form-control" onchange="update_sub_total_vnd(this, 'payment')" name="exchange_rate" id="exchange_rate" value="{{ $post->exchange_rate ? $post->exchange_rate : 0 }}">
+                </div>
+                <div class="form-group">
+                    <label>Trị giá VNĐ</label>
+                    <input type="hidden" class="form-control" name="sub_total_vnd" id="sub_total_vnd" value="{{ $post->sub_total_vnd ? $post->sub_total_vnd : 0 }}">
+                    <input type="number" disabled class="form-control" name="_sub_total_vnd" id="_sub_total_vnd" value="{{ $post->sub_total_vnd ? $post->sub_total_vnd : 0 }}">
+                </div>
+                <hr>
                 <div class="form-group">
                     <label>Thanh toán <span id="type_currency_unit"></span></label>
                     <input type="number" onchange="update_payment(this, 'payment')" class="form-control" name="payment" id="payment" value="{{ $post->payment ? $post->payment : 0 }}">
@@ -357,7 +376,6 @@
             processData: false,
             cache: false,
             success: function (data) {
-                console.log('data: ', data);
                 if(data && data.id){
                     var id = "item_body_list_"+data.id;
                     var _html = "<tr id='" + id + "'>";
@@ -380,6 +398,7 @@
                         _html += '</td>';
                         _html += '</tr>';
                     $("#body_list_products").append(_html);
+                    calculator_temp();
                 }
             },
             error: function (xhr, textStatus, errorThrown) {
@@ -430,6 +449,14 @@
         $("#sub_total").val(_temp);
     }
 
+    function update_sub_total_vnd(e, type){
+        var sub_total = parseInt($("#sub_total").val());
+        var exchange_rate = $(e).val();
+        var _sub = sub_total * exchange_rate;
+
+        $("#sub_total_vnd").val(_sub);
+        $("#_sub_total_vnd").val(_sub);
+    }
     function update_payment(e, type){
         var sub_total = parseInt($("#sub_total").val());
         var payment = parseInt($("#payment").val());

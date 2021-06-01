@@ -126,6 +126,7 @@ class OrdersController extends Controller
             'eta' => convertToYMDHIS($request->eta),
             'sub_total' => $request->sub_total
         ];
+        //dd($param);
         if($id){
             // Update 
             //dd($param);
@@ -373,14 +374,22 @@ class OrdersController extends Controller
         $data = [];
         $heading = [
             'ID',
-            'Khách hàng	Nhân viên',
+            'Khách hàng',
+            'Nhân viên',
             'Số hoá đơn',
             'Số Packing list',			
             'Số Bill',
+            'Tờ khai hải quan',
             'Ngày lập hóa đơn',
             'Thời hạn công nợ',
             'Hạn công nợ',
-            'Trạng thái đơn hàng'
+            'Trị giá đơn hàng',
+            'Tỷ giá',
+            'Trị giá đơn hàng (VND)',
+            'Phương thức thanh toán',
+            'Thanh toán',
+            'Công nợ',
+            'Trạng thái đơn hàng',
         ];
         array_push($data, $heading);
         if($posts){
@@ -392,9 +401,16 @@ class OrdersController extends Controller
                     $post->invoice_number,
                     $post->packing_list,
                     $post->bill_number,
+                    $post->customs_declaration,
                     convertToDMY($post->invoice_date),
                     $post->debt_term_date,
                     convertToDMY($post->debt_due_date),
+                    $post->sub_total .' ('.$post->currency_unit.')',
+                    $post->exchange_rate,
+                    $post->sub_total_vnd .' VNĐ',
+                    $post->payment_method,
+                    $post->payment,
+                    $post->deposit,
                     show_title_status_orders($post->status_orders),
                 ];
                 //array_push($data, $item);

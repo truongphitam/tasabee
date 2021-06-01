@@ -43,7 +43,11 @@ class Orders extends BaseModel
         'currency_unit',
         'confirm_status',
         'confirm_admins_id',
-        'commission'
+        'commission',
+        'exchange_rate',
+        'sub_total_vnd',
+        'customs_declaration',
+        'payment_method'
     ];
 
     public function detail()

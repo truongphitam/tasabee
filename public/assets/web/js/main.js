@@ -137,6 +137,29 @@ $(function() {
 		autoplay: true,
 		autoplaySpeed: 2000,
 	});
+	//
+	$('.home-silder-product').slick({
+		dots: false,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 4,
+		responsive: [
+		{
+			breakpoint: 768,
+			settings: {
+				arrows: false,
+				slidesToShow: 1
+			}
+		},
+		{
+			breakpoint: 480,
+			settings: {
+				arrows: false,
+				slidesToShow: 1
+			}
+		}
+		]
+	});
 });
 
 

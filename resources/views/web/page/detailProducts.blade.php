@@ -139,7 +139,7 @@
 						<div class="product-detail-btn">
 							<div class="row align-items-center">
 								<div class="col-6">
-									<a role="button" href="#product-modal" data-toglee="modal" class="btn btn-style-1 btn-100">
+									<a role="button" href="#product-modal" data-toggle="modal" class="btn btn-style-1 btn-100">
 										<i>
 											{{ trans('web.menu.contact') }}
 										</i>

@@ -691,16 +691,16 @@ img {
     top: 25%;
 }
 .home-silder-product .slick-next:before {
-   content: '';
-   background: url(../images/icon-prev.png) no-repeat;
-   background-size: contain;
-   width: 33px;
-   height: 107px;
-   position: absolute;
-   right: 0;
-   top: 0;
-   z-index: 1;
-   transform: rotate(180deg);
+ content: '';
+ background: url(../images/icon-prev.png) no-repeat;
+ background-size: contain;
+ width: 33px;
+ height: 107px;
+ position: absolute;
+ right: 0;
+ top: 0;
+ z-index: 1;
+ transform: rotate(180deg);
 }
 
 
@@ -734,6 +734,10 @@ img {
 .c_363636,
 .c_363636:hover {
     color: #363636 !important;
+}
+.c_777,
+.c_777:hover {
+    color: #777 !important;
 }
 .hover-img {
     position: relative;
@@ -839,11 +843,11 @@ img {
     position: relative;
 }
 .about-box {
- margin-top: -130px;
- background: #fff;
- box-shadow: 0px -5px 15px 0px rgb(0 0 0 / 10%);
- border-radius: 15px;
- padding: 30px 100px;
+   margin-top: -130px;
+   background: #fff;
+   box-shadow: 0px -5px 15px 0px rgb(0 0 0 / 10%);
+   border-radius: 15px;
+   padding: 30px 100px;
 }
 .home-about-item {
     position: relative;
@@ -892,8 +896,8 @@ img {
     justify-content: center;
 }
 .home-why-left {
- color: #fff;
- padding: 0 50px 0 10vw;
+   color: #fff;
+   padding: 0 50px 0 10vw;
 }
 .home-why-left .c_222 {
     font-size: 20px;
@@ -1568,17 +1572,167 @@ img {
 
 
 .contact-bee-right {
-        position: absolute;
+    position: absolute;
     right: 0;
     bottom: -200px;
     width: 150px;
 }
 .contact-bee-left {
-       position: absolute;
-    bottom: 15%;
-    left: 5%;
-    width: 80px;
+ position: absolute;
+ bottom: 15%;
+ left: 5%;
+ width: 80px;
 }
+
+.about-item {
+    position: relative;
+    margin-bottom: 25px;
+}
+.about-item>img {
+    border-radius: 40px;
+}
+.about-title {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 1;
+}
+.about-title p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.about-title hr {
+    width: 50px;
+    margin: 0 auto;
+    border: 0;
+    border-top: 2px solid #ffb400;
+}
+.about-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 40px;
+    background: rgba(244,111,3,.9);
+    padding: 25px 15px 15px;
+    color: #fff;
+    z-index: 2;
+    opacity: 0;
+    transition: .3s all;
+}
+
+.about-item:hover .about-content {
+    opacity: 1;
+    transition: .3s all;
+}
+.about-section-1 hr {
+    width: 50px;
+    
+    border: 0;
+    border-top: 2px solid #ffb400;
+}
+.about-section-1 h2 {
+    font-size: 38px;
+}
+
+#about {
+    position: relative;
+}
+
+.about-arcodion {
+    background: #fef0e5;
+}
+#accordion-about .card {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+#accordion-about .card-link {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: #000;
+  text-transform: uppercase;
+  position: relative;
+}
+#accordion-about .card-link.collapsed .card-header {
+    border-color: transparent;
+}
+#accordion-about .card-link .card-header {
+    border-color: #ffc43d;
+}
+#accordion-about .card-link.collapsed:after {
+    content: "\f054";
+    transition: .3s all;
+    transform: rotate(0);
+}
+#accordion-about .card-link:after {
+    content: "\f078";
+    font-family: 'FontAwesome';
+    position: absolute;
+    right: 0;
+    top: 5px;
+    font-size: 15px;
+    transform: rotate(360deg);
+    transition: .3s all;
+}
+#accordion-about .card-header {
+    background: transparent;
+    padding: 5px 0;
+}
+#accordion-about .card-body {
+    padding: 15px 0;
+}
+.about-slide {
+    position: relative;
+    display: table;
+    margin: 0 auto;
+}
+.about-slide-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.1);
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+.about-slide ul img {
+    max-width: 30px;
+}
+.about-banner-box {
+    position: relative;
+}
+.about-banner-text  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
 
 
 

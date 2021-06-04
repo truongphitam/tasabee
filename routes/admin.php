@@ -64,6 +64,24 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admins'], function () {
         Route::post('edit', 'SliderController@update')->name('slider.update');
         Route::get('delete/{id}', 'SliderController@destroy')->name('slider.destroy');
     });
+    //slider
+    Route::group(['prefix' => 'contact'], function () {
+        Route::get('/', 'ContactController@index')->name('contact.index');
+        Route::get('add', 'ContactController@create')->name('contact.create');
+        Route::post('add', 'ContactController@store')->name('contact.store');
+        Route::get('edit/{id}', 'ContactController@show')->name('contact.show');
+        Route::post('edit', 'ContactController@update')->name('contact.update');
+        Route::get('delete/{id}', 'ContactController@destroy')->name('contact.destroy');
+    });
+    //TEAM
+    Route::group(['prefix' => 'team'], function () {
+        Route::get('/', 'TeamController@index')->name('team.index');
+        Route::get('add', 'TeamController@create')->name('team.create');
+        Route::post('add', 'TeamController@store')->name('team.store');
+        Route::get('edit/{id}', 'TeamController@show')->name('team.show');
+        Route::post('edit', 'TeamController@update')->name('team.update');
+        Route::get('delete/{id}', 'TeamController@destroy')->name('team.destroy');
+    });
     //settings
     Route::group(['prefix' => 'settings'], function () {
         Route::get('overview', 'SettingsController@index')->name('settings.overview');

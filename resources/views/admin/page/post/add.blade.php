@@ -20,6 +20,16 @@
                 <div class="form-group">
                     @include('partials.lang_input', ['type' => 'textarea', 'model' => 'post','class' => 'form-control', 'attr' => 'expert', 'title' => trans('admin.field.expert')])
                 </div>
+                @if ($post_type == 'event')
+                    <div class="form-group">
+                        <label>Youtube Link</label>
+                        {{ Form::text('youtube_link', isset($post) ? $post->youtube_link : '', ['class'=>'form-control','id' => 'youtube_link', 'placeholder' => '']) }}
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ</label>
+                        {{ Form::text('address', isset($post) ? $post->address : '', ['class'=>'form-control','id' => 'address', 'placeholder' => '']) }}
+                    </div>
+                @endif
                 <div class="form-group">
                     @include('partials.lang_input', ['type' => 'textarea', 'model' => 'post','class' => 'form-control ckeditor', 'attr' => 'description', 'title' => trans('admin.field.description')])
                 </div>

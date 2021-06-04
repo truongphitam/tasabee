@@ -23,7 +23,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                                 <input type="hidden" id="_datepicker"
-                                    value="{{ $post ? $post->event_date : date('d/m/Y') }}" />
+                                    value="{{ $post && $post->id ? $post->event_date : date('d/m/Y') }}" />
                                 <input type="text" class="form-control pull-right" id="datepicker" name="event_date">
                             </div>
                         </div>
@@ -39,6 +39,14 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
+                        <label>Show</label>
+                        <select class="form-control" name="show">
+                            <option value="index">Trang chủ</option>
+                            <option value="about" @if($post->show == 'about') selected @endif>Giới thiệu</option>
+                            <option value="event" @if($post->show == 'event') selected @endif>Sự kiện</option>
+                        </select>
+                    </div>
+                    <div class="hidden form-group">
                         <label>{!! trans('admin.field.status') !!}</label>
                         <select class="form-control" name="is_published">
                             <option value="on">{!! trans('admin.field.publish') !!}</option>

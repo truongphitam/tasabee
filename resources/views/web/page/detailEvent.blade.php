@@ -6,7 +6,7 @@
     <div class="container">
         <div class="top-cat-name">
             <b>
-                {{ trans('web.menu.news') }}
+                {{ trans('web.menu.event') }}
             </b>
             <ul class="list-inline text-center">
                 <li class="list-inline-item">
@@ -16,8 +16,8 @@
                 </li>
                 /
                 <li>
-                    <a href="{!! route('blog') !!}">
-                        {{ trans('web.menu.news') }}
+                    <a href="{!! route('event') !!}">
+                        {{ trans('web.menu.event') }}
                     </a>
                 </li>
                 /
@@ -51,11 +51,7 @@
                 </p>
                 <div class="text-justify">
                     {!! $data->description !!}
-                </div>
-
-
-
-                <!---->
+                </div> 
                 <div class="post-action">
                     <div class="row">
                         <div class="col-8 col-md-9">
@@ -82,10 +78,10 @@
                             <div class="d-flex align-items-center justify-content-around">
                                 <small class="d-flex align-items-center">CHIA SẺ &nbsp;<img
                                         src="/assets/web/images/icon-share.png" width="15"></small>
-                                <a href="">
+                                <a href="http://www.facebook.com/sharer/sharer.php?u={!! url()->current() !!}&t={{ $data->title }}" title="{{ $data->title }}" class="share-popup">
                                     <img src="/assets/web/images/icon-fb.png" width="24">
                                 </a>
-                                <a href="">
+                                <a href="http://www.twitter.com/intent/tweet?url={!! url()->current() !!}&via=TWITTER_HANDLE_HERE&text={{ $data->title }}" title="{{ $data->title }}" class="share-popup">
                                     <img src="/assets/web/images/icon-twiter.png" width="24">
                                 </a>
                             </div>

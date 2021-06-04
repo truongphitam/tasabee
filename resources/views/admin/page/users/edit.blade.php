@@ -8,16 +8,27 @@
             <input type="hidden" name="id" value="{!! $data->id !!}"/>
             <div class="row">
                 <div class="col-md-9">
-                    <div class="form-group">
-                        <label>Tên khách hàng</label>
-                        <input type="text" name="name" class="form-control"
-                                value="{!! $data->name !!}"/>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label>Tên công ty</label>
+                            <input type="text" value="{!! $data->name !!}" name="name" class="form-control" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>{!! trans('admin.field.email') !!}</label>
+                            <input type="email" value="{!! $data->email !!}" name="email" class="form-control" id="email" onkeyup='checkEmail();'
+                                    required/>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>{!! trans('admin.field.email') !!}</label>
-                        <input type="email" name="email" class="form-control" id="email" onkeyup='checkEmail();'
-                                required value="{!! $data->email !!}" disabled/>
-                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <label>Người liên hệ</label>
+                            <input type="text" value="{!! $data->contact_name !!}" name="contact_name" id="contact_name" class="form-control" required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Email người liên hệ</label>
+                            <input type="email" value="{!! $data->contact_email !!}" name="contact_email" class="form-control" id="contact_email" required/>
+                        </div>
+                    </div> 
                     <div class="hidden form-group">
                         <label>{!! trans('admin.field.first_name') !!}</label>
                         <input type="text" name="first_name" class="form-control"

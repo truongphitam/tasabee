@@ -13,5 +13,5 @@ return array (
     'mottainai_run' => 'マラソン大会',
     'register_mottainai_run' => 'Đăng ký Mottainai Run',
     'donate' => 'Donate',
-  )
+  ),
 );

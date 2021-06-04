@@ -10,7 +10,7 @@
 
                 </div>
                 <div class="col-md-8 text-right">
-                    <a href="{!! route('slider.create') !!}" class="btn btn-info">
+                    <a href="{!! route('team.create') !!}" class="hidden btn btn-info">
                         <i class="fa fa-fw fa-plus"></i>
                     </a>
                 </div>
@@ -18,11 +18,16 @@
                     <table class="table table-bordered" id="dataTable">
                         <thead>
                         <tr>
-                            <th class="no-sort" style="width: 50px">Image</th>
-                            <th>@lang('admin.field.title')</th>
-                            <th class="no-sort">@lang('admin.field.author')</th>
-                            <th>Show</th>
-                            <th>@lang('admin.field.date')</th>
+                            <th class="no-sort">ID</th>
+                            <th class="no-sort">Họ và Tên</th>
+                            @if($type == 'product')
+                                <th class="no-sort">Số điện thoại</th>
+                            @endif
+                            <th class="no-sort">Email</th>
+                            @if($type == 'product')
+                                <th class="no-sort">Sản phẩm</th>
+                            @endif
+                            <th class="no-sort">Ghi chú</th>
                             <th class="no-sort text-center"></th>
                         </tr>
                         </thead>
@@ -33,6 +38,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="" id="type" value="{{ $type }}">
 @endsection
 @section('js')
     <script src="/assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -42,9 +48,9 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    url: '{{ action('Admin\SliderController@index') }}',
+                    url: '{{ action('Admin\ContactController@index') }}',
                     data: function (d) {
-                        d.category = $('.category-filter').val();
+                        d.type = $('#type').val();
                     }
                 },
                 "columnDefs": [

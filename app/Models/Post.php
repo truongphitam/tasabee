@@ -13,7 +13,7 @@ class Post extends BaseModel
     
     use MultiLanguage;
     protected $multilingual = ['title', 'expert', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
-    protected $fillable = ['categories_id', 'title', 'slug', 'image', 'user_id', 'expert', 'description', 'is_published', 'meta_title', 'meta_description', 'meta_keywords', 'post_type'];
+    protected $fillable = ['address', 'youtube_link', 'categories_id', 'title', 'slug', 'image', 'user_id', 'expert', 'description', 'is_published', 'meta_title', 'meta_description', 'meta_keywords', 'post_type'];
 
     public function post()
     {

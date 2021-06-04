@@ -104,32 +104,32 @@
 						<p class="no-margin"><strong>Size:</strong></p>
 
 						<ul class="product-detail-size list-inline">
-							<li class="active">
+							<li id="size_10" onclick="setSize(10)" class="size-products-detail">
 								<a href="#!">
 									10 gm
 								</a>
 							</li>
-							<li>
+							<li id="size_50" onclick="setSize(50)" class="size-products-detail">
 								<a href="#!">
 									50 gm
 								</a>
 							</li>
-							<li>
+							<li id="size_100" onclick="setSize(100)" class="size-products-detail">
 								<a href="#!">
 									100 gm
 								</a>
 							</li>
-							<li>
+							<li id="size_200" onclick="setSize(200)" class="size-products-detail">
 								<a href="#!">
 									200 gm
 								</a>
 							</li>
-							<li>
+							<li id="size_250" onclick="setSize(250)" class="size-products-detail">
 								<a href="#!">
 									250 gm
 								</a>
 							</li>
-							<li>
+							<li id="size_300" onclick="setSize(300)" class="size-products-detail">
 								<a href="#!">
 									300 gm
 								</a>
@@ -139,12 +139,14 @@
 						<div class="product-detail-btn">
 							<div class="row align-items-center">
 								<div class="col-6">
-									<a role="button" href="#product-modal" data-toggle="modal" class="btn btn-style-1 btn-100">
+									<a role="button" onclick="showModalContactProducts()" class="btn btn-style-1 btn-100">
 										<i>
 											{{ trans('web.menu.contact') }}
 										</i>
 									</a>
 								</div>
+								<input type="hidden" name="" id="title_products" value="{!! $data->title !!}">
+								<input type="hidden" name="" id="id_products" value="{!! $data->id !!}">
 								<div class="col-6">
 									<div class="d-flex align-items-center justify-content-around">
 										<small class="d-flex align-items-center">CHIA SẺ &nbsp<img src="/assets/web/images/icon-share.png" width="15"></small> 
@@ -187,12 +189,22 @@
 					<p>
 						<strong>Customer Reviews</strong>
 					</p>
-					<p>
-						<strong>SANDRA RUIZ</strong>
-						<br/>
-						May 10, 2021
-					</p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. 
+					<div id="list_comment">
+						@if($data->comment)
+							@foreach($data->comment as $comment)
+								<div class="clearfix">
+									<p>
+										<strong>{{ $comment->name }}</strong>
+										<br />
+										<small class="c_363636">
+											<i class="fa fa-calendar"></i> {{ $comment->created_at }}
+										</small>
+									</p>
+									{!! $comment->content !!}
+								</div> 
+							@endforeach
+						@endif
+					</div>
 					<hr class="product-detail-hr">
 					<p>
 						<strong>
@@ -202,19 +214,22 @@
 						Your email address will not be published. Required fields are marked *
 					</p>
 					<div class="row">
-						<div class="col-12 col-md-6">
-							<div class="frm-cmt">
+						<div class="col-12">
+							<div class="frm-cmt-blog">
 								<div class="form-group">
-									<textarea class="form-control" rows="5" placeholder="Your Message"></textarea>
+									<textarea class="form-control" rows="5" placeholder="Your Message" id="comment_content"></textarea>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Your Name">
+									<input type="text" class="form-control" placeholder="Your Name" value="{{ Auth::check() ? Auth::user()->name : '' }}" @if(Auth::check()) disabled @endif id="comment_name">
 								</div>
 								<div class="form-group">
-									<input type="email" class="form-control" placeholder="Your Email">
+									<input type="email" class="form-control" placeholder="Your Email" value="{{ Auth::check() ? Auth::user()->email : '' }}"  @if(Auth::check()) disabled @endif id="comment_email">
 								</div>
 								<div class="center-xs">
-									<button class="btn btn-style-1">Submit</button>
+									<button class="btn btn-style-1" onclick="comment(this)">Submit</button>
+									<div id="loader-t2" class="text-center">
+										<i class="fa fa-spinner fa-spin fa-3x"></i>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -269,7 +284,9 @@
 		</div>
 	</div>
 </section>
-
+<input type="hidden" id="comment_post_id" value="{{ $data->id }}">
+<input type="hidden" id="comment_users_id" value="{{ Auth::check() ? Auth::user()->id : '' }}">
+<input type="hidden" id="comment_type" value="products">
 
 @endsection
 @section('css')

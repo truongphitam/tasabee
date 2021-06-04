@@ -19,6 +19,7 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 
     Route::get('blog', 'SiteController@blog')->name('blog');
     Route::get('blog/{slug}', 'SiteController@detailBlog')->name('detailBlog');
+    Route::get('event/{slug}', 'SiteController@detailEvent')->name('detailEvent');
 
     Route::get('event', 'SiteController@event')->name('event');
     Route::get('lien-he', 'SiteController@contact')->name('contact');
@@ -33,3 +34,4 @@ Route::prefix(LaravelLocalization::setLocale())->group(function () {
 Route::post('post-login', 'SiteController@postLogin')->name('post-login');
 Route::get('logout', 'UsersController@logout')->name('users-fe.logout');
 Route::post('comment', 'SiteController@postComment')->name('users-fe.post-comment');
+Route::post('submit-form-modal', 'SiteController@postSubmitFormModal')->name('users-fe.postSubmitFormModal');

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repository\SliderRepository;
+use App\Repository\TeamRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use App\Models\Slider;
+use App\Models\Team;
 use Illuminate\Support\Facades\App;
 
-class SliderController extends Controller
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class SliderController extends Controller
      */
     protected $_repository;
 
-    public function __construct(SliderRepository $repository)
+    public function __construct(TeamRepository $repository)
     {
         $this->_repository = $repository;
     }
@@ -26,8 +26,8 @@ class SliderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $total = Slider::count('id');
-            $query = Slider::select(['*']);
+            $total = Team::count('id');
+            $query = Team::select(['*']);
             # Category filter
 //            if ($request->has('category')) {
 //                $query = $query->where('cate_id', (int)$request->category);
@@ -35,7 +35,7 @@ class SliderController extends Controller
 //            }
             # Search title
             if ('' !== $search = $request->search['value']) {
-                $query = $query->where('title', 'like', '%' . $search . '%');
+                $query = $query->where('name', 'like', '%' . $search . '%');
                 $filtered = $query->count();
             }
             # Pagination
@@ -47,11 +47,11 @@ class SliderController extends Controller
             foreach ($posts as $post) {
                 $rows[] = [
                     "<img src='$post->image' class='img-responsive'/>",
-                    $post->title,
-                    $post->author->name,
-                    show_slider_type($post->show),
+                    $post->name,
+                    $post->position,
+                    $post->facebook.'<br>'.$post->google,
                     $post->created_at,
-                    "<a target='_blank' href='' class='btn btn-warning btn-xs hidden'><i class='fa fa-fw fa-eye'></i></a>&nbsp;<a href='" . route('slider.show', $post->id) . "' class='btn btn-success btn-xs'><i class='fa fa-fw fa-edit'></i></a>&nbsp;<a onclick='return confirmDelete();return false;' href='" . route('slider.destroy', $post->id) . "' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-trash'></i></a>"
+                    "<a target='_blank' href='' class='btn btn-warning btn-xs hidden'><i class='fa fa-fw fa-eye'></i></a>&nbsp;<a href='" . route('team.show', $post->id) . "' class='btn btn-success btn-xs'><i class='fa fa-fw fa-edit'></i></a>&nbsp;<a onclick='return confirmDelete();return false;' href='" . route('team.destroy', $post->id) . "' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-trash'></i></a>"
                 ];
             }
 
@@ -62,7 +62,7 @@ class SliderController extends Controller
             ]);
         }
         $_title = trans('admin.title.list') . ' ' . trans('admin.object.slider');
-        return view('admin.page.slider.index', compact('_title'));
+        return view('admin.page.team.index', compact('_title'));
     }
 
     /**
@@ -73,9 +73,9 @@ class SliderController extends Controller
     public function create()
     {
         //
-        $post = new Slider();
+        $post = new Team();
         $_title = trans('admin.title.add') . ' ' . trans('admin.object.slider');
-        return view('admin.page.slider.add', compact('_title', 'post'));
+        return view('admin.page.team.add', compact('_title', 'post'));
     }
 
     /**
@@ -87,23 +87,15 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $id = $request->id ? $request->id : '';
-        $event_date = $request->event_date ? convertToYMD($request->event_date) : date('Y-m-d');
-        $slug = isset($request->slug) && !empty($request->slug) ? $request->slug : $request->title[App::getLocale()];
-        $param = $request->except(['_token', 'slug', 'event_date']);
-        $param += ['event_date' => $event_date];
+        $param = $request->except(['_token']);
         if($id){
-            $slug = $this->_repository->generateSlug($slug, $id);
-            $param += ['slug' => $slug];
             $update = $this->_repository->update($id, $param);
             Session::flash('success', trans('message.admin.create'));
         }else{
-            $slug = $this->_repository->generateSlug($slug, 0);
-            $param += ['slug' => $slug];
             $id = $this->_repository->create($param);
             Session::flash('success', trans('message.admin.update'));
         }
-
-        return redirect()->route('slider.show', $id);
+        return redirect()->route('team.show', $id);
     }
 
     /**
@@ -115,10 +107,9 @@ class SliderController extends Controller
     public function show($id)
     {
         //
-        $_title = trans('admin.title.edit') . ' ' . trans('admin.object.slider');
+        $_title = trans('admin.title.edit') . ' ' . trans('admin.object.team');
         $post = $this->_repository->find($id);
-        $post->event_date = $post->event_date ? convertToDMY($post->event_date) : date('d/m/Y');
-        return view('admin.page.slider.add', compact('post', '_title'));
+        return view('admin.page.team.add', compact('post', '_title'));
     }
 
     /**
@@ -167,6 +158,6 @@ class SliderController extends Controller
         } else {
             Session::flash('danger', trans('message.admin.delete'));
         }
-        return redirect()->route('slider.index');
+        return redirect()->route('team.index');
     }
 }

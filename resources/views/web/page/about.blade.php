@@ -16,29 +16,18 @@
 					<hr/>
 					<p class="c_777">
 						<strong>
-							CÂU CHUYỆN CỦA CHÚNG TÔI
+							{!! trans('web.field.story_about') !!}
 						</strong>
 					</p>
 					<h2>
 						<b>
-							Với 25 năm kinh nghiệm trong ngành ong ở Việt Nam.
+							{!! $page->expert !!}
 						</b>
 					</h2>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="text-justify c_777">
-						<p>
-							Tasa bee thành lập với mong muốn đưa các sản phẩm ong nguyên chất ra nước ngoài bằng con đường trực diện hơn. 
-						</p>
-						<p>
-							Ưu tiên của chúng tôi là cung cấp những sản phẩm ong chất lượng cao, đồng thời giúp khách hàng biết và tận dụng nguồn lợi ích không ngờ mà mật ong và các sản phẩm ong mang đến cho sức khỏe con người.
-						</p>
-						<p>
-							Hơn thế nữa, Tasabee còn hướng tới việc thúc đẩy phát triển ngành nông nghiệp bền vững nhằm góp phần xây dựng thương hiệu cho ngành nuôi ong Việt Nam nói chung. 
-						</p>
-						<p>
-							Bởi vì Tasabee tin rằng đó sẽ là con đường dẫn tới cuộc sống khỏe mạnh cho người tiêu dùng cũng như đóng góp những giá trị và lợi ích tích cực cho cộng đồng.
-						</p>
+						{!! $page->description !!}
 					</div>
 				</div>
 			</div>
@@ -56,7 +45,7 @@
 					<div class="about-title">
 						<p>
 							<strong>
-								tầm nhìn
+								{!! trans('web.about.vision_1_title') !!}
 							</strong>
 						</p>
 						<hr>
@@ -64,22 +53,10 @@
 					<div class="about-content">
 						<p class="text-uppercase">
 							<strong>
-								Tầm Nhìn
+								{!! trans('web.about.vision_1_title') !!}
 							</strong>
 						</p>
-						<p>
-							Đảm bảo sản phẩm đạt chất lượng và an toàn thực phẩm, coi trọng sức khoẻ con người.
-						</p>
-						<p>
-							Phát triển mạng lưới cung ứng và tiêu thụ chuyên nghiệp, đặt chất lượng làm tiêu điểm.
-						</p>
-						<p>
-							Đảm bảo môi trường sản xuất hợp quy chuẩn, quan tâm vấn đề an toàn vệ sinh.
-						</p>
-						<p>
-							Tạo dựng môi trường làm việc, lấy sự trung thực làm nền tảng.
-						</p>
-						Lan tỏa những giá trị nhân văn, xem sẻ chia là mạch sống
+						{!! trans('web.about.vision_1_desciption') !!} 
 
 					</div>
 				</div>
@@ -90,7 +67,7 @@
 					<div class="about-title">
 						<p>
 							<strong>
-								tầm nhìn
+								{!! trans('web.about.vision_2_title') !!}
 							</strong>
 						</p>
 						<hr>
@@ -98,22 +75,10 @@
 					<div class="about-content">
 						<p class="text-uppercase">
 							<strong>
-								Tầm Nhìn
+								{!! trans('web.about.vision_2_title') !!}
 							</strong>
 						</p>
-						<p>
-							Đảm bảo sản phẩm đạt chất lượng và an toàn thực phẩm, coi trọng sức khoẻ con người.
-						</p>
-						<p>
-							Phát triển mạng lưới cung ứng và tiêu thụ chuyên nghiệp, đặt chất lượng làm tiêu điểm.
-						</p>
-						<p>
-							Đảm bảo môi trường sản xuất hợp quy chuẩn, quan tâm vấn đề an toàn vệ sinh.
-						</p>
-						<p>
-							Tạo dựng môi trường làm việc, lấy sự trung thực làm nền tảng.
-						</p>
-						Lan tỏa những giá trị nhân văn, xem sẻ chia là mạch sống
+						{!! trans('web.about.vision_2_desciption') !!}
 
 					</div>
 				</div>
@@ -124,7 +89,7 @@
 					<div class="about-title">
 						<p>
 							<strong>
-								tầm nhìn
+								{!! trans('web.about.vision_3_title') !!}tầm nhìn
 							</strong>
 						</p>
 						<hr>
@@ -132,23 +97,10 @@
 					<div class="about-content">
 						<p class="text-uppercase">
 							<strong>
-								Tầm Nhìn
+								{!! trans('web.about.vision_3_title') !!}
 							</strong>
 						</p>
-						<p>
-							Đảm bảo sản phẩm đạt chất lượng và an toàn thực phẩm, coi trọng sức khoẻ con người.
-						</p>
-						<p>
-							Phát triển mạng lưới cung ứng và tiêu thụ chuyên nghiệp, đặt chất lượng làm tiêu điểm.
-						</p>
-						<p>
-							Đảm bảo môi trường sản xuất hợp quy chuẩn, quan tâm vấn đề an toàn vệ sinh.
-						</p>
-						<p>
-							Tạo dựng môi trường làm việc, lấy sự trung thực làm nền tảng.
-						</p>
-						Lan tỏa những giá trị nhân văn, xem sẻ chia là mạch sống
-
+						{!! trans('web.about.vision_3_desciption') !!}
 					</div>
 				</div>
 			</div>
@@ -168,23 +120,23 @@
 				<div class="clearfix">
 					<h2 class="home-title text-uppercase center-xs">
 						<b>
-							cam kết <span class="c_ff7200">của chúng tôi</span>
+							{!! trans('web.about.commitment') !!} <span class="c_ff7200">{!! trans('web.about.our') !!}</span>
 						</b>
 					</h2>
 					<p class="c_777">
-						Tasa bee thành lập với mong muốn đưa các sản phẩm ong nguyên chất ra nước ngoài bằng con đường trực diện hơn. 
+						{!! trans('web.about.commitment_description') !!}
 					</p>
 					<div id="accordion-about">
 
 						<div class="card">
 							<a class="card-link" data-toggle="collapse" href="#collapseOne">
 								<div class="card-header">
-									<strong>Collapsible Group Item #1</strong>
+									<strong>{!! trans('web.about.commitment_1_title') !!}</strong>
 								</div>
 							</a>
 							<div id="collapseOne" class="collapse show" data-parent="#accordion-about">
 								<div class="card-body">
-									Lorem ipsum..
+									{!! trans('web.about.commitment_1_description') !!}
 								</div>
 							</div>
 						</div>
@@ -192,12 +144,12 @@
 						<div class="card">
 							<a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
 								<div class="card-header">
-									<strong>Collapsible Group Item #2</strong>
+									<strong>{!! trans('web.about.commitment_2_title') !!}</strong>
 								</div>
 							</a>
 							<div id="collapseTwo" class="collapse" data-parent="#accordion-about">
 								<div class="card-body">
-									Lorem ipsum..
+									{!! trans('web.about.commitment_2_description') !!}
 								</div>
 							</div>
 						</div>
@@ -215,214 +167,51 @@
 	<div class="container">
 		<h2 class="home-title text-uppercase text-center">
 			<b>
-				team <span class="c_ff7200">tasabee</span>
+				{!! trans('web.about.team')!!} <span class="c_ff7200">{!! trans('web.about.tasabee')!!}</span>
 			</b>
 		</h2>
 		<p class="text-center">
-			quis nostrud quam est, qui dolorem ipsum 
-			<br/>
-			quis nostrud quam est, qui dolorem ipsum quia dolor sit amet, consecquaerat 
+			{!! trans('web.about.team_description')!!}
 		</p>
 
 
 		<div class="padding-25">
-			<div class="home-silder-product about-slider">
-				<div>
-					<div class="about-slide">
-						<img src="/assets/web/images/about-g.png">
-						<div class="about-slide-info">
-							<div>
-								<p>
-									ANNE HATHAWAY
-								</p>
-								<p>
-
-								</p>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-fb-about.png">
-										</a>
-									</li>
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-gg-about.png">
-										</a>
-									</li>
-								</ul>
+			@if($team)
+				<div class="home-silder-product about-slider">
+					@foreach ($team as $item)
+						<div>
+							<div class="about-slide">
+								<img src="{{ $item->image }}" alt="{{ $item->name }}">
+								<div class="about-slide-info">
+									<div>
+										<p>
+											{{ $item->name }}
+										</p>
+										@if($item->position)
+											<p>
+												{{ $item->position }}
+											</p>
+										@endif
+										<ul class="list-inline">
+											<li class="list-inline-item">
+												<a href="{!! $item->facebook !!}" title="{{ $item->name }}">
+													<img src="/assets/web/images/icon-fb-about.png">
+												</a>
+											</li>
+											<li class="list-inline-item">
+												<a href="{!! $item->google !!}" title="{{ $item->name }}">
+													<img src="/assets/web/images/icon-gg-about.png">
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
+					@endforeach
+	
 				</div>
-
-				<div>
-					<div class="about-slide">
-						<img src="/assets/web/images/about-g.png">
-						<div class="about-slide-info">
-							<div>
-								<p>
-									ANNE HATHAWAY
-								</p>
-								<p>
-
-								</p>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-fb-about.png">
-										</a>
-									</li>
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-gg-about.png">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class="about-slide">
-						<img src="/assets/web/images/about-g.png">
-						<div class="about-slide-info">
-							<div>
-								<p>
-									ANNE HATHAWAY
-								</p>
-								<p>
-
-								</p>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-fb-about.png">
-										</a>
-									</li>
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-gg-about.png">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class="about-slide">
-						<img src="/assets/web/images/about-g.png">
-						<div class="about-slide-info">
-							<div>
-								<p>
-									ANNE HATHAWAY
-								</p>
-								<p>
-
-								</p>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-fb-about.png">
-										</a>
-									</li>
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-gg-about.png">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class="about-slide">
-						<img src="/assets/web/images/about-g.png">
-						<div class="about-slide-info">
-							<div>
-								<p>
-									ANNE HATHAWAY
-								</p>
-								<p>
-
-								</p>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-fb-about.png">
-										</a>
-									</li>
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-gg-about.png">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class="about-slide">
-						<img src="/assets/web/images/about-g.png">
-						<div class="about-slide-info">
-							<div>
-								<p>
-									ANNE HATHAWAY
-								</p>
-								<p>
-
-								</p>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-fb-about.png">
-										</a>
-									</li>
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-gg-about.png">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class="about-slide">
-						<img src="/assets/web/images/about-g.png">
-						<div class="about-slide-info">
-							<div>
-								<p>
-									ANNE HATHAWAY
-								</p>
-								<p>
-
-								</p>
-								<ul class="list-inline">
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-fb-about.png">
-										</a>
-									</li>
-									<li class="list-inline-item">
-										<a href="">
-											<img src="/assets/web/images/icon-gg-about.png">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			@endif
 		</div>
 	</div>
 </section>

@@ -83,22 +83,22 @@
 						<div class="row">
 							<div class="col-12 col-md-6">
 								<div class="form-group">
-									<input type="text" name="" class="form-control" placeholder="Tên">
+									<input type="text" id="contact_detail_name" name="" class="form-control" placeholder="Tên">
 								</div>
 							</div>
 							<div class="col-12 col-md-6">
 								<div class="form-group">
-									<input type="text" name="" class="form-control" placeholder="Email">
+									<input type="text" id="contact_detail_email" name="" class="form-control" placeholder="Email">
 								</div>
 							</div>
 							<div class="col-12 col-md-12">
 								<div class="form-group">
-									<textarea class="form-control" rows="5" placeholder="Nội dung"></textarea>
+									<textarea class="form-control" id="contact_detail_note" rows="5" placeholder="Nội dung"></textarea>
 								</div>
 							</div>
 						</div>
 						<div class="text-center">
-							<button class="btn btn-style-1" href="#!">
+							<button class="btn btn-style-1" role="button" onclick="submitFormModal('contact')">
 								Gửi
 							</button>
 						</div>

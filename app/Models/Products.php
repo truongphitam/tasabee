@@ -45,4 +45,8 @@ class Products extends BaseModel
     {
         return $this->belongsToMany(Achievements::class, 'product_achievements')->withTimestamps();
     }
+
+    public function comment(){
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
 }

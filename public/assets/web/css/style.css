@@ -73,7 +73,7 @@ img {
 }
 
 .site-navbar .site-logo img {
-    width: 200px;
+    width: 75px;
 }
 
 .site-navbar .site-logo a {
@@ -1995,4 +1995,25 @@ img {
 .error{
     color: red;
     font-style: italic;
+}
+
+#loader-t {
+    background: rgba(204, 204, 204, .5);
+    height: 100vh;
+    position: relative;
+    display: none;
+}
+
+#loader-t i {
+    position: absolute;
+    top: 45vh;
+    color: #d1480b;
+}
+
+#loader-t2 {
+    display: none;
+}
+
+#loader-t2 i {
+    color: #d1480b;
 }

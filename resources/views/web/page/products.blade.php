@@ -24,67 +24,35 @@
 
 					<div class="product-left-item">
 						<p class="product-cat-title">
-							<b>Category</b>
+							<b>{{ trans('web.field.category') }}</b>
 						</p>
 						<ul class="list-unstyled product-cat-menu">
-							<li class="active">
-								<a href="#!">
-									honey bee
-								</a>
-
-								<span class="collapsed" data-toggle="collapse" data-target="#ul_1">
-									<i class="fa fa-chevron-down"></i>
-								</span>
-								<ul id="ul_1" class="list-unstyled collapse show">
-									<li class="active">
+							@if($cate_products)
+								@foreach ($cate_products as $index => $cate)
+									<li class="{{ $index == 0 ? 'active' : '' }}">
 										<a href="#!">
-											SP 1
+											{!! $cate->title !!}
 										</a>
+										@if($cate->products)
+											<span class="collapsed" data-toggle="collapse" data-target="#cate_products_{{ $index }}">
+												<i class="fa fa-chevron-down"></i>
+											</span>
+											<ul id="cate_products_{{ $index }}" class="list-unstyled collapse show">
+												@foreach ($cate->products as $products)
+													<li class="active">
+														<a href="{!! route('detailProducts', $products->slug) !!}" title="{{ getLocaleValue($products->title) }}">
+															{{ getLocaleValue($products->title) }}
+														</a>
+													</li> 
+												@endforeach
+											</ul>
+										@endif
 									</li>
-									<li>
-										<a href="#!">
-											SP 2
-										</a>
-									</li>
-									<li>
-										<a href="#!">
-											SP 3
-										</a>
-									</li>
-								</ul>
-
-							</li>
-							<li>
-								<a href="#!">
-									bee polen
-								</a>
-
-								<span class="collapsed" data-toggle="collapse" data-target="#ul_2">
-									<i class="fa fa-chevron-down"></i>
-								</span>
-								<ul id="ul_2" class="list-unstyled collapse">
-									<li>
-										<a href="#!">
-											SP 1
-										</a>
-									</li>
-									<li>
-										<a href="#!">
-											SP 2
-										</a>
-									</li>
-									<li>
-										<a href="#!">
-											SP 3
-										</a>
-									</li>
-								</ul>
-							</li>
+								@endforeach
+							@endif
 						</ul>
 					</div>
-
-
-					<div class="product-left-item">
+					<div class="hidden product-left-item">
 						<p class="product-cat-title">
 							<b>Weight</b>
 						</p>
@@ -105,40 +73,64 @@
 							</div>
 						</div>
 					</div>
-
-
-					<div class="product-left-item">
+					<div class="hidden product-left-item">
 						<p class="product-cat-title">
-							<b>Price</b>
+							<b><b>{{ trans('web.field.price') }}</b></b>
 						</p>
 						<div class="product-filter-option">
 							<div class="form-check">
 								<label class="form-check-label" role="button">
 									<input type="radio" class="form-check-input" name="price">
 									<span></span>
-									Option 1
+									< 100
 								</label>
 							</div>
 							<div class="form-check">
 								<label class="form-check-label" role="button">
 									<input type="radio" class="form-check-input" name="price">
 									<span></span>
-									Option 2
+									100-200
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label" role="button">
+									<input type="radio" class="form-check-input" name="price">
+									<span></span>
+									200-300
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label" role="button">
+									<input type="radio" class="form-check-input" name="price">
+									<span></span>
+									300-400
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label" role="button">
+									<input type="radio" class="form-check-input" name="price">
+									<span></span>
+									400-500
+								</label>
+							</div>
+							<div class="form-check">
+								<label class="form-check-label" role="button">
+									<input type="radio" class="form-check-input" name="price">
+									<span></span>
+									> 500
 								</label>
 							</div>
 						</div>
 					</div>
-
-
 					<div class="product-left-item">
 						<p class="product-cat-title">
-							<b>Best sellers</b>
+							<b><b>{{ trans('web.field.best_sellers') }}</b></b>
 						</p>
 						<ul class="list-unstyled">
 							@if ($best_sellers)
 								@foreach($best_sellers as $sellers)
 									<li class="product-seller">
-										<a href="#!" title="{!! $sellers->title !!}">
+										<a href="{!! route('detailProducts', $sellers->slug) !!}" title="{!! $sellers->title !!}">
 											<img src="{{ $sellers->image }}" alt="{!! $sellers->title !!}">
 											<div class="product-seller-text">
 												<p class="product-seller-name">
@@ -148,7 +140,7 @@
 												</p>
 												<hr/>
 												<a class="product-seller-price" href="{!! route('detailProducts', $sellers->slug) !!}">
-													<strong class="c_d1480b">Chi Tiết</strong>
+													<strong class="c_d1480b">{{ trans('web.field.detail') }}</strong>
 												</a>
 											</div>
 										</a>
@@ -157,9 +149,6 @@
 							@endif
 						</ul>
 					</div>
-
-
-
 				</div>
 			</div>
 			<div class="col-12 col-md-9">
@@ -176,16 +165,16 @@
 													sale
 												</span>
 											@endif
-											<a href="{!! route('detailProducts', $item->slug) !!}" title="{!! $item->title !!}">
+											<a href="{!! route('detailProducts', $item->slug) !!}" title="{!! getLocaleValue($item->title) !!}">
 												<p class="product-img">
-													<img src="{!! $item->image !!}" alt="{!! $item->title !!}">
+													<img src="{!! $item->image !!}" alt="{!! getLocaleValue($item->title) !!}">
 												</p>
 												<p class="product-name">
-													{!! $item->title !!}
+													{!! getLocaleValue($item->title) !!}
 												</p>
 												<hr>
 												<p class="product-price">
-													<span>Chi tiết</span>
+													<span>{{ trans('web.field.detail') }}</span>
 												</p>
 											</a>
 										</div>

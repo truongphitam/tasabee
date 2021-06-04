@@ -10,7 +10,7 @@
 
                 </div>
                 <div class="col-md-8 text-right">
-                    <a href="{!! route('slider.create') !!}" class="btn btn-info">
+                    <a href="{!! route('team.create') !!}" class="btn btn-info">
                         <i class="fa fa-fw fa-plus"></i>
                     </a>
                 </div>
@@ -20,9 +20,9 @@
                         <tr>
                             <th class="no-sort" style="width: 50px">Image</th>
                             <th>@lang('admin.field.title')</th>
-                            <th class="no-sort">@lang('admin.field.author')</th>
-                            <th>Show</th>
-                            <th>@lang('admin.field.date')</th>
+                            <th class="no-sort">Vi trí</th>
+                            <th>Link</th>
+                            <th>Ngày tạo</th>
                             <th class="no-sort text-center"></th>
                         </tr>
                         </thead>
@@ -42,7 +42,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": {
-                    url: '{{ action('Admin\SliderController@index') }}',
+                    url: '{{ action('Admin\TeamController@index') }}',
                     data: function (d) {
                         d.category = $('.category-filter').val();
                     }

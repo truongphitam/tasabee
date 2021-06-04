@@ -103,26 +103,26 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title text-center">Liên hệ</h4>
+				<h4 class="modal-title text-center" id="title_product_modal">Liên hệ</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 
 			<div class="modal-body">
 				<form id="frm-product">
 					<div class="form-group">
-						<input type="text" id="name" name="name" class="form-control" placeholder="Họ và Tên">
+						<input type="text" id="product_detail_name" name="name" class="form-control" placeholder="Họ và Tên" value="{{ Auth::check() ? Auth::user()->name : '' }}">
 					</div>
 					<div class="form-group">
-						<input type="email" id="email" name="email" class="form-control" placeholder="Email">
+						<input type="email" id="product_detail_email" name="email" class="form-control" placeholder="Email" value="{{ Auth::check() ? Auth::user()->email : '' }}">
 					</div>
 					<div class="form-group">
-						<input type="tel" id="tel" name="tel" class="form-control" placeholder="Số điện thoại">
+						<input type="tel" id="product_detail_phone" name="tel" class="form-control" placeholder="Số điện thoại" value="{{ Auth::check() ? Auth::user()->phone : '' }}">
 					</div>
 					<div class="form-group">
-						<textarea class="form-control" rows="3" placeholder="Note"></textarea>
+						<textarea class="form-control" rows="3" placeholder="Note" id="product_detail_note"></textarea>
 					</div>
 					<div class="form-group text-center">
-						<button type="button" class="btn btn-style-1">
+						<button type="button" class="btn btn-style-1" onclick="submitFormModal('product')">
 							Gửi
 						</button>
 					</div>

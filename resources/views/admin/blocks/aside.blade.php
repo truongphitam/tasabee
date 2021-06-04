@@ -53,6 +53,11 @@
                 </a> 
             </li>
             <li class="header">SẢN PHẨM & BÁN</li>
+            <li class="{!! areActiveRoutes(['contact.index','team.add','team.show'],'active') !!}">
+                <a href="{!! route('contact.index') !!}?type=product">
+                    <i class="fa fa-tasks"></i> <span>Liên hệ</span>
+                </a>
+            </li>
             <li class="treeview {!! areActiveRoutes(['products.index','products.create','products.show','products.cate.index','products.cate.show', 'products.attributes.index', 'products.attributes.show'], 'active') !!}">
                 <a href="#">
                     <i class="fa fa-table"></i> <span>Sản phẩm</span>
@@ -93,6 +98,11 @@
                 </ul>
             </li>
             <li class="header">KHÁCH HÀNG</li>
+            <li class="{!! areActiveRoutes(['contact.index','team.add','team.show'],'active') !!}">
+                <a href="{!! route('contact.index') !!}?type=contact">
+                    <i class="fa fa-tasks"></i> <span>Liên hệ</span>
+                </a>
+            </li>
             <li class="{!! areActiveRoutes(['users.index','users.create','users.show'], 'active') !!}">
                 <a href="{{ route('users.index') }}">
                     <i class="fa fa-users"></i> <span>Khách hàng</span>
@@ -104,7 +114,12 @@
                 </a>
             </li> 
             <li class="header">CÀI ĐẶT</li>
-            <li class="{!! areActiveRoutes(['slider.index','slider.add','slider.show'],'active') !!}">
+            <li class="{!! areActiveRoutes(['team.index','team.create','team.show'],'active') !!}">
+                <a href="{!! route('team.index') !!}">
+                    <i class="fa fa-tasks"></i> <span>TEAM</span>
+                </a>
+            </li>
+            <li class="{!! areActiveRoutes(['slider.index','slider.create','slider.show'],'active') !!}">
                 <a href="{!! route('slider.index') !!}">
                     <i class="fa fa-tasks"></i> <span>{!! trans('admin.object.slider') !!}</span>
                 </a>

@@ -32,7 +32,10 @@ return array (
     'why_post_3' => '“Nullam dapibus blandit orci, viverra gravida dui lobortis eget. Maecenas fringilla urna eu nisl scelerisque.”',
     'link_post_3' => '#',
     'story_about' => 'CÂU CHUYỆN CỦA CHÚNG TÔI',
-    'search' => 'Tìm kiếm'
+    'search' => 'Tìm kiếm',
+    'category' => 'Danh mục',
+    'price' => 'Giá',
+    'best_sellers' => 'Best Sellers',
   ),
   'index' => 
   array (
@@ -61,5 +64,24 @@ return array (
     'news' => 'Tin tức',
     'event' => 'Sự kiện',
     'contact' => 'Liên hệ',
-  )
+  ),
+  'about' => 
+  array (
+    'vision_1_title' => 'Tầm nhìn',
+    'vision_1_desciption' => '<p>Đảm bảo sản phẩm đạt chất lượng và an toàn thực phẩm, coi trọng sức khoẻ con người.</p><p>Phát triển mạng lưới cung ứng và tiêu thụ chuyên nghiệp, đặt chất lượng làm tiêu điểm.</p><p>Đảm bảo môi trường sản xuất hợp quy chuẩn, quan tâm vấn đề an toàn vệ sinh.</p><p>Tạo dựng môi trường làm việc, lấy sự trung thực làm nền tảng.</p>Lan tỏa những giá trị nhân văn, xem sẻ chia là mạch sống',
+    'vision_2_title' => 'Tầm nhìn',
+    'vision_2_desciption' => '<p>Đảm bảo sản phẩm đạt chất lượng và an toàn thực phẩm, coi trọng sức khoẻ con người.</p><p>Phát triển mạng lưới cung ứng và tiêu thụ chuyên nghiệp, đặt chất lượng làm tiêu điểm.</p><p>Đảm bảo môi trường sản xuất hợp quy chuẩn, quan tâm vấn đề an toàn vệ sinh.</p><p>Tạo dựng môi trường làm việc, lấy sự trung thực làm nền tảng.</p>Lan tỏa những giá trị nhân văn, xem sẻ chia là mạch sống',
+    'vision_3_title' => 'Tầm nhìn',
+    'vision_3_desciption' => '<p>Đảm bảo sản phẩm đạt chất lượng và an toàn thực phẩm, coi trọng sức khoẻ con người.</p><p>Phát triển mạng lưới cung ứng và tiêu thụ chuyên nghiệp, đặt chất lượng làm tiêu điểm.</p><p>Đảm bảo môi trường sản xuất hợp quy chuẩn, quan tâm vấn đề an toàn vệ sinh.</p><p>Tạo dựng môi trường làm việc, lấy sự trung thực làm nền tảng.</p>Lan tỏa những giá trị nhân văn, xem sẻ chia là mạch sống',
+    'commitment' => 'CAM KẾT',
+    'our' => 'CỦA CHÚNG TÔI',
+    'commitment_description' => 'Tasa bee thành lập với mong muốn đưa các sản phẩm ong nguyên chất ra nước ngoài bằng con đường trực diện hơn.',
+    'commitment_1_title' => 'Collapsible Group Item #1',
+    'commitment_1_description' => 'Lorem ipsum..',
+    'commitment_2_title' => 'Collapsible Group Item #2',
+    'commitment_2_description' => 'Lorem ipsum..',
+    'team' => 'TEAM',
+    'tasabee' => 'TASABEE',
+    'team_description' => 'quis nostrud quam est, qui dolorem ipsum <br/>quis nostrud quam est, qui dolorem ipsum quia dolor sit amet, consecquaerat ',
+  ),
 );

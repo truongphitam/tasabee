@@ -10,7 +10,7 @@ class Slider extends BaseModel
     //
     use MultiLanguage;
     protected $multilingual = ['title', 'expert', 'description', 'meta_title', 'meta_description', 'meta_keywords'];
-    protected $fillable = ['link', 'event_date', 'address', 'title', 'slug', 'image', 'user_id', 'expert', 'description', 'is_published', 'meta_title', 'meta_description', 'meta_keywords', 'type'];
+    protected $fillable = ['show', 'link', 'event_date', 'address', 'title', 'slug', 'image', 'user_id', 'expert', 'description', 'is_published', 'meta_title', 'meta_description', 'meta_keywords', 'type'];
 
     public function author()
     {

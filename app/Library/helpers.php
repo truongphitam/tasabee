@@ -46,6 +46,22 @@ function link_sponsor(){
     return $link;
 }
 
+if (!function_exists('show_slider_type')) {
+    function show_slider_type($type)
+    {
+        $title = 'Trang chủ';
+        switch($type){
+            case 'about':
+                $title = 'Giới thiệu';
+                break;
+            case 'event':
+                $title = 'Sự kiện';
+                break;
+        }
+
+        return $title;
+    }
+}
 if (!function_exists('generate_code_auto')) {
     function generate_code_auto($type)
     {

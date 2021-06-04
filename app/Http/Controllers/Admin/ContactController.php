@@ -6,10 +6,11 @@ use App\Repository\SliderRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use App\Models\Slider;
+use App\Models\Contact;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 
-class SliderController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,17 +26,16 @@ class SliderController extends Controller
 
     public function index(Request $request)
     {
+        $type = $request->type ? $request->type  : '';
         if ($request->ajax()) {
-            $total = Slider::count('id');
-            $query = Slider::select(['*']);
-            # Category filter
-//            if ($request->has('category')) {
-//                $query = $query->where('cate_id', (int)$request->category);
-//                $filtered = $query->count();
-//            }
-            # Search title
-            if ('' !== $search = $request->search['value']) {
-                $query = $query->where('title', 'like', '%' . $search . '%');
+            $total = Contact::count('id');
+            $query = Contact::select(['*']);
+            $type = $request->type ? $request->type  : '';
+            if($type){
+                $query = $query->where('type', $type);
+            }
+            if ($request->search['value'] && !empty($request->search['value'])) {
+                $query = $query->where('name', 'like', '%' . $request->search['value'] . '%');
                 $filtered = $query->count();
             }
             # Pagination
@@ -45,14 +45,25 @@ class SliderController extends Controller
             # Output
             $rows = [];
             foreach ($posts as $post) {
-                $rows[] = [
-                    "<img src='$post->image' class='img-responsive'/>",
-                    $post->title,
-                    $post->author->name,
-                    show_slider_type($post->show),
-                    $post->created_at,
-                    "<a target='_blank' href='' class='btn btn-warning btn-xs hidden'><i class='fa fa-fw fa-eye'></i></a>&nbsp;<a href='" . route('slider.show', $post->id) . "' class='btn btn-success btn-xs'><i class='fa fa-fw fa-edit'></i></a>&nbsp;<a onclick='return confirmDelete();return false;' href='" . route('slider.destroy', $post->id) . "' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-trash'></i></a>"
-                ];
+                if($type == 'product'){
+                    $rows[] = [
+                        '#'.$post->id,
+                        $post->name,
+                        $post->phone,
+                        $post->email,
+                        '<a href="'.route('products.show', $post->products_id).'">'.($post->product ? $post->product->title : '').'</a>', 
+                        $post->note,
+                        convertToDMY($post->created_at),
+                    ];
+                }else{
+                    $rows[] = [
+                        '#'.$post->id,
+                        $post->name,
+                        $post->email,
+                        $post->note,
+                        convertToDMY($post->created_at),
+                    ];
+                }
             }
 
             return response()->json([
@@ -61,8 +72,8 @@ class SliderController extends Controller
                 'recordsFiltered' => isset($filtered) ? $filtered : $total,
             ]);
         }
-        $_title = trans('admin.title.list') . ' ' . trans('admin.object.slider');
-        return view('admin.page.slider.index', compact('_title'));
+        $_title = trans('admin.title.list') . ' ' . trans('admin.object.contact');
+        return view('admin.page.contact.index', compact('_title', 'type'));
     }
 
     /**

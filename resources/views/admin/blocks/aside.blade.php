@@ -97,6 +97,7 @@
                             trans('admin.field.add') !!}</a></li>
                 </ul>
             </li>
+            
             <li class="header">KHÁCH HÀNG</li>
             <li class="{!! areActiveRoutes(['contact.index','team.add','team.show'],'active') !!}">
                 <a href="{!! route('contact.index') !!}?type=contact">
@@ -108,41 +109,45 @@
                     <i class="fa fa-users"></i> <span>Khách hàng</span>
                 </a>
             </li> 
-            <li class="{!! areActiveRoutes(['member.index','member.create','member.show'],'active') !!}">
-                <a href="{{ route('member.index') }}">
-                    <i class="fa fa-user-secret"></i> <span>{!! trans('admin.object.member') !!}</span>
-                </a>
-            </li> 
-            <li class="header">CÀI ĐẶT</li>
-            <li class="{!! areActiveRoutes(['team.index','team.create','team.show'],'active') !!}">
-                <a href="{!! route('team.index') !!}">
-                    <i class="fa fa-tasks"></i> <span>TEAM</span>
-                </a>
-            </li>
-            <li class="{!! areActiveRoutes(['slider.index','slider.create','slider.show'],'active') !!}">
-                <a href="{!! route('slider.index') !!}">
-                    <i class="fa fa-tasks"></i> <span>{!! trans('admin.object.slider') !!}</span>
-                </a>
-            </li>
-            <li class="treeview {!! areActiveRoutes(['settings.overview','settings.translation','settings.custom'],'active') !!}">
-                <a href="#">
-                    <i class="fa fa-wrench"></i> <span>{!! trans('admin.object.settings') !!}</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="{!! areActiveRoutes(['settings.overview'],'active') !!}"><a
-                            href="{!! route('settings.overview') !!}"><i class="fa fa-circle-o"></i> {!!
-                            trans('admin.object.overview') !!}</a></li>
-                    <li class="{!! areActiveRoutes(['settings.translation'],'active') !!}"><a
-                            href="{!! route('settings.translation') !!}"><i class="fa fa-circle-o"></i> {!!
-                            trans('admin.object.translation') !!}</a></li>
-                    <li class="{!! areActiveRoutes(['settings.custom'],'active') !!}"><a
-                            href="{!! route('settings.custom') !!}"><i class="fa fa-circle-o"></i> {!!
-                            trans('admin.object.custom') !!}</a></li>
-                </ul>
-            </li>
+            @if(Auth::guard('admins')->user()->role == 'administrator')
+                <li class="{!! areActiveRoutes(['member.index','member.create','member.show'],'active') !!}">
+                    <a href="{{ route('member.index') }}">
+                        <i class="fa fa-user-secret"></i> <span>{!! trans('admin.object.member') !!}</span>
+                    </a>
+                </li> 
+            @endif
+            @if(Auth::guard('admins')->user()->role == 'administrator')
+                <li class="header">CÀI ĐẶT</li>
+                <li class="{!! areActiveRoutes(['team.index','team.create','team.show'],'active') !!}">
+                    <a href="{!! route('team.index') !!}">
+                        <i class="fa fa-tasks"></i> <span>TEAM</span>
+                    </a>
+                </li>
+                <li class="{!! areActiveRoutes(['slider.index','slider.create','slider.show'],'active') !!}">
+                    <a href="{!! route('slider.index') !!}">
+                        <i class="fa fa-tasks"></i> <span>{!! trans('admin.object.slider') !!}</span>
+                    </a>
+                </li>
+                <li class="treeview {!! areActiveRoutes(['settings.overview','settings.translation','settings.custom'],'active') !!}">
+                    <a href="#">
+                        <i class="fa fa-wrench"></i> <span>{!! trans('admin.object.settings') !!}</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{!! areActiveRoutes(['settings.overview'],'active') !!}"><a
+                                href="{!! route('settings.overview') !!}"><i class="fa fa-circle-o"></i> {!!
+                                trans('admin.object.overview') !!}</a></li>
+                        <li class="{!! areActiveRoutes(['settings.translation'],'active') !!}"><a
+                                href="{!! route('settings.translation') !!}"><i class="fa fa-circle-o"></i> {!!
+                                trans('admin.object.translation') !!}</a></li>
+                        <li class="{!! areActiveRoutes(['settings.custom'],'active') !!}"><a
+                                href="{!! route('settings.custom') !!}"><i class="fa fa-circle-o"></i> {!!
+                                trans('admin.object.custom') !!}</a></li>
+                    </ul>
+                </li>
+            @endif
             <li class="header">CONFIG</li>
             <li class=""><a href="{{ route('login.logout') }}"><i class="fa fa-circle-o text-red"></i> <span>Thoát</span></a></li>
             <li class="hidden"><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

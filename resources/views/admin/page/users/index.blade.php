@@ -22,6 +22,7 @@
                             <th class="no-sort">Tên</th>
                             <th class="no-sort">Email</th>
                             <th class="no-sort">Số điện thoại</th>
+                            <th class="no-sort">Quốc gia</th>
                             <th class="no-sort">Địa chỉ</th>
                             <th class="no-sort">Ngày tham gia</th>
                             <th class="no-sort"></th>

@@ -53,6 +53,9 @@ class SiteController extends Controller
         $this->sponsorRepository = $sponsorRepository;
     }
 
+    public function email(){
+        return view('mail.orders_new', compact(''));
+    }
     public function index()
     {
         $sliders = Slider::where('show', 'index')->where('is_published', 'on')->orderBy('id', 'desc')->get();

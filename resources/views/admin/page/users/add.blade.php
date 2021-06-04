@@ -51,6 +51,15 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
+                        <label>Quốc gia</label>
+                        <select name="country" id="country" required class="form-control">
+                            <option value="">-- Chọn quốc gia</option>
+                            @foreach ($country as $item)
+                                <option value="{{ $item->iso }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>{!! trans('admin.field.password') !!}</label>
                         <input type="password" name="password" class="form-control" id="password" onkeyup='check();'
                                 required/>

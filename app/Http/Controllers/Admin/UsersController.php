@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Repository\UsersRepository;
 use Illuminate\Support\Facades\Session;
 use App\User;
 use Illuminate\Support\Facades\App;
-
+use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
     //
@@ -30,6 +31,9 @@ class UsersController extends Controller
 //                $filtered = $query->count();
 //            }
             # Search title
+            if(Auth::guard('admins')->user()->role == 'staff'){
+                $query = $query->where('user_id', Auth::guard('admins')->user()->id);
+            }
             if ('' !== $search = $request->search['value']) {
                 $query = $query->where('email', 'like', '%' . $search . '%');
                 $filtered = $query->count();
@@ -46,6 +50,7 @@ class UsersController extends Controller
                     $post->name,
                     $post->email,
                     $post->phone,
+                    $post->countries ? $post->countries->name : '',
                     $post->address,
                     $post->created_at->format('d/m/Y'),
                     "<a href='" . route('users.show', $post->id) . "' class='btn btn-success btn-xs'><i class='fa fa-fw fa-edit'></i></a>&nbsp;<a onclick='return confirmDelete();return false;' href='" . route('users.destroy', $post->id) . "' class='btn btn-danger btn-xs'><i class='fa fa-fw fa-trash'></i></a>"
@@ -71,8 +76,9 @@ class UsersController extends Controller
     {
         //
         $post = new User();
+        $country = Country::get();
         $_title = trans('admin.title.add') . ' ' . trans('admin.object.member');
-        return view('admin.page.users.add', compact('_title', 'post'));
+        return view('admin.page.users.add', compact('_title', 'post', 'country'));
     }
 
     /**
@@ -88,6 +94,7 @@ class UsersController extends Controller
         $password = bcrypt($request->password);
         $param += ['name' => $name];
         $param += ['password' => $password];
+        $param += ['user_id' => Auth::guard('admins')->user()->id];
         $id = $this->_repository->create($param);
         Session::flash('success', trans('message.admin.create'));
         return redirect()->route('users.show', $id);
@@ -102,9 +109,10 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        $country = Country::get();
         $_title = trans('admin.title.edit') . ' ' . trans('admin.object.member');
         $data = $this->_repository->find($id);
-        return view('admin.page.users.edit', compact('data', '_title'));
+        return view('admin.page.users.edit', compact('data', '_title', 'country'));
     }
 
     /**

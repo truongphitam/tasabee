@@ -19,6 +19,7 @@ use App\Models\ProductsToCate;
 use App\User;
 use DB, Excel;
 use App\Repository\OrdersRepository;
+use Illuminate\Support\Facades\Auth;
 class OrdersController extends Controller
 {
     //
@@ -55,6 +56,9 @@ class OrdersController extends Controller
                 $query = $query->where('staff_id', (int)$staff_id);
                 $filtered = $query->count();
             } 
+            if(Auth::guard('admins')->user()->role == 'staff'){
+                $query = $query->where('staff_id', Auth::guard('admins')->user()->id);
+            }
             $posts = $query->orderBy('id', 'desc');
             $posts = $query->whereBetween('created_at',[$from, $to])->skip($request->start)->take($request->length);
             $posts = $query->get();
@@ -344,6 +348,9 @@ class OrdersController extends Controller
     public function confirmStatusOrders(Request $request){
         $orders = Orders::find($request->orders_id);
         $orders->status_orders = $request->status_orders;
+        $orders->confirm_status = 1;
+        $orders->confirm_admins_id = Auth::guard('admins')->user()->id;
+        $orders->sended = 0;
         $orders->save();
 
         return response()->json(true);

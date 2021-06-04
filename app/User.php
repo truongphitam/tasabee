@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Country;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'contact_name', 'contact_email', 'name', 'email', 'first_name', 'last_name', 'website', 'phone', 'address', 'password', 'role', 'image'
+        'user_id', 'country', 'contact_name', 'contact_email', 'name', 'email', 'first_name', 'last_name', 'website', 'phone', 'address', 'password', 'role', 'image'
     ];
 
     /**
@@ -26,4 +27,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function countries(){
+        return $this->hasOne(Country::class, 'iso', 'country');
+    }
 }

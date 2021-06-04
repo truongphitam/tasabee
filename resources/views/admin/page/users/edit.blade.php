@@ -58,6 +58,15 @@
                         <input type="password" name="password" class="form-control" id="password"/>
                         <p class="help">{!! trans('admin.field.change_pass') !!}</p>
                     </div>
+                    <div class="form-group">
+                        <label>Quốc gia</label>
+                        <select name="country" id="country" required class="form-control">
+                            <option value="">-- Chọn quốc gia</option>
+                            @foreach ($country as $item)
+                                <option value="{{ $item->iso }}" @if($data->country == $item->iso) selected @endif>{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="hidden form-group">
                         <label>{!! trans('admin.field.role') !!}</label>
                         <select class="form-control" name="role"> 

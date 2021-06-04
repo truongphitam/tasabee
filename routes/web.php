@@ -12,6 +12,7 @@
 */
 
 Route::prefix(LaravelLocalization::setLocale())->group(function () {
+    Route::get('email', 'SiteController@email')->name('email');
     Route::get('/', 'SiteController@index')->name('index');
     Route::get('gioi-thieu', 'SiteController@about')->name('about');
     Route::get('san-pham', 'SiteController@products')->name('products');

@@ -47,7 +47,8 @@ class Orders extends BaseModel
         'exchange_rate',
         'sub_total_vnd',
         'customs_declaration',
-        'payment_method'
+        'payment_method',
+        'sended'
     ];
 
     public function detail()

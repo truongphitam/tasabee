@@ -139,7 +139,7 @@ class PageController extends Controller
         $param += ['slug' => $slug];
         $_post = $this->_repository->update($id, $param);
         if ($id && isset($request->gallery)) {
-            DB::table('gallerys')->where('type', 'page')->where('product_id', $id)->delete();
+            DB::table('galleys')->where('type', 'page')->where('product_id', $id)->delete();
             foreach ($request->gallery as $itemGallery) {
                 if (!empty($itemGallery)) {
                     $gallery = new gallery();
@@ -165,7 +165,7 @@ class PageController extends Controller
         //
         $flag = $this->_repository->destroy($id);
         if ($flag == true) {
-            $gallery = DB::table('gallerys')->where('type', 'achievements')->where('product_id', $id)->delete();
+            $gallery = DB::table('galleys')->where('type', 'achievements')->where('product_id', $id)->delete();
             
             Session::flash('success', trans('message.admin.delete'));
         } else {

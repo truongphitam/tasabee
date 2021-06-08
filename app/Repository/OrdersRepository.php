@@ -64,7 +64,6 @@ class OrdersRepository
     {
         $data = $this->_model->find($id);
         if ($data) {
-            $data->achievements()->detach($id);
             $data->delete();
             return true;
         } else {

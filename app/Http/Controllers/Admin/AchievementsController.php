@@ -148,7 +148,7 @@ class AchievementsController extends Controller
         $_post = $this->_repository->update($id, $param);
 
         if ($id && isset($request->gallery)) {
-            DB::table('gallerys')->where('type', 'achievements')->where('product_id', $id)->delete();
+            DB::table('galleys')->where('type', 'achievements')->where('product_id', $id)->delete();
             foreach ($request->gallery as $itemGallery) {
                 if (!empty($itemGallery)) {
                     $gallery = new gallery();
@@ -175,7 +175,7 @@ class AchievementsController extends Controller
         $flag = $this->_repository->destroy($id);
         if ($flag == true) {
             //delete gallery
-            DB::table('gallerys')->where('type', 'achievements')->where('product_id', $id)->delete();
+            DB::table('galleys')->where('type', 'achievements')->where('product_id', $id)->delete();
             Session::flash('success', trans('message.admin.delete'));
         } else {
             Session::flash('danger', trans('message.admin.delete'));

@@ -10,6 +10,9 @@
 
                 </div>
                 <div class="col-md-8 text-right">
+                    <a href="{{ route('users.downloadUsers') }}" class="btn btn-warning" role="button">
+                        <i class="fa fa-fw fa-plus"></i> Dowload Excel
+                    </a>
                     <a href="{!! route('users.create') !!}" class="btn btn-info">
                         <i class="fa fa-fw fa-plus"></i>
                     </a>
@@ -67,5 +70,10 @@
                 table.ajax.reload();
             });
         });
+
+        function downloadExcelForUsers(){
+            var URL = baseURL + "/admin/orders/export-excel?customer_id="+customer_id+"&staff_id="+staff_id+"&invoice_number="+invoice_number+"&date_range_by_days="+date_range_by_days;
+            window.location = URL;
+        }
     </script>
 @endsection

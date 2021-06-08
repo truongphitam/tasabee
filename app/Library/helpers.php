@@ -7,6 +7,7 @@
  */
 
 use App\Models\Admins;
+use App\Models\Country;
 use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -44,6 +45,15 @@ function link_sponsor(){
     'https://www.frontale.co.jp/',
     'https://suntorypepsico.vn/']; 
     return $link;
+}
+
+if (!function_exists('get_country')) {
+    function get_country($iso = '')
+    {
+        $country = Country::where('iso', $iso)->first();
+
+        return $country;
+    }
 }
 
 if (!function_exists('show_slider_type')) {

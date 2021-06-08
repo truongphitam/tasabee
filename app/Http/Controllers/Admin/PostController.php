@@ -111,7 +111,7 @@ class PostController extends Controller
         }else{
             // create
             $slug = isset($request->slug) && !empty($request->slug) ? $request->slug : $request->title[App::getLocale()];
-            $slug = $this->_repository->generateSlug($slug, 0);
+            $slug = $this->_repository->generateSlug($slug, $id);
             $param = $request->except(['_token', 'slug']);
             $param += ['slug' => $slug];
             if (Auth::guard('admins')->user()->role == 'contributor') {

@@ -160,6 +160,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admins'], function () {
         Route::post('edit', 'UsersController@update')->name('users.update');
         Route::post('checkEmail', 'UsersController@checkEmail')->name('users.checkEmail');
         Route::get('delete/{id}', 'UsersController@destroy')->name('users.destroy');
+        Route::get('download-users', 'UsersController@downloadUsers')->name('users.downloadUsers');
     });
     //
     Route::get('messages', 'ElementController@messages')->name('admin.messages');

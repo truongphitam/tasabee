@@ -285,7 +285,7 @@ class OrdersController extends Controller
             $post->achievements()->attach($request->achievements);
         }
         if ($id && isset($request->gallery)) {
-            DB::table('gallerys')->where('product_id', $id)->delete();
+            DB::table('galleys')->where('product_id', $id)->delete();
             foreach ($request->gallery as $itemGallery) {
                 if (!empty($itemGallery)) {
                     $gallery = new gallery();
@@ -316,7 +316,7 @@ class OrdersController extends Controller
         } else {
             Session::flash('danger', trans('message.admin.delete'));
         }
-        return redirect()->route('products.index');
+        return redirect()->route('orders.index');
     }
 
     public function clone($id)
@@ -342,7 +342,7 @@ class OrdersController extends Controller
             }
         }
         Session::flash('success', trans('message.admin.clone'));
-        return redirect()->route('products.index');
+        return redirect()->route('orders.index');
     }
 
     public function confirmStatusOrders(Request $request){

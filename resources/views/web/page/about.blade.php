@@ -89,7 +89,7 @@
 					<div class="about-title">
 						<p>
 							<strong>
-								{!! trans('web.about.vision_3_title') !!}tầm nhìn
+								{!! trans('web.about.vision_3_title') !!}
 							</strong>
 						</p>
 						<hr>
@@ -150,6 +150,30 @@
 							<div id="collapseTwo" class="collapse" data-parent="#accordion-about">
 								<div class="card-body">
 									{!! trans('web.about.commitment_2_description') !!}
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+								<div class="card-header">
+									<strong>{!! trans('web.about.commitment_3_title') !!}</strong>
+								</div>
+							</a>
+							<div id="collapseThree" class="collapse" data-parent="#accordion-about">
+								<div class="card-body">
+									{!! trans('web.about.commitment_3_description') !!}
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+								<div class="card-header">
+									<strong>{!! trans('web.about.commitment_4_title') !!}</strong>
+								</div>
+							</a>
+							<div id="collapseFour" class="collapse" data-parent="#accordion-about">
+								<div class="card-body">
+									{!! trans('web.about.commitment_4_description') !!}
 								</div>
 							</div>
 						</div>

@@ -6,6 +6,8 @@ use App\Models\Orders;
 use Illuminate\Console\Command;
 use Mail;
 use App;
+use App\User;
+
 class SendEmailsForOrders extends Command
 {
     /**
@@ -46,6 +48,11 @@ class SendEmailsForOrders extends Command
             foreach($orders as $order){
                 $view = '';
                 $subject = '';
+                $locale = 'vi';
+                $member = User::find($order->customer_id);
+                if($member && $member->country != 'VN'){
+                    $locale = 'en';
+                }
                 switch($order->status_orders){
                     case 0:
                         $view = 'orders_new';
@@ -61,16 +68,16 @@ class SendEmailsForOrders extends Command
                         break;
                 }
                 if($view){
-                    $view = 'mail.'.$view.'_'.app()->getLocale();
-                    print_r('ID: '.$order->id).PHP_EOL;
-                    print_r('View: '. $view).PHP_EOL;
+                    $view = 'mail.'.$view.'_'.$locale;
+                    print_r('-- ID: '.$order->id).PHP_EOL;
+                    print_r('-- View: '. $view).PHP_EOL;
                     Mail::send($view, ['data' => $order], function ($m) use($subject, $order){
                         $m->from('noreply@tasabee.com', 'Tassabe – Overcome Business Standards');
                         $m->to('tamphitruong@gmail.com', 'name_send')->subject($subject);
                     });
                     //
                     Orders::where('id', $order->id)->update(['confirm_status' => 0, 'sended' => 1]);
-                    print_r('Send and Update Success ID: '.$order->id);
+                    print_r('-- Send and Update Success ID: '.$order->id);
                 }
                 
                 return true;

@@ -8,8 +8,10 @@ use App\Models\Country;
 use App\Repository\UsersRepository;
 use Illuminate\Support\Facades\Session;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Excel;
 class UsersController extends Controller
 {
     //
@@ -178,5 +180,45 @@ class UsersController extends Controller
         $response->header('Content-Type', 'application/json');
         $response->header('charset', 'utf-8');
         return $response;
+    }
+
+    public function downloadUsers(Request $request){
+        $posts = User::orderBy('id', 'desc')->get();
+        $name = 'Users_'.time();
+        $data = [];
+        $heading = [
+            'ID',
+            'Tên công ty',
+            'Email công ty',
+            'Người liên hệ',
+            'Email người liên hệ',			
+            'Website',
+            'Số điện thoại',
+            'Địa chỉ',
+            'Quốc gia',
+            'Ngày tham gia'
+        ];
+        array_push($data, $heading);
+        if($posts){
+            foreach($posts as $post){
+                $data[] = [
+                    $post->id,
+                    $post->name,
+                    $post->email,
+                    $post->contact_name,
+                    $post->contact_email,
+                    $post->website ? $post->website : '#', 
+                    $post->phone, 
+                    $post->address,
+                    get_country($post->country) ? get_country($post->country)->name : '',
+                    Carbon::parse($post->created_at)->format('d/m/Y')
+                ];
+            }
+        }
+        return Excel::create($name, function ($excel) use ($data) {
+            $excel->sheet('Users', function ($sheet) use ($data) {
+                $sheet->fromArray($data);
+            });
+        })->download('xlsx');
     }
 }

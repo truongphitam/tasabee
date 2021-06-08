@@ -93,9 +93,9 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $pro_id = $request->id ? $request->id : ''; 
+        $pro_id = $request->id ? $request->id : 0; 
         $slug = isset($request->slug) && !empty($request->slug) ? $request->slug : $request->title[App::getLocale()];
-        $slug = $this->_repository->generateSlug($slug, 0);
+        $slug = $this->_repository->generateSlug($slug, $pro_id);
         $param = $request->except(['_token', 'slug', 'id']);
         $param += ['slug' => $slug];
         //dd($param);
@@ -117,7 +117,7 @@ class ProductsController extends Controller
                 }
             }
             if (isset($request->gallery)) {
-                DB::table('gallerys')->where('product_id', $pro_id)->delete();
+                DB::table('galleys')->where('product_id', $pro_id)->delete();
                 foreach ($request->gallery as $itemGallery) {
                     if (!empty($itemGallery)) {
                         $gallery = new gallery();
@@ -192,7 +192,7 @@ class ProductsController extends Controller
             $post->achievements()->attach($request->achievements);
         }
         if ($id && isset($request->gallery)) {
-            DB::table('gallerys')->where('product_id', $id)->delete();
+            DB::table('galleys')->where('product_id', $id)->delete();
             foreach ($request->gallery as $itemGallery) {
                 if (!empty($itemGallery)) {
                     $gallery = new gallery();
@@ -219,7 +219,7 @@ class ProductsController extends Controller
         if ($flag == true) {
             Session::flash('success', trans('message.admin.delete'));
             DB::table('products_to_cate')->where('products_id', $id)->delete();
-            DB::table('gallerys')->where('product_id', $id)->delete();
+            DB::table('galleys')->where('product_id', $id)->delete();
         } else {
             Session::flash('danger', trans('message.admin.delete'));
         }

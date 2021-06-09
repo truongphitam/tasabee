@@ -149,11 +149,11 @@
 								<input type="hidden" name="" id="id_products" value="{!! $data->id !!}">
 								<div class="col-6">
 									<div class="d-flex align-items-center justify-content-around">
-										<small class="d-flex align-items-center">CHIA SẺ &nbsp<img src="/assets/web/images/icon-share.png" width="15"></small> 
-										<a href="">
+										<small class="d-flex align-items-center">{{ trans('web.field.share') }} &nbsp<img src="/assets/web/images/icon-share.png" width="15"></small> 
+										<a href="http://www.facebook.com/sharer/sharer.php?u={!! url()->current() !!}&t={{ $data->title }}" title="{{ $data->title }}" class="share-popup">
 											<img src="/assets/web/images/icon-fb.png" width="24">
 										</a>
-										<a href="">
+										<a href="http://www.twitter.com/intent/tweet?url={!! url()->current() !!}&via=TWITTER_HANDLE_HERE&text={{ $data->title }}" title="{{ $data->title }}" class="share-popup">
 											<img src="/assets/web/images/icon-twiter.png" width="24">
 										</a>
 									</div>
@@ -170,12 +170,12 @@
 			<ul class="nav nav-tabs" id="product-tab-nav" role="tablist">
 				<li class="nav-item">
 					<a class="nav-link active" data-toggle="tab" href="#tab-1">
-						Description
+						{{ trans('web.field.description') }}
 					</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link " data-toggle="tab" href="#tab-2">
-						Write review
+						{{ trans('web.field.write_review') }}
 					</a>
 				</li>
 			</ul>
@@ -187,7 +187,7 @@
 				</div>
 				<div class="tab-pane fade " id="tab-2">
 					<p>
-						<strong>Customer Reviews</strong>
+						<strong>{{ trans('web.field.customer_reviews') }}</strong>
 					</p>
 					<div id="list_comment">
 						@if($data->comment)
@@ -208,25 +208,25 @@
 					<hr class="product-detail-hr">
 					<p>
 						<strong>
-							Leave a comment:
+							{{ trans('web.field.leave_a_comment') }}
 						</strong>
 						<br/>
-						Your email address will not be published. Required fields are marked *
+						{{ trans('web.field.leave_a_comment_content') }}
 					</p>
 					<div class="row">
 						<div class="col-12">
 							<div class="frm-cmt-blog">
 								<div class="form-group">
-									<textarea class="form-control" rows="5" placeholder="Your Message" id="comment_content"></textarea>
+									<textarea class="form-control" rows="5" placeholder="{!! trans('web.form.message') !!}" id="comment_content"></textarea>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Your Name" value="{{ Auth::check() ? Auth::user()->name : '' }}" @if(Auth::check()) disabled @endif id="comment_name">
+									<input type="text" class="form-control" placeholder="{{ trans('web.form.name') }}" value="{{ Auth::check() ? Auth::user()->name : '' }}" @if(Auth::check()) disabled @endif id="comment_name">
 								</div>
 								<div class="form-group">
-									<input type="email" class="form-control" placeholder="Your Email" value="{{ Auth::check() ? Auth::user()->email : '' }}"  @if(Auth::check()) disabled @endif id="comment_email">
+									<input type="email" class="form-control" placeholder="{{ trans('web.form.email') }}" value="{{ Auth::check() ? Auth::user()->email : '' }}"  @if(Auth::check()) disabled @endif id="comment_email">
 								</div>
 								<div class="center-xs">
-									<button class="btn btn-style-1" onclick="comment(this)">Submit</button>
+									<button class="btn btn-style-1" onclick="comment(this)">{{ trans('web.form.submit') }}</button>
 									<div id="loader-t2" class="text-center">
 										<i class="fa fa-spinner fa-spin fa-3x"></i>
 									</div>
@@ -246,13 +246,11 @@
 	<div class="container">
 		<h2 class="home-title text-uppercase text-center">
 			<b>
-				Sản Phẩm <span class="c_ff7200">Khác</span>
+				<span class="c_ff7200">{{ trans('web.field.difference_products') }}</span>
 			</b>
 		</h2>
 		<p class="text-center">
-			quis nostrud quam est, qui dolorem ipsum 
-			<br>
-			quis nostrud quam est, qui dolorem ipsum quia dolor sit amet, consecquaerat 
+			{!! trans('web.field.difference_products_text') !!}
 		</p>
 		<div class="row">
 			<div class="col-12 col-md-10 offset-md-1">
@@ -271,7 +269,7 @@
 										</p>
 										<hr/>
 										<p class="slide-product-price">
-											<span>Chi tiết</span>
+											<span>{{ trans('web.field.readmore') }}</span>
 										</p>
 									</a>
 								</div>

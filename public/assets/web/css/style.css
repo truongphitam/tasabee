@@ -2017,3 +2017,7 @@ img {
 #loader-t2 i {
     color: #d1480b;
 }
+
+.hidden{
+    display: none !important;
+}

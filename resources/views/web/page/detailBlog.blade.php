@@ -52,10 +52,6 @@
                 <div class="text-justify">
                     {!! $data->description !!}
                 </div>
-
-
-
-                <!---->
                 <div class="post-action">
                     <div class="row">
                         <div class="col-8 col-md-9">
@@ -64,14 +60,14 @@
                                     @if($prev)
                                         <li class="list-inline-item">
                                             <a href="{{ route('detailBlog', $prev->slug) }}" title="{{ $prev->title }}">
-                                                <i class="fa fa-chevron-left"></i> older post
+                                                <i class="fa fa-chevron-left"></i> {{ trans('web.field.older_post') }}
                                             </a>
                                         </li>
                                     @endif
                                     @if($next)
                                         <li class="list-inline-item">
                                             <a href="{{ route('detailBlog', $next->slug) }}" title="{{ $next->title }}">
-                                                new post <i class="fa fa-chevron-right"></i>
+                                                {{ trans('web.field.new_post') }} <i class="fa fa-chevron-right"></i>
                                             </a>
                                         </li>
                                     @endif
@@ -80,12 +76,12 @@
                         </div>
                         <div class="col-4 col-md-3">
                             <div class="d-flex align-items-center justify-content-around">
-                                <small class="d-flex align-items-center">CHIA SẺ &nbsp;<img
+                                <small class="d-flex align-items-center">{{ trans('web.field.share') }} &nbsp;<img
                                         src="/assets/web/images/icon-share.png" width="15"></small>
-                                <a href="">
+                                <a href="http://www.facebook.com/sharer/sharer.php?u={!! url()->current() !!}&t={{ $data->title }}" title="{{ $data->title }}" class="share-popup">
                                     <img src="/assets/web/images/icon-fb.png" width="24">
                                 </a>
-                                <a href="">
+                                <a href="http://www.twitter.com/intent/tweet?url={!! url()->current() !!}&via=TWITTER_HANDLE_HERE&text={{ $data->title }}" title="{{ $data->title }}" class="share-popup">
                                     <img src="/assets/web/images/icon-twiter.png" width="24">
                                 </a>
                             </div>
@@ -105,7 +101,7 @@
             <div class="col-12 col-md-10 offset-md-1">
                 <p class="blog-comment-title">
                     <strong>
-                        Comment
+                        {{ trans('web.field.a_comment') }}
                     </strong>
                 </p>
                 <div id="list_comment">
@@ -127,25 +123,25 @@
                 <hr class="product-detail-hr">
                 <p>
                     <strong>
-                        Leave a comment:
+                        {{ trans('web.field.leave_a_comment') }}
                     </strong>
                     <br />
-                    Your email address will not be published. Required fields are marked *
+                    {{ trans('web.field.leave_a_comment_content') }}
                 </p>
                 <div class="row">
                     <div class="col-12">
                         <div class="frm-cmt-blog">
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" placeholder="Your Message" id="comment_content"></textarea>
+                                <textarea class="form-control" rows="5" placeholder="{!! trans('web.form.message') !!}" id="comment_content"></textarea>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Your Name" value="{{ Auth::check() ? Auth::user()->name : '' }}" @if(Auth::check()) disabled @endif id="comment_name">
+                                <input type="text" class="form-control" placeholder="{!! trans('web.form.name') !!}" value="{{ Auth::check() ? Auth::user()->name : '' }}" @if(Auth::check()) disabled @endif id="comment_name">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Your Email" value="{{ Auth::check() ? Auth::user()->email : '' }}"  @if(Auth::check()) disabled @endif id="comment_email">
+                                <input type="email" class="form-control" placeholder="{!! trans('web.form.email') !!}" value="{{ Auth::check() ? Auth::user()->email : '' }}"  @if(Auth::check()) disabled @endif id="comment_email">
                             </div>
                             <div class="center-xs">
-                                <button class="btn btn-style-1" onclick="comment(this)">Submit</button>
+                                <button class="btn btn-style-1" onclick="comment(this)">{!! trans('web.form.submit') !!}</button>
                                 <div id="loader-t2" class="text-center">
                                     <i class="fa fa-spinner fa-spin fa-3x"></i>
                                 </div>

@@ -209,17 +209,17 @@ function comment(elm){
 	var email = $("#comment_email").val();
 	var content = $("#comment_content").val();
 	if(!name.trim()){
-		alert('Vui lòng nhập Họ Tên!');
+		alert($("#error_name").val());
 		$("#comment_name").focus();
 		return false;
 	}
 	if(!content.trim()){
-		alert('Vui lòng nhập nội dung!');
+		alert($("#error_message").val());
 		$("#comment_content").focus();
 		return false;
 	}
 	if(!email.trim()){
-		alert('Vui lòng nhập Email!');
+		alert($("#error_email").val());
 		$("#comment_email").focus();
 		return false;
 	}
@@ -276,7 +276,7 @@ function setSize(size){
 
 function showModalContactProducts(){
 	if(!_size){
-		alert('Vui lòng chọn size');
+		alert($("#error_size").val());
 		return false;
 	}
 	_title_products = $("#title_products").val();
@@ -291,19 +291,19 @@ function submitFormModal(type){
 	var phone = $("#"+type+"_detail_phone").length ? $("#"+type+"_detail_phone").val() : '';
 	var note = $("#"+type+"_detail_note").val();
 	if(!name.trim()){
-		alert('Vui lòng nhập Họ Tên!');
-		$("#products_detail_name").focus();
+		alert($("#error_name").val());
+		$("#"+type+"_detail_name").focus();
 		return false;
 	}
 	if(!email.trim()){
-		alert('Vui lòng nhập Email!');
-		$("#products_detail_email").focus();
+		alert($("#error_email").val());
+		$("#"+type+"_detail_email").focus();
 		return false;
 	}
 	if(type == 'product'){
 		if(!phone.trim()){
-			alert('Vui lòng nhập số điện thoại!');
-			$("#products_detail_phone").focus();
+			alert($("#error_phone").val());
+			$("#"+type+"_detail_phone").focus();
 			return false;
 		} 
 	}

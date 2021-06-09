@@ -41,6 +41,7 @@ class SendEmailsForOrders extends Command
      */
     public function handle()
     {
+        \Log::info('SendEmailsForOrders: '. date('d/m/Y H:i:s'));
         // lấy những orders đã được confirm (confirm_status = 1 ) và chưa được gửi đi (sended = 0)
         // sau khi gửi đi xong thì update lại confirm_status = 0 và sended = 1;
         // Phương thức thanh toán TT mới gửi đi

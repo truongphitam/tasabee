@@ -102,7 +102,7 @@
 											</a>
 										@else
 											<a href="#login-modal" data-toggle="modal">
-												Đăng nhập
+												{{ trans('web.menu.login') }}
 											</a>
 										@endif
 									</li>
@@ -188,7 +188,7 @@
 			</p>
 			<h2 class="home-title text-uppercase text-center c_ff7200">
 				<b>
-					<span class="c_222">{{ trans('web.index.contact_with') }}</span> {{ trans('web.index.contact_us') }}
+					{{ trans('web.index.contact_us') }}
 				</b>
 			</h2>
 		</div>
@@ -289,7 +289,15 @@
 			</div>
 		</div>
 	</footer>
-
+	<input type="hidden" name="" id="error_name" value="{!! trans('web.form.error_name') !!}">
+	<input type="hidden" name="" id="error_phone" value="{!! trans('web.form.error_phone') !!}">
+	<input type="hidden" name="" id="error_note" value="{!! trans('web.form.error_note') !!}">
+	<input type="hidden" name="" id="error_email" value="{!! trans('web.form.error_email') !!}">
+	<input type="hidden" name="" id="error_username" value="{!! trans('web.form.error_username') !!}">
+	<input type="hidden" name="" id="error_password" value="{!! trans('web.form.error_password') !!}">
+	<input type="hidden" name="" id="error_size" value="{!! trans('web.form.error_size') !!}">
+	<input type="hidden" name="" id="error_message" value="{!! trans('web.form.error_message') !!}">
+	
 	@include('web.inc.popup')
 	<input type="hidden" name="" id="customer_login_id"
 		value="{{ Auth::check() ? Auth::user()->id : '' }}">

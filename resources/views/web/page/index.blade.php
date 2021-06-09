@@ -12,7 +12,7 @@
         </p>
         <h2 class="home-title text-uppercase text-center">
             <b>
-                {{ trans('web.menu.products') }} <span class="c_ff7200">{{ trans('web.field.highlight') }}</span>
+                <span class="c_ff7200">{{ trans('web.field.products_highlight') }}</span>
             </b>
         </h2>
         <p class="text-center">
@@ -191,7 +191,7 @@
                             <b>
                                 <span class="c_222">{{ trans('web.field.why') }}</span>
                                 <br/>
-                                TASA BEE
+                                TASABEE
                             </b>
                         </h2>
                         <p class="text-justify">

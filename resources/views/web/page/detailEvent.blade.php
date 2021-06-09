@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-4 col-md-3">
                             <div class="d-flex align-items-center justify-content-around">
-                                <small class="d-flex align-items-center">CHIA SẺ &nbsp;<img
+                                <small class="d-flex align-items-center">{{ trans('web.field.share') }} &nbsp;<img
                                         src="/assets/web/images/icon-share.png" width="15"></small>
                                 <a href="http://www.facebook.com/sharer/sharer.php?u={!! url()->current() !!}&t={{ $data->title }}" title="{{ $data->title }}" class="share-popup">
                                     <img src="/assets/web/images/icon-fb.png" width="24">

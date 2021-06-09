@@ -51,7 +51,7 @@
 							</a>
 							<div class="text-center">
 								<a href="{!! route('detailBlog', $post->slug) !!}" class="btn btn-style-1" title="{{ $post->title }}">
-									Chi tiết
+									{{ trans('web.field.readmore') }}
 								</a>
 							</div>
 						</div>

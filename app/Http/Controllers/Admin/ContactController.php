@@ -52,6 +52,7 @@ class ContactController extends Controller
                         $post->phone,
                         $post->email,
                         '<a href="'.route('products.show', $post->products_id).'">'.($post->product ? $post->product->title : '').'</a>', 
+                        $post->size,
                         $post->note,
                         convertToDMY($post->created_at),
                     ];

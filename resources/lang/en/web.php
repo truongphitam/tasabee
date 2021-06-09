@@ -76,7 +76,7 @@ return array (
     'commitment' => 'CAM KẾT',
     'our' => 'CỦA CHÚNG TÔI',
     'commitment_description' => 'Tasa bee thành lập với mong muốn đưa các sản phẩm ong nguyên chất ra nước ngoài bằng con đường trực diện hơn.',
-    'commitment_1_title' => 'Collapsible Group Item #1',
+    'commitment_1_title' => 'Collapsible Group Item #1 sss',
     'commitment_1_description' => 'Lorem ipsum..',
     'commitment_2_title' => 'Collapsible Group Item #2',
     'commitment_2_description' => 'Lorem ipsum..',

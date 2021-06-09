@@ -188,7 +188,7 @@
 			</p>
 			<h2 class="home-title text-uppercase text-center c_ff7200">
 				<b>
-					<span class="c_222">Liên Hệ Với</span> Chúng Tôi
+					<span class="c_222">{{ trans('web.index.contact_with') }}</span> {{ trans('web.index.contact_us') }}
 				</b>
 			</h2>
 		</div>

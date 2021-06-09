@@ -1657,12 +1657,12 @@ img {
     box-shadow: none;
 }
 #accordion-about .card-link {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  color: #000;
-  text-transform: uppercase;
-  position: relative;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: #000;
+    text-transform: uppercase;
+    position: relative;
 }
 #accordion-about .card-link.collapsed .card-header {
     border-color: transparent;

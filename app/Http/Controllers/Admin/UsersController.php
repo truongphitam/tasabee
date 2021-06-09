@@ -162,7 +162,7 @@ class UsersController extends Controller
         } else {
             Session::flash('danger', trans('message.admin.delete'));
         }
-        return redirect()->route('member.index');
+        return redirect()->route('users.index');
     }
 
     public function checkEmail(Request $request)

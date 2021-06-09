@@ -26,6 +26,7 @@
                             <th class="no-sort">Email</th>
                             @if($type == 'product')
                                 <th class="no-sort">Sản phẩm</th>
+                                <th class="no-sort">Size</th>
                             @endif
                             <th class="no-sort">Ghi chú</th>
                             <th class="no-sort text-center"></th>

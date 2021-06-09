@@ -215,28 +215,29 @@
     </div>
     <!-- Visually Hidden Preheader Text : END -->
     <!-- Email Header : BEGIN -->
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600"
+    {{-- <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600"
             style="margin: auto;" class="email-container">
         <tr>
             <td style="padding: 20px 0; text-align: center">
-                <img src="http://www.novelty.com.vn/assets/img/logo.png" width="200" height="50" alt="alt_text"
+                <img src="{{ $settings->logo }}" width="200" height="50" alt="alt_text"
                     border="0"
                     style="height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">
             </td>
         </tr>
-    </table>
+    </table> --}}
     <!-- Email Header : END -->
     <!-- Email Body : BEGIN -->
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600"
             style="margin: auto;" class="email-container">
         <!-- Hero Image, Flush : BEGIN -->
         <tr style="background: #d1480b">
-            <td style="text-align: center; color: #fff;padding: 10px 0px"><a href="novelty.com.vn" target="_blank">Novelty.com.vn</a>
+            <td style="text-align: center; color: #fff;padding: 10px 0px">
+                <a style="color:#fff; font-weight:bold" href="{{ route('index') }}" target="_blank">{{ env('APP_NAME')}}</a>
             </td>
         </tr>
         @yield('content')
         <tr style="background: #d1480b">
-            <td style="text-align: center; color: #fff;padding: 10px 0px">Novelty.com.vn – Overcome Business Standards
+            <td style="text-align: center; color: #fff;padding: 10px 0px"> Bảo vệ thiên nhiên và bảo tồn giá trị văn hóa
             </td>
         </tr>
     </table>

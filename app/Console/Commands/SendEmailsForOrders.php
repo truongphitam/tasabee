@@ -43,11 +43,12 @@ class SendEmailsForOrders extends Command
     {
         // lấy những orders đã được confirm (confirm_status = 1 ) và chưa được gửi đi (sended = 0)
         // sau khi gửi đi xong thì update lại confirm_status = 0 và sended = 1;
-        $orders = Orders::with('detail', 'attached')->where('confirm_status', 1)->where('sended', 0)->get();
+        // Phương thức thanh toán TT mới gửi đi
+        $orders = Orders::with('customer', 'staff', 'detail', 'attached')->where('method', 'TT')->where('confirm_status', 1)->where('sended', 0)->whereIn('status_orders', [0, 2, 4])->get();
         if($orders){
             foreach($orders as $order){
                 $view = '';
-                $subject = '';
+                $subject = 'Đơn hàng ';
                 $locale = 'vi';
                 $member = User::find($order->customer_id);
                 if($member && $member->country != 'VN'){
@@ -56,25 +57,38 @@ class SendEmailsForOrders extends Command
                 switch($order->status_orders){
                     case 0:
                         $view = 'orders_new';
-                        $subject = 'orders_new';
+                        $subject = 'Tasabee - Xác nhận đơn hàng';
+                        if($locale != 'vi'){
+                            $subject = 'Tasabee - Order confirmation email ';
+                        }
                         break;
                     case 2:
                         $view = 'orders_shipping';
-                        $subject = 'orders_shipping';
+                        $subject = 'Tasabee - Email thông báo đơn hàng đã rời khỏi xưởng';
+                        if($locale != 'vi'){
+                            $subject = 'Tasabee - Notification email of the shipment left the factory';
+                        }
                         break;
                     case 4:
                         $view = 'orders_finished';
-                        $subject = 'orders_finished';
+                        $subject = 'Tasabee - Hàng đã đến địa điểm chỉ định';
+                        if($locale != 'vi'){
+                            $subject = 'Tasabee - Notification email of shipment arrived at the specified location';
+                        }
                         break;
                 }
                 if($view){
                     $view = 'mail.'.$view.'_'.$locale;
                     print_r('-- ID: '.$order->id).PHP_EOL;
                     print_r('-- View: '. $view).PHP_EOL;
-                    Mail::send($view, ['data' => $order], function ($m) use($subject, $order){
-                        $m->from('noreply@tasabee.com', 'Tassabe – Overcome Business Standards');
-                        $m->to('tamphitruong@gmail.com', 'name_send')->subject($subject);
-                    });
+                    $email_send_to = $order->customer ? $order->customer->email : '';
+                    if($email_send_to){
+                        Mail::send($view, ['order' => $order], function ($m) use($subject, $order, $email_send_to){
+                            \Log::info('Mail send to: '. $order->customer->email);
+                            $m->from('noreply@tasabee.com', 'Tassabe');
+                            $m->to($email_send_to, 'noreply@tasabee.com')->subject($subject);
+                        });
+                    }
                     //
                     Orders::where('id', $order->id)->update(['confirm_status' => 0, 'sended' => 1]);
                     print_r('-- Send and Update Success ID: '.$order->id);
